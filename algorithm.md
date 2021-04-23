@@ -12,8 +12,8 @@ Notions vues en MAP433
 
 extraire les supports et faire une liste
 
-Livre Deepl Learning
-====================
+Livre Deep Learning
+===================
 
 - descente de gradient
 -
