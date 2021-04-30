@@ -25,3 +25,11 @@ Construction de polynomes ??
 ============================
 
 
+Liste de site d'algo
+====================
+
+https://en.wikipedia.org/wiki/List_of_algorithms
+
+https://hal.archives-ouvertes.fr/AECF/
+
+https://medium.com/100-days-of-algorithms
