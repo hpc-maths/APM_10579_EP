@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>MAP586 - les bases</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <section class="title">
+          <h1>MAP 586 </h1>
+          <h2>Introduction</h2>
+        </section>
+
+        <section class="slide">
+          <h1>The evolution of computing</h1>
+          <div class="justify-content-center">
+            <div class="row">
+              <div class="col-6">
+                <figure>
+                  <img width="60%" src="./figures/babbage.jpg" alt="babbage">
+                  <figcaption>
+                    <p class="m-0">babbage (<strong>1821</strong>)</p>
+                    <p class="m-0"><strong>1/6</strong> operations per second</p>
+                    <!-- source: https://www.futura-sciences.com/tech/actualites/informatique-machine-differences-babbage-silicon-valley-15487/ -->
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="col-6">
+                <figure>
+                  <img width="60%" src="./figures/Wartime_picture_of_a_Bletchley_Park_Bombe.jpg" alt="bombe">
+                  <figcaption>Bombe (<strong>1940</strong>)</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <figure>
+                  <img width="60%" src="./figures/Intel_C4004.jpg" alt="intel_C4004">
+                  <figcaption>
+                    <p class="m-0">Premier processeur (<strong>1971</strong>)</p>
+                    <p class="m-0"><strong>92 600</strong> operations per second</p>
+                    <!-- source: https://fr.wikipedia.org/wiki/Intel_4004 -->
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="col-6">
+                <figure>
+                  <img width="60%" src="./figures/iphone12pro.jpg" alt="iphone12">
+                  <figcaption>
+                    <p class="m-0">IPhone 12 (<strong>2020</strong>)</p>
+                    <p class="m-0"><strong>824 000 000 000</strong> operations per second</p>
+                    <!-- source: https://www.cpu-monkey.com/en/cpu-apple_a14_bionic-1693 -->
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <h1>Heterogeneous architectures</h1>
+          <div class=" mt-5">
+            <div class="row">
+              <div class="col-8">
+                <img class="m-0" width="100%" src="./figures/swhw.webp" alt="amdhal">
+                <!-- source: https://semiengineering.com/software-defined-hardware-gains-ground-again/ -->
+              </div>
+              <div class="col-4 align-items-center" align="left">
+                <ul>
+                  <li>
+                    CPU
+                    <ul>
+                      <li>
+                        X86
+                      </li>
+                      <li>
+                        ARM
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="mt-4">
+                    Accelerators
+                    <ul>
+                      <li>
+                        GPU
+                      </li>
+                      <li>
+                        FPGA
+                      </li>
+                      <li>
+                        VE
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p>Top500: Fujitsu Fugaku system (ARM) 415 PFlops ($10^{15}$)</p>
+          <!-- source: https://www.frandroid.com/marques/fujitsu-2/725148_le-superordinateur-le-plus-puissant-415-pflops-tourne-sous-arm -->
+        </section>
+
+        <section class="slide">
+          <h1>The complexity is everywhere</h1>
+          <div class="container" data-markdown>
+            <textarea data-template>
+              - The complexity of physical problems solved is increasing and requires multiple expertise.
+              - The computing architectures are Heterogeneous.
+              - A multitude of programming languages exists.
+              - A multitude of scientific libraries exists.
+              - A multitude of development tools are used (version management, continuous integration, ...).
+          </textarea>
+          </div>
+        </section>
+
+        <section class="slide">
+          <h1>The scientific software today</h1>
+          <div class="container justify-content-center">
+            <img width="50%" src="./figures/actors.png" />
+          </div>
+        </section>
+
+        <section class="slide">
+          <h1>The languages</h1>
+          <img width="50%" src="./figures/lang.rank.2021.png" />
+          <p>Today there are thousands of languages.</p>
+          <p>And some of them are of interest for scientific computing.</p>
+        </section>
+
+        <section class="slide">
+          <h1>Open Science</h1>
+          <img width="60%" src="./figures/open_science.png" />
+        </section>
+
+        <section class="slide">
+          <h1>Open source components</h1>
+          <div class="d-flex justify-content-start" data-markdown>
+            <textarea data-template>
+            - source code available
+            - license
+            - tests               <!-- .element: class="fragment" data-fragment-index="1" -->
+            - documentation       <!-- .element: class="fragment" data-fragment-index="1" -->
+            - packaging           <!-- .element: class="fragment" data-fragment-index="1" -->
+          </textarea>
+          </div>
+          <p class="fragment">Building a community around software takes time.</p>
+          <p class="fragment">The implementation of these components is a guarantee of reliability and confidence.</p>
+        </section>
+
+        <section class="slide">
+          <h1>During this course</h1>
+          <p class="d-flex justify-content-start">We will see</p>
+          <div class="d-flex justify-content-start" data-markdown>
+            <textarea data-template>
+            - various algorithms
+            - C++ language in depth
+            - code structuration
+            - and various concepts about software engineering
+          </textarea>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section class="title">
+          <h1>MAP 586 </h1>
+          <h2>C++ basics</h2>
+        </section>
+
+        <section class="slide">
+          <h1>C++ origins</h1>
+          <ul>
+            <li><strong>1982</strong>: Bjarne Stroustrup started to develop a successor to C: the C++</li>
+            <li><strong>1985</strong>: the first edition of <a
+                href="https://www.wikiwand.com/en/The_C%2B%2B_Programming_Language">The C++ Programming
+                Language</a> was published</li>
+            <li><strong>1989</strong>: C++ 2.0 was released, followed by the second edition of The C++ Programming
+              Language</li>
+            <li><strong>1998</strong>: C++98 was released</li>
+            <li><strong>2003</strong>: C++03 was released (with minor changes)</li>
+            <li class="fragment" data-fragment-index="1"><strong>2011</strong>: C++11 was released</li>
+            <li class="fragment" data-fragment-index="1"><strong>2014</strong>: C++14 was released</li>
+            <li class="fragment" data-fragment-index="1"><strong>2017</strong>: C++17 was released</li>
+            <li class="fragment" data-fragment-index="1"><strong>2020</strong>: C++20 was released</li>
+            <li class="fragment" data-fragment-index="2"><strong>2023</strong>: C++23 will be released</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>Interesting links</h1>
+          <ul>
+            <li class="fragment mb-2"><a href="https://isocpp.github.io/CppCoreGuidelines/">C++ Core Guidelines</a>:
+              some
+              guidelines to write
+              better modern C++ from C++14 and later</li>
+            <li class="fragment mb-2"><a href="https://en.cppreference.com">cppreference</a>: very nice reference on the
+              use of
+              C++ in all
+              version</li>
+            <li class="fragment mb-2"><a href="https://cppcon.org/">cppcon</a>: annual C++ conference</li>
+            <li class="fragment mb-2"><a href="https://cppnow.org/">C++now</a>: another annual C++ conference</li>
+            <li class="fragment"><a href="https://isocpp.org/">isocpp</a>: website with a list of articles, event,
+              training, ... about
+              C++</li>
+          </ul>
+        </section>
+
+        <section class="slide">
+          <h1>A first program</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+
+int main(int argc, char* argv[])
+{
+    double x1 = 1., y1 = 0.;
+    double x2 = 0., y2 = 1.;
+
+    double distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
+    return 0;
+}
+          </code></pre>
+        </section>
+
+        <section class="slide">
+          <h1>A first program</h1>
+          <pre><code class="cpp" data-line-numbers="2-4|5-7|8-9|11-12|13-14|16-17">
+#include &lt;iostream&gt;        // #include imports functions not built in the language
+                           // but defined in header files
+#include &lt;cmath&gt;           // More generally, # starts a preprocessor directive
+
+int main(int argc, char* argv[]) // Each executable program must have a function called main.
+{                                // The body of a function is delimited with curly braces (scope)
+    double x0 = 1., y0 = 0.;     // Declaration and initialization of variables x0, y0, x1 and y1.
+    double x1 = 0., y1 = 1.;     // C++ is a statically typed language
+
+    // std:: is a namespace qualifier
+    double distance = std::sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+    // Writing is done with the output operator &lt;&lt;
+    std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
+
+    return 0;                    // Return value of the main function (declared to return an int)
+}                                // Closes the body (scope) of the function
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section class="slide">
+          <h1>Variables</h1>
+          <p class="d-flex justify-content-start">C++ is a statically typed language</p>
+          <div class="d-flex justify-content-start">
+            <ul>
+
+              <li class="fragment" data-fragment-index="1">Variable must be declared with a type</li>
+              <li class="fragment" data-fragment-index="2">This type is final and cannot be changed after the
+                declaration</li>
+              <li class="fragment" data-fragment-index="3">Declaration (and initialization) of variables have the
+                following scheme:</li>
+              <pre class="fragment" data-fragment-index="3"><code class="cpp">
+type variable_name;
+type variable_name = value;
+type variable_name1 = value1, variable_name2 = value2, ...;
+              </code></pre>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>Built-in types</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>character types</li>
+              <li>boolean</li>
+              <li>integers</li>
+              <li>floating-point types</li>
+              <li>C-style arrays</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Character types</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>signed char (1 byte = 8 bits)</li>
+              <li>unsigned char (1 byte = 8 bits)</li>
+              <li>char (equivalent to signed or unsigned, but distinct)</li>
+              <li>wchar_t (system dependant, generally 2 or 4 bytes)</li>
+              <li>char16_t (2 bytes = 16 bits)</li>
+              <li>char32_t (4 bytes = 32 bits)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>Character types</h1>
+          <pre><code class="cpp">
+const char* c = "character_string";
+char s[17] = "character_string";
+          </code></pre>
+          <p class="fragment">Prefer <strong>std::string</strong> over arrays of characters</p>
+          <pre class="fragment"><code class="cpp">
+std::string s = "character_string";
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Booleans</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>bool (1 byte = 8 bits)</li>
+              <li>2 possible values, <strong>true</strong> or <strong>false</strong></li>
+            </ul>
+          </div>
+          <pre class="fragment"><code class="cpp">
+bool b1 = true, b2 = false;
+std::cout &lt;&lt; std::boolalpha &lt;&lt;"b1: " &lt;&lt; b1 &lt;&lt; std::endl;
+std::cout &lt;&lt; "b2: " &lt;&lt; b2 &lt;&lt; std::endl;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Integers</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>(unsigned) short (at least 2 bytes = 16 bits)</li>
+              <li>(unsigned) int (at least 4 bytes = 32 bits)</li>
+              <li>(unsigned) long (at least 4 bytes = 32 bits)</li>
+              <li>(unsigned) long long (at least 8 bytes = 64 bits)</li>
+              <li>std::size_t (8 bytes = 64 bits)</li>
+              <li>std::ptrdiff_t (8 bytes = 64 bits)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <p>C++ standard also guarantees</p>
+          <pre><code class="cpp">
+1 == sizeof(char) &le; sizeof(short) &le; sizeof(int) &le; sizeof(long) &le; sizeof(long long)
+          </code></pre>
+        </section>
+
+        <section>
+          <table>
+            <tr>
+              <th>types</th>
+              <th>size in bytes</th>
+              <th>lower bound</th>
+              <th>upper bound</th>
+            </tr>
+            <tr>
+              <td>short</td>
+              <td>$2$</td>
+              <td>$-2^8$</td>
+              <td>$2^8 - 1$</td>
+            </tr>
+            <tr>
+              <td>unsigned short</td>
+              <td>$2$</td>
+              <td>$0$</td>
+              <td>$2^{16}$</td>
+            </tr>
+            <tr>
+              <td>int</td>
+              <td>$4$</td>
+              <td>$-2^{16}$</td>
+              <td>$2^{16} - 1$</td>
+            </tr>
+            <tr>
+              <td>unsigned int</td>
+              <td>$4$</td>
+              <td>$0$</td>
+              <td>$2^{32}$</td>
+            </tr>
+            <tr>
+              <td>long long</td>
+              <td>$8$</td>
+              <td>$-2^{32}$</td>
+              <td>$2^{32} - 1$</td>
+            </tr>
+            <tr>
+              <td>unsigned long long</td>
+              <td>$8$</td>
+              <td>$0$</td>
+              <td>$2^{64}$</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <pre><code class="cpp">
+#include &lt;limits&gt;
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv[])
+{
+    std::cout &lt;&lt; "short: " &lt;&lt; sizeof(short) &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;short&gt;::min() &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;short&gt;::max() &lt;&lt; std::endl;
+    std::cout &lt;&lt; "int: " &lt;&lt; sizeof(int) &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;int&gt;::min() &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;int&gt;::max() &lt;&lt; std::endl;
+    std::cout &lt;&lt; "long: " &lt;&lt; sizeof(long) &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;long&gt;::min() &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;long&gt;::max() &lt;&lt; std::endl;
+    std::cout &lt;&lt; "long long: " &lt;&lt; sizeof(long long) &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;long long&gt;::min() &lt;&lt; " "
+              &lt;&lt; std::numeric_limits&lt;long long&gt;::max() &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Integer encoding</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>Unsigned integers: simple conversion to base 2</li>
+              <li>Signed integers: two's complement method</li>
+            </ul>
+          </div>
+          <pre><code class="fragment">
+int a = 42, b = -42;
+std::cout &lt;&lt; std::bitset&lt;32&gt;(a) &lt;&lt; std::endl;
+std::cout &lt;&lt; std::bitset&lt;32&gt;(b) &lt;&lt; std::endl;
+              </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Floating-point values</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>float (32 bits)</li>
+              <li>double (64 bits)</li>
+              <li>long double (platform dependent)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>IEEE 754 norm</h1>
+          <p>$r = (-1)^s \; m \; 2^{exponent - offset}$</p>
+          <ul>
+            <li>$s$: bit of sign</li>
+            <li>$m$: bits of mantissa</li>
+            <li>$exponent$: bits of exponent</li>
+          </ul>
+        </section>
+
+        <section>
+          <table>
+            <tr>
+              <th></th>
+              <th><b>float</b></th>
+              <th><b>double</b></th>
+            </tr>
+            <tr>
+              <td>sign</td>
+              <td>$1$</td>
+              <td>$1$</td>
+            </tr>
+            <tr>
+              <td>exponent</td>
+              <td>$8$</td>
+              <td>$11$</td>
+            </tr>
+            <tr>
+              <td>mantissa</td>
+              <td>$23$</td>
+              <td>$52$</td>
+            </tr>
+            <tr>
+              <td>lowest number</td>
+              <td>$1.4 10^{-45}$</td>
+              <td>$4.9406564854124564 10^{-324}$</td>
+            </tr>
+            <tr>
+              <td>highest number</td>
+              <td>$3.40282346 10^{38}$</td>
+              <td>$1.7976931348623157 10^{308}$</td>
+            </tr>
+          </table>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>C-Style arrays</h1>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>Syntax:</li>
+            </ul>
+          </div>
+          <pre><code class="cpp">
+double d[17];
+int i[4];
+d[0] = 1.2;
+d[4] = 2.7;
+                  </code></pre>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li>Statically allocated arrays</li>
+              <li>Cannot be resized</li>
+              <li>Have poor interfaces</li>
+            </ul>
+          </div>
+          <p class="fragment">Prefer <strong>std::arrays</strong> over C-style arrays</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Arithmetic Operators</h1>
+          <pre><code class="cpp">
+int a = 1, b = 2;
+
+int c = -a;
+int c2 = +a;
+
+int d = a + b; int da = a; da += b;
+int e = a - b; int ea = a; ea -= b;
+int f = a * b; int fa = a; fa *= b;
+int g = a / b; int ga = a; ga /= b;
+int h = a % b; int ha = a; ha %= b;
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Increment/decrement operators</h1>
+          <pre><code class="cpp">
+int a = 2;
+int b = a++;
+int c = ++a;
+int d = a--;
+int e = --a;
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Increment/decrement operators</h1>
+          <pre><code class="cpp">
+int a = 2;   // a = 2
+int b = a++; // a = 3, b = 2
+int c = ++a; // a = 4, b = 4
+int d = a--; // a = 3, d = 4
+int e = --a; // a = 2, e = 2
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Comparison operators</h1>
+          <pre><code class="cpp">
+bool r1 = a == b;
+bool r2 = a != b;
+bool r3 = a &lt; b;
+bool r4 = a &le; b;
+bool r5 = a &gt; b;
+bool r6 = a &ge; b;
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Bitwise operators</h1>
+          <pre><code class="cpp">
+int a = 1, b = 31;
+int c = ~a;
+int d = a &amp; b;  int da = a; da &amp;= b;
+int e = a | b;  int ea = a; ea |= b;
+int f = a ^ b;  int fa = a; fa ^= b;
+int g = a &lt;&lt; 1; int ga = a; ga &lt;&lt; 1;
+int h = a &gt;&gt; 1; int ha = a; ha &gt;&gt; 1;
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Bitwise operators</h1>
+          <pre><code class="cpp">
+int a = 1, b = 31;
+int c = ~a;                           // c = -2
+int d = a &amp; b;  int da = a; da &amp;= b;  // d = 1
+int e = a | b;  int ea = a; ea |= b;  // e = 31
+int f = a ^ b;  int fa = a; fa ^= b;  // f = 30
+int g = a &lt;&lt; 1; int ga = a; ga &lt;&lt; 1;  // g = 2
+int h = a &gt;&gt; 1; int ha = a; ha &gt;&gt; 1;  // h = 0
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Logical operations</h1>
+          <pre><code class="cpp">
+bool a = true, b = false;
+bool c = !a;
+bool d = a &amp;&amp; b;
+bool e = a || b;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>if and else</h1>
+          <pre><code class="cpp">
+if(x &gt; 0)
+{
+    std::cout &lt;&lt; "x is positive" &lt;&lt; std::endl;
+}
+else if(x &lt; 0)
+{
+    std::cout &lt;&lt; "x is negative" &lt;&lt; std::endl;
+}
+else
+{
+    std:cout &lt;&lt; "x is 0" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>while</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv)
+{
+    int n = 10;
+    while(n &ge; 0)
+    {
+        std::cout &lt;&lt; n &lt;&lt; std::endl;
+        --n;
+    }
+    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>do while</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv)
+{
+    int n = 0;
+    do
+    {
+        std::cout &lt;&lt; n &lt;&lt; std::endl;
+        --n;
+    }
+    while(n &ge; 0)
+    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>for</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv)
+{
+    for(int i = 0; i&lt; 10; ++i)
+    {
+        std::cout &lt;&lt; i &lt;&lt; std::endl;
+    }
+    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>break</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv)
+{
+    for(int i = 10; i&gt; 0; --i)
+    {
+        std::cout &lt;&lt; i &lt;&lt; std::endl;
+        if(i == 3)
+        {
+            std::cout &lt;&lt; "countdown aborted" &lt;&lt; std::endl;
+            break;
+        }
+    }
+    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>continue</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int main(int argc, char* argv)
+{
+    for(int i = 10; i&gt; 0; --i)
+    {
+        if(i == 3)
+        {
+            continue;
+        }
+        std::cout &lt;&lt; i &lt;&lt; std::endl;
+    }
+    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>switch</h1>
+          <pre><code class="cpp">
+int i = std::rand() % 2;
+switch(i)
+{
+    case 0:
+        std::cout &lt;&lt; "i is even" &lt;&lt; std::endl;
+        break;
+    case 1:
+        std::cout &lt;&lt; "i is odd" &lt;&lt; std::endl;
+    default:
+        std::cout &lt;&lt; "default case" &lt;&lt; std::endl;
+}
+          </code></pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>scope</h1>
+          <pre><code class="cpp">
+int main(int argc, char* argv[])
+{
+    int a = 10;
+    {
+        int b = 4096;
+        for(int i = 0; i &lt; a; ++i)
+        {
+            b /= 2;
+            int c = b;
+            std::cout &lt;&lt; c &lt;&lt; std::endl;
+        }
+        std::cout &lt;&lt; c &lt;&lt; std::endl; // error: c is not accessible
+    }
+    std::cout &lt;&lt; b &lt;&lt; std::endl; // error: b is not accessible
+}
+          </code></pre>
+        </section>
+      </section>
+
+
+      <section>
+        <section>
+          <h1>Readability</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+
+double f(std::size_t n)
+{
+    double out = 0;
+    // start the loop
+    for (std::size_t i=0; i&lt;n; ++i)
+    {
+        out += 1./n*std::sqrt(1 - (i*1./n*i*1./n));
+    }
+    return 4*out;
+}
+
+int main(int argc, char *argv[])
+{
+    std::cout &lt;&lt; f(1000) &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+        </section>
+
+        <section>
+          <h1>Readability</h1>
+          <pre><code class="cpp">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+
+// Compute pi using the rectangle method
+// to approximate the integral of 4*sqrt(1 - x^2)
+// over [0, 1]
+double compute_pi(std::size_t n)
+{
+    double quarter_pi = 0;
+    double dx = 1./n;
+    for (std::size_t i=0; i&lt;n; ++i)
+    {
+        double xi = i*dœx;
+        quarter_pi += h*std::sqrt(1 - xi*xi);
+    }
+    return 4*quarter_pi;
+}
+
+int main()
+{
+    std::cout &lt;&lt; compute_pi(1000) &lt;&lt; std::endl;
+    return 0;
+}
+          </code></pre>
+        </section>
+
+
+      </section>
+
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
