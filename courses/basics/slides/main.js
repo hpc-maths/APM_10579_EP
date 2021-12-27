@@ -5,6 +5,7 @@ import 'reveal.js/dist/reveal.css'
 import 'reveal.js/dist/theme/black.css'
 // import 'highlight.js/styles/ir-black.css'
 import 'reveal.js/plugin/highlight/monokai.css'
+
 import Reveal from 'reveal.js'
 import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js'
 import RevealHighlight from 'reveal.js/plugin/highlight/highlight.js'
@@ -14,7 +15,7 @@ const deck = new Reveal({
   plugins: [Markdown, RevealHighlight, RevealMath.KaTeX]
 })
 deck.initialize({
-  // hash: true,
+  hash: true,
   // markdown: {
   //   smartypants: true
   // }
