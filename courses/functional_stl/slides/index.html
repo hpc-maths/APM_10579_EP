@@ -340,6 +340,361 @@ int f(int, int);
             </code></pre>
           </div>
         </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>STL concepts</h1>
+          <ul>
+            <li>Containers</li>
+            <li>Iterators</li>
+            <li>Algorithms</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h1>Containers</h1>
+          <ul>
+            <li>Manage collections of objects of a certain kind</li>
+            <li>Sequential containers (vector, list, deque...)</li>
+            <li>Associative containers (map, set, unordered_map...)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Iterators</h1>
+          <ul>
+            <li>Abstraction for stepping through containers</li>
+            <li>Provide decoupling between containers and algorithms</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Algorithms</h1>
+          <ul>
+            <li>Act on containers through iterators</li>
+            <li>Non-modifying sequence operations (find, search, count...)</li>
+            <li>Modyfing sequence operations (copy, transform, generate...)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Documentation</h1>
+          <p>www.cppreference.com</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Sequential containers</h1>
+          <ul>
+            <li>std::vector</li>
+            <li>std::array</li>
+            <li>std::string</li>
+            <li>std::list</li>
+            <li>std::forward_list</li>
+            <li>std::stack</li>
+            <li>std::deque</li>
+            <li>std::queue</li>
+            <li>std::priority_queue</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>std::vector</h1>
+          <div class="fragment">
+            <pre><code class="cpp">
+#include &lt;vector&gt;
+
+std::vector&lt;double&gt; v1;
+std::vector&lt;double&gt; v2(10);
+std::vector&lt;double&gt; v3(10, 2);
+std::vector&lt;double&gt; v4 = { 1., 2., 4., 6., 7. };
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;double&gt; v(10, 1.);
+v[2] = 4.5;
+double d0 = v[4];
+double d1 = v.front();
+double d2 = v.back();
+size_t s = v.size();
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;double&gt; v5(v4);
+std::vector&lt;double&gt; v6 = v4; 
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+v3.resize(10);
+v4.reserve(10);
+v4.push_back(2.5);
+v5.clear();
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Iterators</h1>
+            <div class="fragment">
+              <pre><code class="cpp">
+std::vector&lt;double&gt; v = { 1., 2., 3., 4., 5. };
+
+auto iter = v.begin();
+auto iter_end = v.end();
+std::cout &lt;&lt; *iter &lt;&lt; std::endl; // 1.
+              </code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code class="cpp">
+++iter;
+std::cout &lt;&lt; *iter &lt;&lt; std::endl; // 2.
+              </code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code class="cpp">
+iter += 2;
+std::cout &lt;&lt; *iter &lt;&lt; std::endl; // 4.
+              </code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code class="cpp">
+*iter = 10; // v[3] = 10.
+std::cout &lt;&lt; *iter &lt;&lt; std::endl; // 10
+              </code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code class="cpp">
+--iter;
+std::cout &lt;&lt; *iter &lt;&lt; std::endl; // 3.
+              </code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code class="cpp">
+std::cout &lt;&lt; iter[2] &lt;&lt; std::endl; // 5.
+              </code></pre>
+            </div>
+        </section>
+        <section>
+          <h1>Exercise</h1>
+          <p>Open the notebook Gray-Scott and follow the instructions</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Algorithms 1/2</h1>
+          <pre><code class="cpp">
+#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+#include &lt;vector&gt;
+std::vector&lt;double&gt; a = { 1., 2., 3., 4., 5., 6. };
+std::vector&lt;double&gt; b = { 4., 7., 5., 4. };
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::copy(b.begin(), b.end(), ++(a.begin()));
+// =&gt; a == { 1., 4., 7., 5., 4., 6. }
+
+auto n = std::count(a.begin(), a.end(), 4.);
+// =&gt; n == 2
+
+auto iter = std::find(a.begin(), a.end(), 7.);
+// =&gt; iter == (a.begin()) + 2
+
+double res = std::accumulate(b.begin(), b.end(), 0.);
+// =&gt; res == 20
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Functors</h1>
+          <pre><code class="cpp">
+#include &lt;functional&gt;
+
+void test()
+{
+    std::plus&lt;double&gt; f;
+    std::cout &lt;&lt; f(1.0, 2.0) &lt;&lt; std::endl;
+    std::multiplies&lt;double&gt; f2;
+    std::cout &lt;&lt; f2(1.0, 2.0) &lt;&lt; std::endl;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;double&gt; b = { 4., 7., 5., 4. };
+
+double res = std::accumulate(b.begin(), b.end(), 1., std::multiplies&lt;double&gt;());
+// =&gt; res == 560.
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Algorithm 2/2</h1>
+          <pre><code class="cpp">
+#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+#include &lt;vector&gt;
+std::vector&lt;double&gt; a = { 1., 2., 3., 4., 5., 6. };
+std::vector&lt;double&gt; b = { 6., 4., 2., 5., 3., 1. };
+std::vector&lt;double&gt; res(6);
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::transform(a.begin(), a.end(), res.begin(), std::negate());
+// =&gt; res == { -1., -2., -3., -4., -5., -6. }
+
+std::transform(a.begin(), a.end(), b.begin(), res.begin(), std::plus());
+// =&gt; res == { 7., 6., 5., 9., 8., 7. };
+
+using namespace std::placeholders;
+int c = std::count_if(a.begin(), a.end(), std::bind(std::greater(), _1, 3.));
+// c == 3
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Lambda</h1>
+          <pre><code class="cpp">
+inline bool is_odd(int i)
+{
+    return i % 2 == 1;
+}
+
+std::vector&lt;int&gt; v = { 1, 2, 3, 4 };
+int n = std::count_if(a.begin(), a.end() is_odd);
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+auto lbd = [](int n) { return n%2 == 1; };
+int n = std::count_if(a.begin(), a.end(), lbd);
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+int n = std::count_if(a.begin(), a.end(), [](int n) { return n%2 == 1; });
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Lambda</h1>
+          <pre><code class="cpp">
+void amplify(std::vector&lt;double&gt;&amp; sig, double factor, double floor, double ceil)
+{
+    std::transform(sig.begin(), sig.end(), [](double v)
+    {
+        return std::max(floor, std::min(ceil, factor*v)); // Compilation error
+    });
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+void amplify(std::vector&lt;double&gt;&amp; sig, double factor, double floor, double ceil)
+{
+    std::transform(sig.begin(), sig.end(), [factor, floor, ceil](double v)
+    {
+        return std::max(floor, std::min(ceil, factor*v));
+    });
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Lambda capture</h1>
+          <ul>
+            <li>[]      - captures nothing</li>
+            <li>[=]     - captures all by value</li>
+            <li>[&amp;] - captures all by reference</li>
+            <li>[var1] - captures var1 by value</li>
+            <li>[&amp;var2] - captures var2 by reference</li>
+            <li>[=,&amp;var2] - captures all by value, but var2 by reference</li>
+            <li>[var1, &amp;var2]</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Dangling reference</h1>
+          <pre><code class="cpp">
+auto get_functor(double factor)
+{
+    double factor_twice = 2 * factor;
+    auto lambda = [&amp;factor_twice](double arg) { return factor_twice * arg; };
+    return lambda;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+void test()
+{
+    auto lambda = get_functor(2.5);
+    double res = lambda(1.5); // Boom!
+}
+            </code></pre>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Associative containers</h1>
+          <ul>
+            <li>map</li>
+            <li>multi_map</li>
+            <li>set</li>
+            <li>multiset</li>
+            <li>unordered_map</li>
+            <li>unordered_multimap</li>
+            <li>unordered_set</li>
+            <li>unordered_multiset</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>std::map</h1>
+          <pre><code class="cpp">
+#include &lt;map&gt;
+#include &lt;string&gt;
+
+std::map&lt;std::string, int&gt; m;
+std::map&lt;std::string, int&gt; m = {{"a", 2}, {"c", 6}};
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::map&lt;std::string, int&gt; m;
+m["a"] = 2;
+int ma = m["a"];
+int mb = m["b"]; // Creates a new entry ("b", uninitialized) in the map
+auto iter = m.find("c"); // returns m.end();
+size_t = m.size();
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::map&lt;std::string, int&gt; m;
+std::map&lt;std::string, int&gt; m2(m);
+std::map&lt;std::string, int&gt; m3 = m;
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::map&lt;std::string, int&gt; m;
+auto itp = m.insert({"a", 3});
+// itp.first == m.begin(), itp.second == true
+auto itp2 = m.insert({"a", 4});
+// itp.first == m.begin(), itp.second == false
+m.clear();
+            </code></pre>
+          </div>
+        </section>
 
       </section>
     </div>
