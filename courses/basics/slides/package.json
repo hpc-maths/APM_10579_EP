@@ -9,5 +9,5 @@
   "devDependencies": {
     "reveal.js": "^4.2.1",
     "vite": "^2.7.2"
-  },
+  }
 }
