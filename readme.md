@@ -1,7 +1,6 @@
 This repository contains all the material for a course entitled "Algorithms and Software Design Principles for Applied Mathematics in Modern C++" given at the Ecole Polytechnique.
 
 # Synopsis
----
 
 Research in applied mathematics has seen major advances in recent years thanks to the rapid evolution of computing resources (GPUs, multi-core, massively parallel architectures). This implies an almost continuous adaptation of data structures and algorithms in order to fully exploit the available resources. These developments respond to the need to simulate and predict the behavior of increasingly complex systems, as close as possible to reality, in many scientific fields. These advances also contribute to innovation in the industrial field and in particular in SMEs and start-ups.
 
@@ -13,11 +12,21 @@ To do so, we will first use Jupyter and the xeus-cling kernel to write C++ in no
 
 At the end of the course, a solid knowledge of algorithms will allow students to more easily understand the implementation of new numerical methods. Thanks to their knowledge of C++, they will be able to read most of the codes written in this language and to serenely consider all its potentialities. Finally, the notions of software engineering will allow them to understand the complex software architectures found in the research field as well as in industries.
 
-# Courses
----
+# Content
 
 The slides of the different sessions are available [online](https://hpc-maths.github.io/MAP586/).
 
-1- [The basics](https://hpc-maths.github.io/MAP586/)
-2- [Functional programming](https://hpc-maths.github.io/MAP586/courses/functional_stl)
+## Courses
 
+1. [The basics](https://hpc-maths.github.io/MAP586/)
+2. [Functional programming](https://hpc-maths.github.io/MAP586/courses/functional_stl)
+
+## Practical sessions
+
+1. [The basics](https://github.com/gouarin/MAP586/tree/readme/courses/basics/notebooks)
+
+# Authors
+
+- [Loic Gouarin](https://github.com/gouarin), [CNRS](https://www.cnrs.fr/en) research engineer in scientific computing at [CMAP](https://portail.polytechnique.edu/cmap/en). He has been developing Open Source software for many years ([pylbm](https://github.com/gouarin/pylbm), [samurai](https://github.com/hpc-maths/samurai), [xtensor-sparse](https://github.com/xtensor-stack/xtensor-sparse), ...). He is also co-developer of the [xeus-cling](https://github.com/jupyter-xeus/xeus-cling) kernel. His favorite languages are Python and C++.
+
+- [Johan Mabille](https://github.com/JohanMabille), software engineer specialized in scientific computing. He works at [QuantStack](https://quantstack.net/), a French company specialized in open source development for scientific computing. He is the co-author of [xtensor](https://github.com/xtensor-stack/xtensor) and [xeus](https://github.com/jupyter-xeus) and is very involved in the development of [Jupyter](https://jupyter.org/) (protocol, kernels, debugger).
