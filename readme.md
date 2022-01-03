@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hpc-maths/MAP586/main)
+
 This repository contains all the material for a course entitled "Algorithms and Software Design Principles for Applied Mathematics in Modern C++" given at the Ecole Polytechnique.
 
 # Synopsis
