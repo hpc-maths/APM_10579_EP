@@ -20,7 +20,7 @@ The slides of the different sessions are available [online](https://hpc-maths.gi
 
 ## Courses
 
-1. [The basics](https://hpc-maths.github.io/MAP586/)
+1. [The basics](https://hpc-maths.github.io/MAP586/basics)
 2. [Functional programming](https://hpc-maths.github.io/MAP586/courses/functional_stl)
 
 ## Practical sessions
