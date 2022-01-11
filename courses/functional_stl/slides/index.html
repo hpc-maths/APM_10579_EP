@@ -143,6 +143,17 @@ double f8() { return 1; }   // OK: conversion from int to double
         </section>
 
         <section>
+          <h1>auto</h1>
+          <p>Let the compiler deduce the type</p>
+          <pre><code class="cpp">
+auto f1() { double d = 2.3; return d; } // OK
+int  f2() { auto i = 4; return i; }     // OK
+auto f3() { auto i = 2; return i; }     // OK
+int  f4(auto d) { ... }                 // Error: auto cannot be used for arguments
+          </code></pre>
+        </section>
+
+        <section>
           <h1>Exercise</h1>
           <p>Open the notebook quicksort and follow the instructions</p>
         </section>
@@ -641,6 +652,53 @@ void test()
             </code></pre>
           </div>
         </section>
+
+        <section>
+          <h1>Lambda and auto </h1>
+          <pre><code class="cpp">
+std::vector&lt;std::vector&lt;double&gt;&gt; m1 = { ... };
+std::vector&lt;std::vector&lt;double&gt;&gt; res = { ... };
+
+std::for_each(m1.begin(), m1.end(), res.begin(), [](const std::vector&lt;double&gt;&amp; v) {
+    // ...
+});
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::for_each(m1.begin(), m1.end(), res.begin(), [](const auto&amp; v) {
+    // ...
+});
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Initializing in lambda capture</h1>
+          <pre><code class="cpp">
+std::vector&lt;double&gt; v = { ... };
+double d = 2.4;
+std::gtransform(v.begin(), v.end(), v.begin(), [d](double v) { return v + d; });
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;double&gt; v = { ... };
+std::gtransform(v.begin(), v.end(), v.begin(), [d=2.3](double v) { return v + d; });
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;string&gt; filename(5);
+std::generate(ilename.begin(), filename.end(), [i = 0]() { return "myname" + std::to_string(i++); }); // Error
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::vector&lt;string&gt; filename(5);
+std::generate(ilename.begin(), filename.end(), [i = 0]() mutable { return "myname" + std::to_string(i++); });
+            </code></pre>
+          </div>
+        </section>
+
         <section>
           <h1>Exercise</h1>
           <p>Open the notebook kmeans and follow the instructions</p>
