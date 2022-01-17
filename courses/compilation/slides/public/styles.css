@@ -1,0 +1,116 @@
+/* cinzel-decorative-regular - latin */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('fonts/Cinzel-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Gelasio';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('fonts/Gelasio-Regular.ttf') format('truetype'),
+}
+
+#app {
+  /* font-family: 'Cinzel Decorative', Gelasio, Gelasio, sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+  /* margin-top: 60px; */
+}
+
+.reveal
+{
+  font-family: Gelasio !important;
+  font-size: 1.5rem !important;
+}
+
+.reveal .slides
+{
+  text-align: left !important;
+}
+
+figcaption
+{
+  font-size: 1rem;
+}
+
+/* .reveal .slides .slide{
+  height: 100% !important;
+  top: 0px !important;
+  margin-top: 5% !important;
+} */
+
+/*
+.reveal .slides>section {
+  min-height: 90% !important;
+} */
+
+strong
+{
+  color: #caa000  !important;
+}
+
+a
+{
+  color: inherit !important;
+  border-bottom: #caa000 1px solid;
+}
+
+.slide h1
+{
+  font-family: 'Cinzel' !important;
+  font-weight: 400 !important;
+  font-size: 2.5rem !important;
+  text-align: left;
+  border-bottom: #caa000 2px solid;
+  margin-bottom: 40px !important;
+}
+
+.title h1
+{
+  /* font-family: 'Cinzel Decorative' !important; */
+  font-size: 4rem !important;
+  font-weight: 400 !important;
+  text-align: left;
+  border-bottom: #caa000 3px solid;
+  margin-bottom: 5px !important;
+}
+
+.title h2
+{
+  font-family: 'Cinzel' !important;
+  font-weight: 400 !important;
+  font-size: 2rem !important;
+  text-align: right;
+}
+
+.reveal .controls button {
+  color: #caa000 !important;
+}
+
+.reveal .progress {
+  color: #caa000 !important;
+}
+
+
+/* .slide.content
+{
+  min-height: 90%;
+} */
+
+/* .container { */
+  /* height: 30vh; */
+  /* background-color: salmon; */
+
+  /* display: flex;
+  font-size: 1.5rem;
+  padding: 20px; */
+  /* justify-content: left; */
+  /* align-items: center; */
+/* } */
