@@ -46,3 +46,5 @@ package-lock.json
 *.log
 *.aux
 *.synctex.gz
+
+.vscode
