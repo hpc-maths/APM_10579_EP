@@ -641,7 +641,7 @@ namespace algorithm
 }
 
 algorithm::merge::sort(x);
-  </code></pre>
+          </code></pre>
         </section>
 
         <section>
@@ -666,8 +666,110 @@ namespace algorithm
 }
 
 algorithm::merge::sort(x);
-  </code></pre>
+          </code></pre>
         </section>
+        <section>
+          <h1>static keyword</h1>
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <pre><code class="cpp">
+int my_var = 6;
+              </code></pre>
+            </div>
+            <div class="col-2 lead">
+              file_1.cpp
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <pre><code class="cpp">
+int my_var = 8;
+              </code></pre>
+            </div>
+            <div class="col-2 lead">
+              file_2.cpp
+            </div>
+          </div>
+          <p>Link error: multiple definitions of my_var</p>
+          <div class="fragment">
+            <div class="row d-flex align-items-center">
+              <div class="col">
+                <pre><code class="cpp">
+static int my_var = 6;
+                </code></pre>
+              </div>
+              <div class="col-2 lead">
+                file_1.cpp
+              </div>
+            </div>
+            <div class="row d-flex align-items-center">
+              <div class="col">
+                <pre><code class="cpp">
+static int my_var = 8;
+                </code></pre>
+              </div>
+              <div class="col-2 lead">
+                file_2.cpp
+              </div>
+            </div>
+            <p>OK: A static variable is local to a translation unit</p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Anonymous namespace</h1>
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <pre><code class="cpp">
+static int my_var = 6;
+              </code></pre>
+            </div>
+            <div class="col-2 lead">
+              file_1.cpp
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <pre><code class="cpp">
+static int my_var = 8;
+              </code></pre>
+            </div>
+            <div class="col-2 lead">
+              file_2.cpp
+            </div>
+          </div>
+          <p>Equivalent to</p>
+          <div class="fragment">
+            <div class="row d-flex align-items-center">
+              <div class="col">
+                <pre><code class="cpp">
+namespace
+{
+    int my_var = 6;
+}
+                </code></pre>
+              </div>
+              <div class="col-2 lead">
+                file_1.cpp
+              </div>
+            </div>
+            <div class="row d-flex align-items-center">
+              <div class="col">
+                <pre><code class="cpp">
+namespace
+{
+    int my_var = 8;
+}
+                </code></pre>
+              </div>
+              <div class="col-2 lead">
+                file_2.cpp
+              </div>
+            </div>
+            <p>Anonymous namespace encapsulates definitions</p>
+          </div>
+        </section>
+
 
         <section>
           <h1>using</h1>
