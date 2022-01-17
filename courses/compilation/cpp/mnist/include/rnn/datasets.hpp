@@ -15,9 +15,9 @@ namespace rnn
     {
         using data_t = std::vector<std::vector<double>>;
 
-        void shuffle(data_t& train_input, data_t& train_output)
+        void shuffle(data_t& input, data_t& output)
         {
-            std::vector<std::size_t> indices(train_input.size());
+            std::vector<std::size_t> indices(input.size());
             std::generate(indices.begin(), indices.end(), [n = 0]() mutable {return n++;});
 
             std::random_device rd;
@@ -25,20 +25,20 @@ namespace rnn
 
             std::shuffle(indices.begin(), indices.end(), g);
 
-            for(std::size_t i=0; i<train_input.size(); ++i)
+            for(std::size_t i=0; i<input.size(); ++i)
             {
-                for(std::size_t j=0; j<train_input[i].size(); ++j)
+                for(std::size_t j=0; j<input[i].size(); ++j)
                 {
-                    double tmp = train_input[i][j];
-                    train_input[i][j] = train_input[indices[i]][j];
-                    train_input[indices[i]][j] = tmp;
+                    double tmp = input[i][j];
+                    input[i][j] = input[indices[i]][j];
+                    input[indices[i]][j] = tmp;
                 }
 
-                for(std::size_t j=0; j<train_output[i].size(); ++j)
+                for(std::size_t j=0; j<output[i].size(); ++j)
                 {
-                    double tmp = train_output[i][j];
-                    train_output[i][j] = train_output[indices[i]][j];
-                    train_output[indices[i]][j] = tmp;
+                    double tmp = output[i][j];
+                    output[i][j] = output[indices[i]][j];
+                    output[indices[i]][j] = tmp;
                 }
             }
         }
@@ -118,8 +118,8 @@ namespace rnn
         {
             // std::tie(train, test) = read_csv_data("iris.csv", pourcent);
             std::map<std::string, std::size_t> iris_type{{"Iris-setosa", 0},
-                                                 {"Iris-versicolor", 1},
-                                                 {"Iris-virginica", 2}};
+                                                         {"Iris-versicolor", 1},
+                                                         {"Iris-virginica", 2}};
 
             return read_csv_data("dataset_61_iris.csv", pourcent, 3, [&iris_type](auto data){return iris_type[data];});
         }
