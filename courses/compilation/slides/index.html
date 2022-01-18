@@ -114,7 +114,7 @@ auto x = linspace(0, 1, 101);
 auto y = linspace(0, 1, 201);
 auto v = init_on_meshgrid(x, y, [](auto x, auto y){return std::exp(-100*(x*x + y*y));});
 </code></pre>
-          or
+          <p class="text-center">or</p>
           <pre><code>
 auto v = init_on_meshgrid(linspace(0, 1, 101), linspace(0, 1, 201),
                           [](auto x, auto y){return std::exp(-100*(x*x + y*y));});
@@ -233,7 +233,7 @@ auto init_on_meshgrid(const std::vector&lt;double&gt;& x, const std::vector&lt;d
               <pre style="height: 25%;" class="fragment" data-fragment-index="1"><code>
 int f();
 
-using array = std::vector&lt;double&gt;;
+using array_t = std::vector&lt;double&gt;;
 typedef integer int;
               </code></pre>
               <pre style="height: 20%;" class="fragment" data-fragment-index="2"><code>
@@ -645,29 +645,26 @@ algorithm::merge::sort(x);
         </section>
 
         <section>
-          <h1>namespace lookup</h1>
-          <pre class="fragment"><code>
-namespace algorithm
-{
-    namespace insertion
-    {
-        void sort(std::vector&lt;double&gt& x)
-        {
-            ...
-        }
-    }
-    namespace merge
-    {
-        void sort(std::vector&lt;double&gt& x)
-        {
-            ...
-        }
-    }
-}
+          <h1>using</h1>
+          <pre><code class="cpp">
+namespace mg = algorithm::merge; // namespace alias
+mg.sort(x);
+        </code></pre>
 
-algorithm::merge::sort(x);
-          </code></pre>
+          <pre><code class="cpp">
+using algorithm::merge::sort; // using directive
+sort(x);
+        </code></pre>
+          <pre><code class="cpp">
+using namespace algorithm::merge; // evil !
+sort(x);
+        </code></pre>
+          <pre><code class="cpp">
+using namespace std; // ultimate evil !!
+        </code></pre>
         </section>
+      </section>
+
         <section>
           <h1>static keyword</h1>
           <div class="row d-flex align-items-center">
@@ -690,7 +687,7 @@ int my_var = 8;
               file_2.cpp
             </div>
           </div>
-          <p>Link error: multiple definitions of my_var</p>
+          <p class="text-center lead">Link error: multiple definitions of my_var</p>
           <div class="fragment">
             <div class="row d-flex align-items-center">
               <div class="col">
@@ -712,7 +709,7 @@ static int my_var = 8;
                 file_2.cpp
               </div>
             </div>
-            <p>OK: A static variable is local to a translation unit</p>
+            <p class="text-center lead">OK: A static variable is local to a translation unit</p>
           </div>
         </section>
 
@@ -738,7 +735,7 @@ static int my_var = 8;
               file_2.cpp
             </div>
           </div>
-          <p>Equivalent to</p>
+          <p class="text-center lead">Equivalent to</p>
           <div class="fragment">
             <div class="row d-flex align-items-center">
               <div class="col">
@@ -766,7 +763,7 @@ namespace
                 file_2.cpp
               </div>
             </div>
-            <p>Anonymous namespace encapsulates definitions</p>
+            <p class="text-center lead">Anonymous namespace encapsulates definitions</p>
           </div>
         </section>
 
@@ -789,27 +786,6 @@ int func()
             </code></pre>
           </div>
         </section>
-
-        <section>
-          <h1>using</h1>
-          <pre><code class="cpp">
-namespace mg = algorithm::merge; // namespace alias
-mg.sort(x);
-        </code></pre>
-
-          <pre><code class="cpp">
-using algorithm::merge::sort; // using directive
-sort(x);
-        </code></pre>
-          <pre><code class="cpp">
-using namespace algorithm::merge; // evil !
-sort(x);
-        </code></pre>
-          <pre><code class="cpp">
-using namespace std; // ultimate evil !!
-        </code></pre>
-        </section>
-      </section>
 
       <section>
         <section>
@@ -878,6 +854,15 @@ target_compile_features(my_lib PUBLIC cxx_std_17)
         </code></pre>
           <p class="text-center lead">src/CMakeLists.txt</p>
 
+        </section>
+
+        <section>
+          <h1>CMake ressources</h1>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=eC9-iRN2b04">Using Modern CMake Patterns to Enforce a Good Modular Design</a> by Mathieu Ropert at CppCon 2017</li>
+            <li><a href="https://cliutils.gitlab.io/modern-cmake/">An introduction to modern CMake</a></li>
+            <li><a href="https://www.siliceum.com/en/blog/post/cmake_01_cmake-basics/">A brief introduction by Clément Grégoire</a> from Siliceum</li>
+          </ul>
         </section>
 
       </section>

@@ -62,6 +62,11 @@ a
   border-bottom: #caa000 1px solid;
 }
 
+li
+{
+  padding-bottom: 1.2rem;
+}
+
 .slide h1
 {
   font-family: 'Cinzel' !important;
