@@ -22,10 +22,13 @@ The slides of the different sessions are available [online](https://hpc-maths.gi
 
 1. [The basics](https://hpc-maths.github.io/MAP586/courses/basics)
 2. [Functional programming](https://hpc-maths.github.io/MAP586/courses/functional_stl)
+3. [Compilation and code organization](https://hpc-maths.github.io/MAP586/courses/compilation)
 
 ## Practical sessions
 
 1. [The basics](https://github.com/gouarin/MAP586/tree/readme/courses/basics/notebooks)
+1. [Functional programming](https://github.com/gouarin/MAP586/tree/readme/courses/functional_stl/notebooks)
+1. [Compilation and code organization](https://github.com/gouarin/MAP586/tree/readme/courses/compilation/notebooks)
 
 # Authors
 
