@@ -770,6 +770,25 @@ namespace
           </div>
         </section>
 
+        <section>
+          <h1>Static keyword</h1>
+          <pre><code class="cpp">
+int func()
+{
+    int res = 0;
+    return ++res;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+int func()
+{
+    static int res = 0;
+    return ++res;
+}
+            </code></pre>
+          </div>
+        </section>
 
         <section>
           <h1>using</h1>
