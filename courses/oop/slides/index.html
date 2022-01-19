@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>MAP586 - Object Oriented Programming</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title">
+        <h1>MAP 586</h1>
+        <h2>Object Oriented Programming</h2>
+      </section>
+
+      <section>
+        <section class="slide">
+          <h1>Class definition</h1>
+          <pre><code class="cpp">
+// File matrix.hpp
+class matrix
+{
+public:
+    
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+private:
+
+    std::size_t m_nb_rows;
+    std::size_t m_nb_cols;
+    std::vector&lt;double&gt; m_data;
+};
+          </code></pre>
+          <pre><code class="cpp">
+// File matrix.cpp
+matrix::matrix(std::size_t nb_rows, std::size_t nb_cols)
+    : m_nb_rows(nb_rows),
+      m_nb_cols(nb_cols),
+      m_data(nb_rows * nb_cols)
+{
+}
+          </code></pre>
+          <pre><code class="cpp">
+// File main.cpp
+int main(int argc, char* argv[])
+{
+    dauphine::matrix m(2, 4);
+    std::cout &lt;&lt; m.m_nb_rows &lt;&lt; std::endl;
+    return 0;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Build the program</h1>
+          <pre><code class="bash">
+# In the matrix folder:
+mkdir build
+cd build
+cmake ..
+make
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Method definition</h1>
+          <p>Define methods that return m_nb_rows and m_nb_cols</p>
+          <div class="fragment">
+            <pre><code class="cpp" data-line-numbers="9-10">
+// File matrix.hpp
+class matrix
+{
+public:
+    
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+    size_t nb_rows() const;
+    size_t nb_cols() const;
+
+private:
+
+    std::size_t m_nb_rows;
+    std::size_t m_nb_cols;
+    std::vector&lt;double&gt; m_data;
+};
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Method definition</h1>
+          <pre><code class="cpp">
+// File matrix.cpp
+size_t matrix::nb_rows() const
+{
+    return m_nb_rows;
+}
+
+size_t matrix::nb_cols() const
+{
+    return m_nb_cols;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+int main(int argc, char* argv[])
+{
+    hpc::matrix m(2, 4);
+    std::cout &lt;&lt; m.nb_rows() &lt;&lt; std::endl;
+    std::cout &lt;&lt; m.nb_cols() &lt;&lt; std::endl;
+    return 0;
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Const - 1/2</h1>
+          <pre><code class="cpp">
+std::size_t matrix::nb_rows() const
+{
+    m_nb_rows = 0;    // Error
+    return m_nb_rows;
+}
+          </code></pre>
+          <div class="fragment">
+            <p>Changing an attribute in a const method is forbidden</p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Method definition</h1>
+          <p>Define a method that resizes the matrix</p>
+          <div class="fragment">
+            <pre><code class="cpp" data-line-numbers="11">
+class matrix
+{
+public:
+
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+    size_t nb_rows() const;
+    size_t nb_cols() const;
+    
+    void resize(std::size_t nb_rows, std::size_t nb_cols);
+
+private:
+
+    std::size_t m_nb_rows;
+    std::size_t m_nb_cols;
+    std::vector&lt;double&gt; m_data;
+
+};
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+void matrix::resize(std::size_t nb_rows, std::size_t nb_cols)
+{
+    m_nb_rows = nb_rows;
+    m_nb_cols = nb_cols;
+    m_data.resize(m_nb_rows * m_nb_cols);
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>const - 2/2</h1>
+          <pre><code class="cpp">
+int main(int argc, char* argv[])
+{
+    const matrix m(2, 4);
+    m.resize(3, 5);       // Error
+    return 0;
+}
+          </code></pre>
+          <div class="fragment">
+            <p>Calling a non-const method on a const object is forbidden</p>
+          </div>
+        </section>
+
+        <section>
+          <h1>const rules</h1>
+          <ul>
+            <li>Whenever a parameter won't be modified, make it const</li>
+            <li>Whenever a method does not change the object, make it const</li>
+            <li>If you're not sure, make it const</li>
+            <li>Think twice before removing a const</li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Constructors</h1>
+          <p>Define a constructor taking a single parameter (for squared matrices), and a default constructor</p>
+          <div class="fragment">
+            <pre><code class="cpp">
+class matrix
+{
+public:
+
+    matrix();
+    matrix(std::size_t size);
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+    // ... as before
+};
+            </code></pre>
+          </div>
+        </section>
+        
+        <section>
+          <h1>Constructors</h1>
+          <pre><code class="cpp" data-line-numbers="2-14">
+matrix::matrix()
+    : m_nb_rows(0),
+      m_nb_cols(0),
+      m_data()
+{
+}
+
+matrix::matrix(std::size_t size)
+    : m_nb_rows(size),
+      m_nb_cols(size),
+      m_data(size, size)
+{
+}
+
+matrix::matrix(std::size_t nb_rows, std::size_t nb_cols)
+    : m_nb_rows(nb_rows),
+      m_nb_cols(nb_cols),
+      m_data(nb_rows * nb_cols)
+{
+}
+          </code></pre>
+        </section>
+        
+        <section>
+          <h1>Constructors</h1>
+          <pre><code class="cpp" data-line-numbers="6">
+class matrix
+{
+public:
+
+    matrix() = default; // Default constructor
+    matrix(std::size_t size);
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+    // ... as before
+};
+          </code></pre>
+          <div class="fragments">
+            <pre><code class="cpp" data-line-numbers="2-12">
+/*matrix::matrix()
+    : m_nb_rows(0),
+      m_nb_cols(0),
+      m_data()
+{
+}*/
+
+matrix::matrix(std::size_t size)
+    : matrix(size, size) / Delegating constructor
+{
+}
+
+matrix::matrix(std::size_t nb_rows, std::size_t nb_cols)
+    : m_nb_rows(nb_rows),
+      m_nb_cols(nb_cols),
+      m_data(nb_rows * nb_cols)
+{
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Delegating constructors</h1>
+          <pre><code class="cpp">
+class test
+{
+public:
+
+    test(int i, int j) : m_i(i), m_j(j) {}
+    test(int i) : test(i, 0) {}                        // OK
+    test(int i) : test(i, 0), m_d1(0.), m_d2(0.) {}    // Illegal
+    test(double d1, double d2) : m_d1(d1), m_d2(d2) {}
+    test(double d) : test(d, 0.) {}                    // Illegal, only one delegating constructor per class
+
+private:
+
+    int m_i, m_j;
+    double m_d1, m_d2;
+};
+          </code></pre>
+        </section>
+        <section>
+          <h1>Constructors</h1>
+          <pre><code class="cpp" data-line-numbers="6-7">
+class matrix
+{
+public:
+
+    //matrix() = default; // Default constructor
+    matrix(std::size_t size = 0);
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+
+    // ... as before
+};
+          </code></pre>
+        </section>
+        <section>
+          <h1>initializer list</h1>
+          <pre><code class="cpp">
+// File main.cpp
+int main(int argc, char* argv[])
+{
+    dauphine::matrix m = {{1., 2.}, {3., 4.}};
+    // ...
+    return 0;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp" data-line-numbers="8">
+class matrix
+{
+public:
+
+    matrix(std::size_t size);
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+    matrix(std::initializer_list&lt;std::initializer_list&lt;double&gt;&gt; init);
+
+    // ... as before
+};
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>initializer list</h1>
+          <pre><code class="cpp">
+matrix::matrix(std::initializer_list&lt;std::initializer_list&lt;double&gt;&gt; init)
+    : m_nb_rows(init.size())
+    , m_nb_cols(init.size') ? init.begin()-&gt;size() : 0u)
+    , m_data(m_nb_rows, m_nb_cols)
+{
+    auto dest = m_data.begin();
+    std::for_each(init.begin(), init.end(), [&amp;dest, m_nb_cols](const auto&amp; v) {
+        dest = std::copy(dest, dest + m_nb_cols, v.begin());
+    });
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Implicit conversion</h1>
+          <pre><code class="cpp">
+void compute(const matrix&amp; m) { ... }
+
+compute(4u);
+// makes the compiler generate
+matrix tmp(4u);
+compute(tmp);
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp" data-line-numbers="6">
+class matrix
+{
+public:
+
+    explicit matrix(std::size_t size);
+    matrix(std::size_t nb_rows, std::size_t nb_cols);
+    matrix(std::initializer_list&lt;std::initializer_list&lt;double&gt;&gt; init);
+
+    // ... as before
+};
+
+            </code></pre>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Access operator</h1>
+          <pre><code class="cpp">
+matrix m = {{ 1., 2.}, {3., 4.}};
+std::cout &lt;&lt; m[0, 1] &lt;&lt; std::endl; // Illegal, operator[] can accept only one parameter
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+class matrix
+{
+public:
+
+    // ...
+
+    double&amp; operator(size_t i, size_t j);
+    const double&amp; operator(size_t i, size_t j) const;
+};
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+double&amp; matrix::operator()(std::size_t i, std::size_t j)
+{
+    return m_data[i * m_nb_cols + j];
+}
+
+const double&amp; matrix::operator()(std::size_t i, std::size_t j) const
+{
+    return m_data[i * m_nb_cols + j];
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>output operator</h1>
+          <pre><code class="cpp">
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const matrix&amp; m);
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const matrix&amp; m)
+{
+    for(std::size_t i = 0; i &lt; m.nb_rows(); ++i)
+    {
+        for(std::size_t j = 0; j &lt; m.nb_cols(); ++j)
+        {
+            out &lt;&lt; m(i, j) &lt;&lt; ", ";
+        }
+        out &lt;&lt; std::endl;
+    }
+    return out;
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Computed assignment</h1>
+          <pre><code class="cpp">
+class matrix
+{
+public:
+
+    // ...
+
+    matrix&amp; operator+=(const matrix&amp; rhs);
+    matrix&amp; operator-=(const matrix&amp; rhs);
+    matrix&amp; operator*=(const matrix&amp; rhs);
+    matrix&amp; operator/=(const matrix&amp; rhs);
+}; 
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Computed assignment</h1>
+          <pre><code class="cpp">
+matrix&amp; matrix::operator+=(const matrix&amp; rhs)
+{
+    for(std::size_t i = 0; i &lt; m_nb_rows; ++i)
+    {
+        for(std::size_t j = 0; j &lt; m_nb_cols; ++j)
+        {
+            m_data[i * m_nb_cols + j] = rhs.m_data[i * m_nb_cols + j];
+        }
+    }
+    return *this;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+matrix&amp; matrix::operator+=(const matrix&amp; rhs)
+{
+    std::transform(m_data.begin(), m_data.end(), rhs.m_data.begin(),
+                   m_data.begin(), std::plus&lt;double&gt;());
+    return *this;
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Computed assignment</h1>
+          <pre><code class="cpp">
+class matrix
+{
+public:
+
+    matrix&amp; operator+=(double rhs);
+    matrix&amp; operator-=(double rhs);
+    matrix&amp; operator*=(double rhs);
+    matrix&amp; operator/=(double rhs);
+};
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+matrix&amp; matrix::operator+=(double rhs)
+{
+    std::transform(m_data.begin(), m_data.end(), m_data.begin(),
+                   [rhs](double arg) { return arg + rhs; });
+    return *this;
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Arithmetic operators</h1>
+          <p>Solution 1 (bad)</p>
+          <pre><code class="cpp">
+class matrix
+{
+public:
+
+    matrix operator+(const matrix&amp; rhs) const;
+    matrix operator+(double rhs) const;
+};
+
+matrix res = m1 + m2; // OK - equivalent to res = m1.operator+(m2);
+matrix res = m1 + 2.  // OK - equivalent to res = m1.operator+(2.);
+matrix res = 2. + m1  // Error, no overload found for operator+(double, matrix)
+          </code></pre>
+          <div class="fragment">
+            <p>Solution 2 (good)</p>
+            <pre><code class="cpp">
+class matrix
+{
+    // ...
+};
+
+matrix operator+(const matrix&amp; lhs, const matrix&amp; rhs);
+matrix operator+(const matrix&amp; lhs, double rhs);
+matrix operator+(double lhs, const matrix&amp; rhs);
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Arithmetic operators</h1>
+          <pre><code class="cpp">
+matrix operator+(const matrix&amp; lhs, const matrix&amp; rhs)
+{
+    matrix tmp(lhs);
+    tmp += rhs;
+    return tmp;
+}
+
+matrix operator+(const matrix&amp; lhs, double rhs)
+{
+    matrix tmp(lhs);
+    tmp += rhs;
+    return tmp;
+}
+
+matrix operator+(double lhs, const matrix&amp; rhs)
+{
+    return rhs + lhs;
+}
+          </code></pre>
+        </section>
+
+      </section>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
