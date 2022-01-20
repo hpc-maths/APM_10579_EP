@@ -571,7 +571,175 @@ matrix operator+(double lhs, const matrix&amp; rhs)
           </code></pre>
         </section>
 
+        <section>
+          <h1>Conversion operator</h1>
+          <p>We want to convert a single-row matrix to a std::vector</p>
+          <div class="fragment">
+            <pre><code class="cpp">
+class matrix
+{
+public:
+
+    // ...
+
+    // No return type
+    operator std::vector&lt;double&gt;() const { return m_data; }
+};
+            </code></pre>
+          </div>
+        </section>
+        
+        <section>
+          <h1>Conversion</h1>
+          <ul>
+            <li>Use a conversion constructor when you convert to a type you manage</li>
+            <li>Use a conversion operator when you convert to a type you don't manage</li>
+          </ul>
+        </section>
       </section>
+
+      <section>
+        <section>
+          <h1>Struct</h1>
+          <pre><code class="cpp">
+class test
+{
+    double m_value; // private by default
+};
+
+struct test
+{
+    double m_value; // public by default
+};
+          </code></pre>
+          <div class="fragment">
+            <p>Plain Old Data (POD): structure with only data members, no methods</p>
+            <pre><code class="cpp">
+struct test
+{
+    double m_value;
+    std::string m_name;
+    int m_id;
+};
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Friend</h1>
+          <pre><code class="cpp">
+class connection
+{
+private:
+
+    int m_id;
+};
+
+void print_debug(const connection&amp; c)
+{
+    // Cannot access c.m_id because it is private
+    std::cout &lt;&lt; c.m_id &lt;&lt; std::endl;
+}
+          </code></pre>
+          <div class="fragment">
+            <pre><code class="cpp">
+class connection
+{
+private:
+
+    int m_id;
+
+    friend void print_debug(const connection&amp;);
+};
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Friend</h1>
+          <pre><code class="cpp">
+class connection
+{
+private;
+
+    int m_id;
+
+    friend class peer;
+};
+          </code></pre>
+          <div class="fragment">
+            <p>All methods defined in "peer" have access to "connection::m_id"</p> 
+          </div>
+        </section>
+
+        <section>
+          <h1>Friend</h1>
+          <pre><code class="cpp">
+class peer
+{
+private:
+
+    int m_id;
+};
+
+class connection
+{
+public:
+
+    void print_peer(const peer&amp; p)
+    {
+        // Illegal: peer::m_id is private
+        std::cout &lt;&lt; p.m_id &lt;&lt; std::end;
+    }
+
+private:
+
+    int m_id;
+
+    friend class peer;
+};
+          </code></pre>
+          <div class="fragment">
+            <p>Friendship is not reciprocal</p>
+          </div>
+        </section>
+      
+        <section>
+          <h1>Friend</h1>
+          <pre><code class="cpp">
+class connection
+{
+private:
+
+    int m_id;
+
+    friend class peer;
+};
+
+class peer
+{
+private:
+
+    friend class socket;
+};
+
+class socket
+{
+public:
+
+    void print_connection_id(const connection&amp; c)
+    {
+        // Illegal: connection::m_id is private
+        std::cout &lt;&lt; c.m_id &lt;&lt; std::endl;
+    }
+};
+          </code></pre>
+          <div class="fragment">
+            <p>Friendship is not transitive</p>
+          </div>
+        </section>
+      </section>
+
     </div>
   </div>
   <script type="module" src="/main.js"></script>
