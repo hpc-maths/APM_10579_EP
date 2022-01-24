@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>MAP586 - Value Semantics</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title">
+        <h1>MAP 586</h1>
+        <h2>Value Semantics</h2>
+      </section>
+
+      <section>
+        <section class="slide">
+          <h1>The need for uvector</h1>
+          <pre><code class="cpp">
+class matrix
+{
+public:
+
+    // ....
+
+private:
+
+    size_t m_nb_rows;
+    size_t m_nb_cols;
+    std::vector&lt;double&gt; m_data;
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>The need for uvector</h1>
+          <div>
+            <p>std::vector</p>
+            <ul>
+              <li>initializes all its values upon construction</li>
+              <li>even when these values will be modified just after</li>
+              <li>not efficient for intensive computation on large matrices</li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <pre><code class="cpp">
+matrix matrix::sigmoid(const matrix&amp; m)
+{
+    matrix res(m.nb_rows(), m.nb_cols());
+    std::transform(m.m_data.begin(), m.m_data.end(), res.m_data.begin()
+                   [](double arg) { return 1. / (1. + std::exp(-arg)); });
+} 
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Digression: heap allocation</h1>
+          <div>
+            <p>stack allocation</p>
+            <pre><code class="cpp">
+double m_data[N];
+// N must be known during compilation
+// N is not mutable, you cannot resize m_data;
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <p>Heap allocation</p>
+            <pre><code class="cpp">
+double* p_data = new double[size];
+// size can be computed at runtime
+delete[] p_data; // Never forget this
+delete[] p_data; // Never do it twice on a non null pointer
+p_data = nullptr;
+delete[] p_data; // OK 
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Digression: heap allocation</h1>
+          <pre><code class="cpp">
+double* p1 = new double(size);
+double* p2 = p1;
+          </code></pre>
+          <img class="fragment" src="array_memory.svg"/>
+          <pre class="fragment"><code class="cpp">
+delete p1;
+p2[2] // crash
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Digression: heap allocation</h1>
+          <p>The survival guide to dynamic allocation</p>
+          <ul>
+            <li>Default initialize pointers to nullptr</li>
+            <li>"new" must have a "delete" counterpart</li>
+            <li>Always reset a deleted pointer to nullptr</li>
+            <li class="fragment" style="color:red;">Avoid dynamic allocation as much as possible</li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>uvector - constructors</h1>
+          <pre><code class="cpp">
+class uvector
+{
+public:
+
+    uvector(std::size_t size = 0);
+    uvector(std::size_t size, double value);
+
+private:
+
+    double* p_data;
+    std::size_t m_size;
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - constructors</h1>
+          <pre><code class="cpp">
+uvector::uvector(std::size_t size)
+    : p_data(nullptr), m_size(0)
+{
+    if(size != 0)
+    {
+        p_data = new double[size];
+        m_size = size;
+    }
+}
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector::uvector(std::size_t size, double value)
+    : uvector(size) // delegating constructor
+{
+    std::fill(p_data, p_data + size, value);
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - destructor</h1>
+          <pre><code class="cpp" data-line-numbers="9">
+class uvector
+{
+public:
+
+    uvector(std::size_t size = 0);
+    uvector(std::size_t size, double value);
+
+    ~uvector();
+};
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector::~uvector()
+{
+    delete[] p_data;
+    p_data = nullptr;
+    m_size = 0;
+}
+          </code></pre>
+        </section>
+      </section>
+      
+      <section>
+        <section>
+          <h1>uvector - copy semantics</h1>
+          <pre><code class="cpp" data-line-numbers="11-12">
+class uvector
+{
+public:
+
+    uvector(std::size_t size = 0);
+    uvector(std::size_t size, double value);
+
+    ~uvector();
+
+    uvector(const uvector&amp;);
+    uvector&amp; operator=(const uvector&amp;);
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - copy constructor</h1>
+          <pre><code class="cpp">
+uvector::uvector(const uvector&amp; rhs)
+    : p_data(nullptr), m_size(0)
+{
+    if(rhs.m_size != 0)
+    {
+        p_data = new double[rhs.m_size];
+        m_size = rhs.m_size;
+        std::copy(rhs.p_data, rhs.p_data + m_size, p_data);
+    }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - assignment operator</h1>
+          <pre><code class="cpp">
+uvector&amp; uvector::operator=(const uvector&amp; rhs)
+{
+    delete[] p_data;
+    p_data = new double[rhs.m_size];
+    std::copy(rhs.p_data, rhs.p_data + rhs.m_size, p_data);
+    m_size = rhs.m_size;
+    return *this;
+} 
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector v(2, 2.);
+v = v;
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - assign operator</h1>
+          <p>Copy and swap idiom</p>
+          <pre><code class="cpp">
+uvector&amp; uvector::operator=(const uvector&amp; rhs)
+{
+    double* tmp = new double[rhs.m_size];                // Always allocate a temporary
+    std::copy(rhs.p_data, rhs.p_data + rhs.m_size, tmp); // copy
+    std::swap(tmp, p_data);                              // then swap
+    delete[] tmp;                                        // then delete the temporary
+    m_size = rhs.m_size;
+    return *this;
+}
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector&amp; uvector::operator=(const uvector&amp; rhs)
+{
+    double* tmp = new double[rhs.m_size];                // Always allocate a temporary
+    std::copy(rhs.p_data, rhs.p_data + rhs.m_size, tmp); // copy
+    tmp_size = rhs.m_size;                               // copy
+    std::swap(tmp, p_data);                              // swap
+    std::swap(tmp_size, m_size);                         // swap
+    delete[] tmp;                                        // then delete the temporary
+    return *this;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - swap</h1>
+          <pre><code class="cpp">
+class uvector
+{
+public:
+
+    void swap(uvector&amp; rhs);
+
+private:
+
+    double* p_data;
+    std::size_t m_size;
+};
+
+void swap(uvector&amp; lhs, uvector&amp; rhs);
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+void uvector::swap(uvector&amp; rhs)
+{
+    using std::swap;
+    swap(p_data, rhs.p_data);
+    swap(m_size, rhs.m_size);
+}
+
+void swap(uvector&amp; lhs, uvector&amp; rhs)
+{
+    lhs.swap(rhs);
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - assign operator</h1>
+          <p>Copy and swap idiom</p>
+          <pre><code class="cpp">
+uvector&amp; uvector::operator=(const uvector&amp; rhs)
+{
+    uvector tmp(rhs);
+    swap(*this, tmp);
+    return *this;
+}
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>rvalue reference</h1>
+          <pre><code class="cpp">
+uvector compute(const uvector&amp; param)
+{
+    uvector res;
+    // do some computation ...
+    return res;
+}
+
+// Inefficient copy
+uvector res = compute(my_huge_param);
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector&amp; compute(const uvector&amp; param)
+{
+    uvector res;
+    // do some computation ...
+    return res; // Binding a temporary to a non const reference!
+}
+
+// dangling reference
+uvector&amp; res = compute(my_huge_param);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>rvalue reference</h1>
+          <pre><code class="cpp">
+uvector compute(const uvector&amp; param)
+{
+    uvector res;
+    // do some computation ...
+    return res;
+}
+
+// rvalue reference
+uvector&amp;&amp; res = compute(my_huge_param);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>lvalue vs rvalue</h1>
+          <p>lvalue</p>
+          <ul>
+            <li>can be on both side of an assignment</li>
+            <li>can have a name (or not)</li>
+            <li>lvalue references bind to lvalues</li>
+          </ul>
+          <div class="fragment">
+            <p>rvalue</p>
+            <ul>
+              <li>can be on right hand side of an assignment only</li>
+              <li>does not have a name</li>
+              <li>rvalue references bind to rvalues</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>lvalue vs rvalue</h1>
+          <pre><code class="cpp">
+uvector&amp; func(uvector&amp; t)
+{
+    // do some stuff
+    return t;
+}
+
+uvector t, something;
+func(t) = something;
+          </code></pre>
+          <div class="fragment">
+            <ul>
+              <li>short: If it has a name, it is an lvalue</li>
+              <li>long: http://en.cppreference.com/w/cpp/language/value_category</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>lvalue vs rvalue</h1>
+          <pre><code class="cpp">
+uvector compute(const huge_param&amp; param);
+
+void function(const uvector&amp; param);
+void function(uvector&amp;&amp; param);
+          </code></pre>
+          <pre><code class="cpp">
+
+uvector m;
+function(m);
+function(compute(m));
+uvector&amp;&amp; ref = compute(m);
+function(ref);
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector m;
+function(m);                        // calls function(const uvector&amp; param);
+function(compute(m));               // calls function(uvector&amp;&amp; param);
+uvector&amp;&amp; ref = compute(m); 
+function(ref);                      // calls function(const uvector&amp; param);
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+function(static_cast&lt;uvector&amp;&amp;&gt;(ref));
+function(std::move(uvector));
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>uvector - move semantic</h1>
+          <pre><code class="cpp" data-line-numbers="13-14">
+class uvector
+{
+public:
+
+    uvector(std::size_t = 0);
+    uvector(std::size_t size, double value);
+    ~uvector();
+
+    uvector(const uvector&amp;)
+    uvector&amp; operator=(const uvector&amp; rhs);
+
+    uvector(uvector&amp;&amp;);
+    uvector&amp; operator=(uvector&amp;&amp; rhs);
+};
+ 
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>uvector - move constructor</h1>
+          <pre><code class="cpp">
+uvector::uvector(uvector&amp;&amp; rhs)
+    : p_data(std::move(p_data)), m_size(std::move(rhs.m_size))
+{
+}
+          </code></pre>
+          <pre class="fragment"><code class="cpp">
+uvector::uvector(uvector&amp;&amp; rhs)
+    : p_data(std::move(p_data)), m_size(std::move(rhs.m_size))
+{
+    rhs.p_data = nullptr;
+    rhs.m_size = 0;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Move assign operator</h1>
+          <pre><code class="cpp">
+uvector&amp; uvector::operator=(uvector&amp;&amp; rhs)
+{
+    using std::swap;
+    swap(p_data, rhs.p_data);
+    swap(m_size, rhs.m_size);
+    return *this;
+}
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Auto-generation rules</h1>
+          <ul>
+            <li>The default constructor is auto-generated if there is no:
+              <ul>
+                <li>user-declared constructor</li>
+              </ul>
+            </li>
+            <li class="fragment">The default destructor is auto-generated if there is no:
+              <ul>
+                <li>user-declared destructor</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Auto-generation rules</h1>
+          <ul>
+            <li>The copy constructor is auto-generated if there is no:
+              <ul>
+                <li>user-declared move constructor</li>
+                <li>user-declared move assignment operator</li>
+              </ul>
+            </li>
+            <li class="fragment">The copy assignment operator is auto-generated if there is no:
+              <ul>
+                <li>user-declared move constructor</li>
+                <li>user-declared move assignment operator</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Auto-generation rules</h1>
+          <ul>
+            <li>The move constructor is auto-generated if there is no:
+              <ul>
+                <li>user-declared copy constructor</li>
+                <li>user-declared copy assignment operator</li>
+                <li>user-declared destructor</li>
+              </ul>
+            </li>
+            <li class="fragment">The move assignment operator is auto-generated if there is no:
+              <ul>
+                <li>user-declared copy constructor</li>
+                <li>user-declared copy assignment operator</li>
+                <li>user-declared destructor</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Auto-generation rules</h1>
+            <p>If you need to declare and implement any of</p>
+            <ul>
+              <li>destructor</li>
+              <li>copy constructor</li>
+              <li>copy assignment operators</li>
+              <li>move constructor</li>
+              <li>move assignment operator</li>
+            </ul>
+            <p class="fragment">... you probably need to implement all off them</p>
+        </section>
+      </section>
+
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
