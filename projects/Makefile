@@ -14,3 +14,6 @@ dnn :
 
 interpolation :
 	pandoc interpolation.md ${pandoc_engine} ${pandoc_options} -o interpolation.pdf
+
+pde1d :
+	pandoc pde1d_solver.md ${pandoc_engine} ${pandoc_options} -o pde1d_solver.pdf
