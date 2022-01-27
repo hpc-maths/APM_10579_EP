@@ -740,6 +740,166 @@ public:
         </section>
       </section>
 
+      <section>
+        <section class="title">
+          <h1>Dijkstra's algorithm</h1>
+            <p>The goal of this TP is to implement a graph structure and the Dijkstra's algorithm (to find the shortest path
+            from a node to another one)</p>
+        </section>
+        <section>
+            <h1>Graph</h1>
+            <p>Write a node class with:</p>
+            <ul>
+              <li>an id data member (should be set upon construction</li>
+              <li>a list of neighboors data member (a neighboor is a pair id - distance)</li>
+              <li>a method to add a neighboor with a weight</li>
+              <li>a method to read the list of neighboors</li>
+            </ul>
+        </section>
+        <section>
+          <h1>Graph</h1>
+          <pre><code class="cpp">
+#include &lt;vector&gt;
+#include &lt;utility&gt;
+
+namespace hpc
+{
+    class node
+    {
+    public:
+
+        using neighboor = std::pair&lt;size_t, double&gt;;
+        using neighboor_list = std::vector&lt;neightboor&gt;;
+
+        explicit node(size_t id);
+
+        void add_neighboor(size_t id, double distance);
+        void add_neighboor(const neighboor&amp; n);
+
+        const neightboor_list&amp; get_neighboors() const;
+
+    private:
+
+        size_t m_id;
+        neighboor_list m_neighboor_list;
+
+    };
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>Graph</h1>
+          <p>Write a graph class that holds a list of nodes. Provide a convenient API to add nodes and read them</p>
+        </section>
+        <section>
+          <h1>Graph</h1>
+          <pre><code class="cpp">
+namespace hpc
+{
+    class graph
+    {
+    public:
+
+        using node_list = std::vector&lt;node&gt;;
+
+        void add_node(const node&amp; n);
+        const node_list&amp; get_nodes() const;
+
+    private:
+
+        node_list m_node_list;
+    };
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>Dijkstra's algorithm</h1>
+          <p>The idea is to incrementally build a subgraph in which nodes are ordered by distance
+          from the origin.</p>
+          <ul>
+            <li>Initially, all distances are set to infinite (except for the initial node), the subgrpah is empty</li>
+            <li>At each step, we choose a node out of the subgraph with the smallest distance to the origin and we add it to the subgraph</li>
+            <li>We update the distances of the neighboors of the last added node</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Djikstra's example (1/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra01.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (2/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra02.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (3/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra03.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (4/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra04.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (5/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra05.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (6/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra06.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (7/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra07.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (8/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra08.png">
+        </section>
+        <section>
+          <h1>Djikstra's example (9/9)</h1>
+          <img style="background-color:white" width="60%" src="./figures/Dijkstra09.png">
+        </section>
+        <section>
+          <h1>Dijkstra's pseudocode</h1>
+          <pre><code class="cpp">
+Input: G = (N, E)
+P = {}
+d[n] = +int for n in N
+d[ninit] = 0
+while there is a node out of P:
+    Choose n out of P such that d[n] is the smallest distance
+    Put n in P
+    For each b neighboor of n out of P:
+        if d[b] &gt; d[n] + distance(b, n):
+            d[b] = d[n] + distance(b, n)
+            previous[b] = n
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Dijkstra's pseudocode</h1>
+          <pre><code class="cpp">
+Input: G = (N, E)
+Q = N
+d[n] = +int for n in N
+d[ninit] = 0
+while Q not empty:
+    Choose n in Q such that d[n] is the smallest distance
+    remove n from Q
+    For each b neighboor of n in Q:
+        if d[b] &gt; d[n] + distance(b, n):
+            d[b] = d[n] + distance(b, n)
+            previous[b] = n
+          </code></pre>
+        </section>
+        <section>
+            <h1>Dijkstra's algorithm</h1>
+            <p>Implement the Dojkstra'a algorithm. The function should have the following signature:</p>
+            <pre><code class="cpp">
+void dijkstra(const graph&amp; g, size_t start, size_t end, std::list&lt;size_t&gt;&amp; path);
+            </code></pre>
+        </section>
+      </section>
+
     </div>
   </div>
   <script type="module" src="/main.js"></script>
