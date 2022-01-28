@@ -232,7 +232,7 @@ matrix::matrix()
 matrix::matrix(std::size_t size)
     : m_nb_rows(size),
       m_nb_cols(size),
-      m_data(size, size)
+      m_data(size*size)
 {
 }
 
@@ -350,12 +350,12 @@ public:
           <pre><code class="cpp">
 matrix::matrix(std::initializer_list&lt;std::initializer_list&lt;double&gt;&gt; init)
     : m_nb_rows(init.size())
-    , m_nb_cols(init.size') ? init.begin()-&gt;size() : 0u)
+    , m_nb_cols(init.size() ? init.begin()-&gt;size() : 0u)
     , m_data(m_nb_rows, m_nb_cols)
 {
     auto dest = m_data.begin();
-    std::for_each(init.begin(), init.end(), [&amp;dest, m_nb_cols](const auto&amp; v) {
-        dest = std::copy(dest, dest + m_nb_cols, v.begin());
+    std::for_each(init.begin(), init.end(), [&amp;dest](const auto&amp; v) {
+        dest = std::copy(v.begin(), v.end(), dest);
     });
 }
           </code></pre>
@@ -404,8 +404,8 @@ public:
 
     // ...
 
-    double&amp; operator(size_t i, size_t j);
-    const double&amp; operator(size_t i, size_t j) const;
+    double&amp; operator()(size_t i, size_t j);
+    const double&amp; operator()(size_t i, size_t j) const;
 };
             </code></pre>
           </div>
@@ -473,7 +473,7 @@ matrix&amp; matrix::operator+=(const matrix&amp; rhs)
     {
         for(std::size_t j = 0; j &lt; m_nb_cols; ++j)
         {
-            m_data[i * m_nb_cols + j] = rhs.m_data[i * m_nb_cols + j];
+            m_data[i * m_nb_cols + j] += rhs.m_data[i * m_nb_cols + j];
         }
     }
     return *this;
@@ -893,7 +893,7 @@ while Q not empty:
         </section>
         <section>
             <h1>Dijkstra's algorithm</h1>
-            <p>Implement the Dojkstra'a algorithm. The function should have the following signature:</p>
+            <p>Implement the Dijkstra'a algorithm. The function should have the following signature:</p>
             <pre><code class="cpp">
 void dijkstra(const graph&amp; g, size_t start, size_t end, std::list&lt;size_t&gt;&amp; path);
             </code></pre>
