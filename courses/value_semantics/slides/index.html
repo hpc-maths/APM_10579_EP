@@ -616,6 +616,118 @@ uvector&amp; uvector::operator=(uvector&amp;&amp; rhs)
         </section>
       </section>
 
+      <section>
+        <section>
+          <h1>Laplacian 1d</h1>
+          We want to solve the following equation
+          $$
+          \left\{
+            \begin{array}{l}
+              -u''(x) = 1 \; \text{for} \; x \in [0, 1] \\
+              u(0) = 0 \; \text{and} \; u(1) = 0.
+            \end{array}
+            \right.
+          $$
+
+          The exact solution is $u(x) = \frac{x - x^2}{2}$.
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            We use the approximation
+            $$
+            u''(x) \approx \frac{u(x-h) - 2u(x) + u(x+h)}{h^2}
+            $$
+            <p>where $h = \frac{1}{N}$ and $N$ is a positive integer.</p>
+  
+            <p>We replace $u$ by a discretization $u_i = u(i/N)$.</p>
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            Then the discretized problem becomes
+            $$ 
+            \frac{2u_i-u_{i-1}-u_{i+1}}{h^2} = 1 \; \text{for} \; i = 1, \cdots , N-1,
+            $$
+            and
+            $$
+            u_0 = u_N = 0.
+            $$
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            The problem can be rewritten as
+            $$ 
+            Ax = 1
+            $$
+            where
+            $$
+            A = \frac{1}{h^2}
+            \left(
+              \begin{array}{ccccc}
+               2 & -1 &  0 & \cdots  & 0 \\
+              -1 &  2 & -1 & 0 & 0 \\
+               0 & \ddots & \ddots & \ddots & 0 \\
+               0 &   0 & -1 &  2 & -1 \\
+               0 & \cdots & 0 & -1 & 2 \\
+              \end{array}
+            \right)
+            $$
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            <p>Using the class <strong>matrix</strong> introduced in the previous lecture, create the matrix $A$</p>
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            <p>Create the vector $x$ where all the entries will be equal to $0$</p>
+            <p>Create the vector $b$ where all the entries will be equal to $1$</p>
+          </section>
+
+          <section>
+            <h1>Laplacian 1d</h1>
+            <p>There are many ways to solve this linear system: LU, GMRES, CG, ...</p>
+            <p>In the following, we will implement the CG (conjugate gradient) algorithm.</p>
+          </section>
+
+          <section>
+            <h1>conjugate gradient algorithm</h1>
+            <img src="./figures/cg.png" width="50%" />
+          </section>
+
+          <section>
+            <h1>AXPY</h1>
+            Implement the following algorithm
+            $$
+            y = \alpha x + y.
+            $$
+          </section>
+
+          <section>
+            <h1>AYPX</h1>
+            Implement the following algorithm
+            $$
+            y = x + \alpha y.
+            $$
+          </section>
+
+          <section>
+            Implement the scalar product and a $L^2$-norm.
+          </section>
+
+          <section>
+            Implement the matrix vector product.
+          </section>
+
+          <section>
+            Implement the conjugate gradient using the previous functions.
+          </section>
+
+        </section>
+
     </div>
   </div>
   <script type="module" src="/main.js"></script>
