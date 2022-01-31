@@ -535,6 +535,87 @@ uvector&amp; uvector::operator=(uvector&amp;&amp; rhs)
         </section>
       </section>
 
+      <section>
+        <section>
+          <h1>Genetic algorithm</h1>
+          <p>A population of candidate solutions (called individuals or phenotypes) to an optimization problem is evolved toward better solutions.
+          Typical steps are:</p>
+          <ul>
+            <li>Initialization</li>
+            <li>Selection</li>
+            <li>Genetic operators (crossover and mutations)</li>
+            <li>Optional heuristics</li>
+            <li>Termination</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Given a list of cities and the distance between each pair of cities, find the shortest route that visits each city exactly once and
+          returns to the original city.</p>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <ul>
+            <li>A Chromosome is a city. It can compute its distance to another city.</li>
+            <li>A phenotype is a circuit holding the cities. The fitness of the phenotype is the inverse of the total distance of the circuit.</li>
+            <li>A population is a set of circuits.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Selection</p>
+          <ul>
+            <li>Roulette wheel (probability to be selected proportional to fitness)</li>
+            <li>Rank (probability to be selected proportional to rank)</li>
+            <li>Tournament (best of small random groups</li>
+            <li>Elitism (ensures best phenotypes get into the enxt generation)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Write a select method that implements a tournament selection:</p>
+          <ul>
+            <li>The method should accept a population and a tournament size arguments.</li>
+            <li>The tournament size should be a data member of the algorithm.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Write a mutate method:</p>
+          <ul>
+            <li>A mutation is a permutation of two cities in the circuit.</li>
+            <li>The mutation method should accept a circuit and a mutation rate as arguments.</li>
+            <li>The mutation rate should be a data member of the algorithm.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Write a crossover method:</p>
+          <ul>
+            <li>It copies the phenotype of a parent between two indices (two-points crossover)</li>
+            <li>It copies the other cities from the other parent (two-points crossover</li>
+            <li>It ensure it contains all the cities, and no duplicates (consistency)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Travelling salesman problem</h1>
+          <p>Write the evolve method:</p>
+          <ul>
+            <li>It accepts a population as an argument</li>
+            <li>It applies elitism for the fittest circuit</li>
+            <li>It creates a new population thanks to cross over</li>
+            <li>It applies mutation to the newly created population</li>
+          </ul>
+        </section>
+      </section>
+
     </div>
   </div>
   <script type="module" src="/main.js"></script>

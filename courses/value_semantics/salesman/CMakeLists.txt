@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(graph)
+project(uvector)
 
 include(CheckCXXCompilerFlag)
 
@@ -22,7 +22,7 @@ endif()
 
 set(SRCS
     main.cpp
-    graph.cpp)
+    salesman.cpp)
 
-set(GRAPH_TARGET graph)
-add_executable(${GRAPH_TARGET} ${SRCS})
+set(SALESMAN_TARGET salesman)
+add_executable(${SALESMAN_TARGET} ${SRCS})

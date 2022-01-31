@@ -24,5 +24,5 @@ set(SRCS
     main.cpp
     uvector.cpp)
 
-set(MATRIX_TARGET matrix)
-add_executable(${MATRIX_TARGET} ${SRCS})
+set(UVECTOR_TARGET uvector)
+add_executable(${UVECTOR_TARGET} ${SRCS})
