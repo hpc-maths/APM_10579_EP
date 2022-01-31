@@ -128,4 +128,4 @@ For this project, you have to
 - Propose a python script to visualize the results.
 - Try the algorithm on the solar system.
 
-The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure.
+The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure and the algorithms.

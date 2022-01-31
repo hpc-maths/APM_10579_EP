@@ -120,7 +120,7 @@ For this project, you have to
 - Propose a way to save the results and plot them using Python packages.
 - Validate the implementation of each method for the Belousov-Zhabotinsky model.
 
-The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure.
+The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure and the algorithms.
 
 \begin{thebibliography}{9}
 

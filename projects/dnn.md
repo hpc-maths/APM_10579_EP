@@ -70,4 +70,4 @@ For this project, you have to
 - Propose a way to load data from the website [openML](https://www.openml.org/). You could use for example this [csv parser](https://github.com/vincentlaucsb/csv-parser)
 - Experiment your library on at least the two well-known datasets [iris](https://www.openml.org/d/61) and [MNIST](https://www.openml.org/d/554)
 
-The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure.
+The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure and the algorithms.

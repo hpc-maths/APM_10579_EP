@@ -24,5 +24,5 @@ For this project, you have to
 - Implement all the methods found in the article for resizing and rotation
 - Compute the quality of the resulting image using for example the root mean squared errors
 
-The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure.
+The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure and the algorithms.
 

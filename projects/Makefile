@@ -17,3 +17,6 @@ interpolation :
 
 pde1d :
 	pandoc pde1d_solver.md ${pandoc_engine} ${pandoc_options} -o pde1d_solver.pdf
+
+depixel :
+	pandoc depixelizing.md ${pandoc_engine} ${pandoc_options} -o depixelizing.pdf

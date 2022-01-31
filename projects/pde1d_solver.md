@@ -101,4 +101,4 @@ The new manager hired you for your expert skills in C++ and want you to fix the 
 \item Add a method to compute the vega.
 \end{itemize}
 
-The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure.
+The source code must be well documented and the repository of the project must contain several examples and tests. In the report, you must justify your choices and clearly explain the data structure and the algorithms.
