@@ -719,11 +719,98 @@ uvector&amp; uvector::operator=(uvector&amp;&amp; rhs)
           </section>
 
           <section>
-            Implement the matrix vector product.
+            Implement the matrix-vector product.
           </section>
 
           <section>
             Implement the conjugate gradient using the previous functions.
+          </section>
+
+          <section>
+          <h1>
+            CSR (Compressed Sparse Row)
+          </h1>
+          <p>
+            The matrix $A$ of the laplacian contains a lot of zero.
+          </p>
+          <p class="fragment">
+            Then the matrix-vector product computes a lot of zero.
+            </p>
+            <p class="fragment">
+              The CSR format stores only the non-zero elements.
+              </p>
+            </section>
+
+            <section>
+              <h1>
+                CSR (Compressed Sparse Row)
+              </h1>
+              This format is composed of three arrays
+              <ul>
+                <li>an array val containing the non-zero elements of the matrix</li>
+                <li>an array row_ptr of the size $n_{rows} + 1$ containing the cumlulative number of non-zero elements of the row $i$. It is defined by a recursive relation</li>
+                <ul>
+                  <li>row_ptr[0] = 0</li>
+                  <li>row_ptr[i] = row_ptr[i - 1] + number of non-zero elements in the row $i-1$</li>
+                </ul>
+                <li>an array col containing the column indices of the non-zero elements</li>
+              </ul>
+            </section>
+
+           <section>
+            <h1>
+              CSR: an example
+            </h1>
+            $$
+            A = \left(
+              \begin{array}{cccc}
+               2 & 0 &  0 & 1 \\
+               0 & -2 &  0 & 0 \\
+               0 & 0 &  3 & 1 \\
+               -4 & 0 &  0 & 1 \\
+              \end{array}
+            \right)
+            $$
+            <ul>
+              <li>val = [2, 1, -2, 3, 1, -4, 1]</li>
+              <li>row_ptr = [0, 2, 3, 5, 7] </li>
+              <li>col = [0, 3, 1, 2, 3, 0, 3]</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>
+              CSR
+            </h1>
+            Create a class <strong>csr</strong> with the three arrays and the methods <strong>nb_rows</strong> and <strong>nb_cols</strong> as described in the previous class <strong>matrix</strong>.
+          </section>
+
+          <section>
+            <h1>
+              CSR
+            </h1>
+            Create a method <strong>find_element(i, j)</strong> which returns a pointer to the entry in <strong>val</strong> if the element exists, nullptr otherwise.
+          </section>
+
+          <section>
+            <h1>
+              CSR
+            </h1>
+            Create a method <strong>insert_element(i, j)</strong> which insert an element in (i, j) and return an iterator to this new entry in val.
+          </section>
+
+          <section>
+            <h1>
+              CSR
+            </h1>
+            Create the <strong>operator()(i, j)</strong> and initialize the 1d laplacian as done with the class <strong>matrix</strong>.
+          </section>
+
+          <section>
+            <h1>
+              CSR
+            </h1>
+            Implement the matrix-vector product and test the conjugate gradient.
           </section>
 
         </section>
