@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>MAP586 - Memory management</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title">
+        <h1>MAP 586 </h1>
+        <h2>Memory management</h2>
+      </section>
+
+      <section>
+        <section>
+          <h1>Storage types</h1>
+          <ul>
+            <li>
+              static storage
+            </li>
+            <li>
+              thread-local storage
+            </li>
+            <li>
+              automatic storage
+            </li>
+            <li>
+              dynamic storage
+            </li>
+          </ul>
+          </section>
+
+          <section>
+              <h1>Static storage</h1>
+              <ul>
+                <li>
+                  fixed address determined at compile time
+                </li>
+                <li>
+                  global static variables are
+                  <ul>
+                    <li>constructed before execution enters main</li>
+                    <li>
+                      deleted after execution leaves main
+                    </li>
+                      </ul>
+
+                    </li>
+                    <li>
+                      static variables in a scope are constructed before the execution of this scope.
+                      </li>
+                <li>
+                  the order of construction is complex
+                </li>
+                <li>
+                  no runtime cost to create the storage
+                </li>
+              </ul>
+              <p class="text-center fragment"><strong>appropriate for data that will be used for the whole life of the program</strong></p>
+        </section>
+
+        <section>
+          <h1>Satic storage: example</h1>
+          <div class="row">
+          <div class="col">
+          <pre><code>
+// resource.hpp
+
+#ifndef RESOURCE_HPP
+#define RESOURCE_HPP
+#include &lt;iostream&gt;
+
+struct resource
+{
+    resource();
+    void acquire();
+    ~resource();
+    int count = 0;
+};
+
+#endif
+          </code></pre>
+          <pre><code>
+// resource.cpp
+
+#include "resource.hpp"
+
+resource::resource()
+{
+    std::cout &lt;&lt; "resource constructor "
+              &lt;&lt; count &lt;&lt;  std::endl;
+}
+
+void resource::acquired()
+{
+    std::cout &lt;&lt; "resource acquired "
+              &lt;&lt; ++count &lt;&lt; std::endl;
+}
+
+resource::~resource()
+{
+    std::cout &lt;&lt; "resource destructor"
+              &lt;&lt; std::endl;
+}
+
+resource r; //global variable
+          </code></pre>
+              </div>
+          <div class="col">
+          <pre><code>
+// manager.hpp
+
+#ifndef MANAGER_HPP
+#define MANAGER_HPP
+#include &lt;iostream&gt;
+
+struct manager
+{
+    manager();
+    ~manager();
+};
+
+#endif
+</code></pre>
+          <pre><code>
+#include "manager.hpp"
+#include "resource.hpp"
+
+manager::manager()
+{
+    r.acquired();
+}
+
+manager::~manager()
+{
+    std::cout &lt;&lt; "destroy manager"
+              &lt;&lt; std::endl;
+}
+          </code></pre>
+              </div>
+      </div>
+        </section>
+        <section>
+          <h1>Automatic storage</h1>
+          <ul>
+            <li>
+              memory reserved by the compiler (stack)
+            </li>
+            <li>
+              exists into their scope
+            </li>
+            <li>
+              deleted when they leave the scope
+            </li>
+            <li>
+              limit to the total amount of memory in the stack
+            </li>
+          </ul>
+    </section>
+
+    <section>
+      <h1>Dynamic storage</h1>
+      <ul>
+        <li>
+          memory requested at runtime (heap)
+        </li>
+        <li>
+          must be explicitly requested (new)
+        </li>
+        <li>
+          must be explicitly destroyed (delete)
+        </li>
+        <li>
+          the address is determined at runtime
+        </li>
+        <li>
+          no limit to the total amount of memory
+        </li>
+      </ul>
+</section>
+
+</section>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
