@@ -24,5 +24,6 @@ set(SRCS
     main.cpp
     graph.cpp)
 
-set(GRAPH_TARGET graph)
+set(GRAPH_TARGET matrix)
+#add_executable(${MATRIX_TARGET} ${SRCS})
 add_executable(${GRAPH_TARGET} ${SRCS})
