@@ -24,6 +24,8 @@ The slides of the different sessions are available [online](https://hpc-maths.gi
 2. [Functional programming](https://hpc-maths.github.io/MAP586/courses/functional_stl)
 3. [Compilation and code organization](https://hpc-maths.github.io/MAP586/courses/compilation)
 4. [Object Oriented Programming](https://hpc-maths.github.io/MAP586/courses/oop)
+5. [Value semantics](https://hpc-maths.github.io/MAP586/courses/value_semantics)
+6. [Memory and pointers](https://hpc-maths.github.io/MAP586/courses/memory)
 
 ## Practical sessions
 
