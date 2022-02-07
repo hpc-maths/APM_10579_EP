@@ -1,0 +1,4 @@
+- step_0: resource is declared as a global variable
+- step_1: resource is declared as a static global variable which means the creation of one resource for each translation unit
+- step_2: make a static member in manager class
+- step_3: create a function class to force the initialization of the resource before its use in the manager
