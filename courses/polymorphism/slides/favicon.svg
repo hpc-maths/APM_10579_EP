@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="LOGO_HPC_Maths"
+   data-name="LOGO HPC@Maths"
+   viewBox="0 0 80.87108 137.75593"
+   version="1.1"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="/home/loic/Images/logo_HPC@Maths_1.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   width="80.871078"
+   height="137.75594"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview569"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="4.1070847"
+     inkscape:cx="129.0453"
+     inkscape:cy="49.061564"
+     inkscape:window-width="3840"
+     inkscape:window-height="2097"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="LOGO_HPC_Maths"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:none;stroke:#388aaa;stroke-miterlimit:10;}.cls-2{fill:#003e5c;}.cls-3{fill:#046e99;}.cls-4{fill:#509ab8;}</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 55.876222,42.518462 c 0.721429,2.25058 3.177597,3.068445 4.576401,3.352668 0.06609,0 0.137677,0 0.20927,0.0348 v -5 h -4.994941 a 4.2019182,4.4257541 0 0 0 0.20927,1.612529 z"
+     id="path8"
+     style="fill:#caa000;fill-opacity:1;stroke:none;stroke-width:1.86512;stroke-miterlimit:4;stroke-dasharray:none" />
+  <path
+     class="cls-1"
+     d="M 59.048674,2.9191168 A 33.795429,34.772552 0 0 0 54.871079,2.2059326 V 27.205933 h 25 V 24.815801 C 78.475425,13.954197 68.237508,5.1743212 59.048674,2.9191168 Z"
+     id="path18"
+     style="fill:#caa000;fill-opacity:1;stroke:none;stroke-width:3.13541;stroke-miterlimit:4;stroke-dasharray:none" />
+  <path
+     class="cls-1"
+     d="m 64.411079,46.825933 a 18.475248,17.771428 0 0 0 9.158416,-3.428571 c 3.039603,-2.390477 5.267327,-6.885714 5.841584,-11.304762 v -0.266667 h -15 z"
+     id="path20"
+     style="fill:#caa000;fill-opacity:1;stroke:none;stroke-width:3.20449;stroke-miterlimit:4;stroke-dasharray:none" />
+  <path
+     class="cls-1"
+     d="M 9.7048053,94.818948 C 20.392179,115.57511 41.25268,130.98333 65.511676,136.17785 a 83.542619,81.895893 0 0 0 11.067469,1.57808 H 80 V 57.755933 H 0.00120658 C -0.09940679,73.383331 6.1162624,87.805249 9.7048053,94.818948 Z"
+     id="path22"
+     style="fill:#caa000;stroke:none;stroke-width:3.65261;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
+  <path
+     class="cls-1"
+     d="M 45.041079,2.0775245 A 38.703961,37.908444 0 0 0 37.296117,2.3531853 C 22.118911,4.5176319 10.558801,17.208232 4.8048042,28.357173 A 45.865185,44.922476 0 0 0 0.0410793,47 H 45.041079 Z"
+     id="path26"
+     style="fill:#caa000;fill-opacity:1;stroke:none;stroke-width:3.40435;stroke-miterlimit:4;stroke-dasharray:none" />
+</svg>

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>MAP586 - Polymorphism</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title">
+        <h1>MAP 586</h1>
+        <h2>Polymorphism</h2>
+      </section>
+
+      <section>
+        <section class="slide">
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// In interpolation_impl.hpp
+
+class interpolation_impl
+{
+public:
+};
+
+class linear_interpolation : public interpolation_impl
+{
+};
+
+class spline_interpolation : public interpolation_impl
+{
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <ul>
+            <li>Add a method "interpolate" to the interpolation_impl class</li>
+            <li>This method should accept a double and return 0.</li>
+            <li>Uncomment the test_accessibility1 in main.cpp</li>
+            <li>Uncomment the call to test_accessibility1 in main</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// intterpolation_impl.hpp
+class interpolation_impl
+{
+public:
+
+    double interpolate(double x) const;
+};
+          </code></pre>
+          <pre><code class="cpp">
+// interpolation_impl.cpp
+double interpolation_impl::interpolate(double x) const
+{
+    return 0;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <ul>
+            <li>Add two members (m_x and m_y) of type std::vector&lt;double&gt; to the private section of interpolation_impl</li>
+            <li>Add a constructor that accepts two vectors and initializes those data members</li>
+            <li>Fix the constructor of the inheriting classes</li>
+            <li>Use the get_test_spline_interpolation function in test_accessibility1 to fix the build</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    double interpolate(double x) const;
+
+private:
+
+    std::vector&lt;double&gt; m_x;
+    std::vector&lt;double&gt; m_y;
+};
+
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// interpolation_impl.cpp
+interpolation_impl::interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                                       const std::vector&lt;double&gt;&amp; y)
+    : m_x(x)
+    , m_y(y)
+{
+}
+
+spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                           const std::vector&lt;double&gt;&amp; y)
+    : interpolation_impl(x, y)
+{
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <ul>
+            <li>Add a m_y2 vector member to the spline_interpolation class</li>
+            <li>Initialize it in the constructor thanks to the spline_derivative_method</li>
+            <li>Try to use the  data members of the mother class as arguments of spline_derivative</li>
+            <li>What do you notice?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// interpolation_impl.hpp
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+private:
+
+    std::vector&lt;double&gt; m_y2;
+};
+          </code></pre>
+          <pre><code class="cpp">
+// interpolation_impl.cpp
+spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                           const std::vector&lt;double&gt;&amp; y)
+    : interpolation_impl(x, y)
+    , m_y2(x.size())
+{
+    spline_derivative(x, y, m_y2);       // OK
+    //spline_derivative(m_x, m_y, m_y2); // Fails
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <ul>
+            <li>public: access granted to everyone</li>
+            <li>private: access granted to class only</li>
+            <li>protected: acces granted to class and inheriting classes</li>
+          </ul>
+          <p class="fragment">Avoid putting data in the protected section, prefer methods</p>
+          <p class="fragment">Fix the inteprolation_impl and spline_interpolation classes</p>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    double interpolate(double x) const;
+
+protected:
+
+    const std::vector&lt;double&gt;&amp; get_x() const;
+    const std::vector&lt;double&gt;&amp; get_y() const;
+
+private:
+
+    std::vector&lt;double&gt; m_x;
+    std::vector&lt;double&gt; m_y;
+};
+          </code></pre>
+        </section>
+        <section>
+          <h1>Inheritance</h1>
+          <pre><code class="cpp">
+// interpolation_impl.cpp
+const std::vector&lt;double&gt;&amp; interpolation_impl::get_x() const
+{
+    return m_x;
+}
+
+const std::vector&lt;double&gt;&amp; interpolation_impl::get_y() const
+{
+    return m_y;
+}
+
+spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                           const std::vector&lt;double&gt;&amp; y)
+    : interpolation_impl(x, y)
+    , m_y2(x.size())
+{
+    spline_derivative(get_x(), get_y(), m_y2);
+}
+
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Polymorphism</h1>
+          <ul>
+            <li>Override the interpolate method in the spline_interpolation class, it should return 1.</li>
+            <li>Uncomment the two test_polymorphism functions in main.cpp</li>
+            <li>Uncomment the call to test_polymorphism from the main function</li>
+            <li>Run the program</li>
+            <li>What do you notice?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Polymorphism</h1>
+          <pre><code class="cpp">
+// inteprolation_impl.hpp
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+    double interpolate(double x) const;
+
+private:
+
+    std::vector&lt;double&gt; m_y2;
+};
+          </code></pre>
+          <pre><code class="cpp">
+// interpolation_impl.cpp
+double spline_interpolation::interpolate(double x) const
+{
+    return 1.;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h1>Polymorphism</h1>
+          <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    virtual double interpolate(double x) const;
+
+    // as before ...
+};
+          </code></pre>
+        </section>
+        <section>
+          <h1>Polymorphism</h1>
+          <p>virtual</p>
+          <ul>
+            <li>is not part of the signature</li>
+            <li>implies each overload in inheriting classes is virtual too</li>
+            <li>does not prevent to declare such overlaod as virtual</li>
+            <li>does not force inheriting classes to declare such overload</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h1>Polymorphism</h1>
+          <p>Add a size_t argument to the overload method in spline_interpolation and run the program again:</p>
+          <div class="fragment">
+            <pre><code class="cpp">
+// interpolation_impl.hpp
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+    // Defines a new method interpolate that is not an override of
+    // interpolate declared in the base class
+    double interpolate(double x, size_t i) const;
+    
+    // As before ...
+};
+            </code></pre>
+            <pre><code class="cpp">
+// interpolation_impl.cpp
+double spline_interpolation::interpolate(double x, size_t i) const
+{
+    return 1.;
+}
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Polymorphism</h1>
+          <pre><code class="cpp">
+// interpolation_impl.hpp
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+    // Error, no interpolate(double, size_t) declared in base class
+    double interpolate(double x, size_t i) const override;
+    // Ok, override interpolate(double) declared in base class
+    double interpolate(double x) const override;
+    
+    // As before ...
+};
+          </code></pre>
+          <ul class="fragment">
+            <li>Remove the size_t parameter in spline_interpolation::interpolate</li>
+            <li>use override to prevent future mistake</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Polymorphism</h1>
+          <p>override</p>
+          <ul>
+            <li>is not part of the signature</li>
+            <li>Requires the method to be declared in the base class with the same signature</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Polymorphism</h1>
+          <ul>
+            <li>Uncomment the get_test_interpolation function in main.cpp</li>
+            <li>Remove the definition of interpolation_impl::interpolate from interpolation_impl.cpp</li>
+            <li>Change the declaration of interpolation_impl::interpolate:
+              <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    virtual double interpolate(double x) const = 0;
+
+    // as before ...
+};
+        
+              </code></pre>
+            </li>
+            <li>Try to build</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Polymorphism</h1>
+          <p>An abstract class</p>
+          <ul>
+            <li>Has at least one pure virtual method</li>
+            <li>Cannot be instantiated</li>
+            <li>An inheriting class that does not implement all abstract methods is abstract</li>
+          </ul>
+        </section>
+      </section>
+
+    <section>
+      <section>
+        <h1>Entity semantics</h1>
+        <ul>
+          <li>Add destructors to interpolation_impl and splineinterpolation</li>
+          <li>Add logs (i.e. std::cout) in each constructor and destructor</li>
+          <li>Uncomment the test_polymorphism1 function and its call in the main function</li>
+          <li>Build and run</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+    
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    ~interpolation_impl();
+
+    // ... as before
+};
+
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+    ~spline_interpolation();
+
+    // ... as before
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+// interpolation_impl.cpp
+interpolation_impl::interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                                       const std::vector&lt;double&gt;&amp; y)
+    : m_x(x)
+    , m_y(y)
+{
+    std::cout &lt;&lt; "interpolation_impl constructor" &lt;&lt; std::endl;
+}
+
+interpolation_impl::~interpolation_impl()
+{
+    std::cout &lt;&lt; "interpolation_impl destructor" &lt;&lt; std::endl;
+}
+
+spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                           const std::vector&lt;double&gt;&amp; y)
+    : interpolation_impl(x, y)
+    , m_y2(x.size())
+{
+    spline_derivative(get_x(), get_y(), m_y2);
+    std::cout &lt;&lt; "spline_interpolation constructor" &lt;&lt; std::endl;
+}
+
+spline_interpolation::~splint_interpolation()
+{
+    std::cout &lt;&lt; "spline_interplation destructor" &lt;&lt; std::endl;
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+// interpolation_impl.hpp
+class interpolation_impl
+{
+public:
+    
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+
+    virtual ~interpolation_impl();
+
+    // ... as before
+};
+
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+
+    virtual ~spline_interpolation();
+
+    // ... as before
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <ul>
+          <li>Add a virtual method print to each class, that prints all the members</li>
+          <li>You can use the print_vector function to implement it</li>
+          <li>Uncomment the test_assign functionand its call in main</li>
+          <li>Build and run the program, what do you notice?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+// interpolation_impl/hpp
+class interpolation_impl
+{
+public:
+
+    virtual void print() const;
+    // as before ...
+};
+
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    virtual void print() const;
+    // as before ...
+};
+        </code></pre>
+        <pre><code class="cpp">
+// interpolation_impl.cpp
+void interpolation_impl::print() const
+{
+    print_vector("m_x", m_x);
+    print_vector("m_y", m_y);
+}
+
+void spline_interpolation::print() const
+{
+    interpolation_impl::print();
+    print_vector("m_y2", m_y2);
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <ul>
+          <li>Incomplete assignment due to inheritance is called slicing</li>
+          <li>Constructors and assignment operators cannot be virtual</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+    virtual ~interpolation_impl() = default;
+
+    interpolation_impl(const interpolation_impl&amp;);
+    interpolation_impl&amp; operator=(const interpolation_impl&amp;);
+    interpolation_impl(interpolation_impl&amp;&amp;);
+    interpolation_impl&amp; operator=(interpolation_impl&amp;&amp;);
+};
+        </code></pre>
+        <p class="fragment">DON'T.DO.THAT</p>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <p>Prevent users to call copy / move constructor / assign operator</p>
+        <pre class="fragment"><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+    virtual ~interpolation_impl() = default;
+
+    interpolation_impl(const interpolation_impl&amp;) = delete;
+    interpolation_impl&amp; operator=(const interpolation_impl&amp;) = delete;
+    interpolation_impl(interpolation_impl&amp;&amp;) = delete;
+    interpolation_impl&amp; operator=(interpolation_impl&amp;&amp;) = delete;
+
+    // as before ...
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <p>Prevent instantiation of base class</p>
+        <pre class="fragment"><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    virtual ~interpolation_impl() = default;
+
+    interpolation_impl(const interpolation_impl&amp;) = delete;
+    interpolation_impl&amp; operator=(const interpolation_impl&amp;) = delete;
+    interpolation_impl(interpolation_impl&amp;&amp;) = delete;
+    interpolation_impl&amp; operator=(interpolation_impl&amp;&amp;) = delete;
+
+    // as before ...
+
+protected:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <p>How to copy an instance of spline_interpolation</p>
+        <pre class="fragment"><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    virtual interpolation_impl* clone() const = 0;
+    // as before ...
+};
+
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation* clone() const override;
+};
+        </code></pre>
+      </section>
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+spline_interplation* spline_interpolation::clone() const
+{
+    return new spline_interpolation(get_x(), get_y());
+}
+        </code></pre>
+        <pre class="fragment"><code class="cpp">
+spline_interplation* spline_interpolation::clone() const
+{
+    // This actually needs the copy constructor
+    return new spline_interpolation(*this);
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    virtual ~interpolation_impl() = default;
+
+    interpolation_impl&amp; operator=(const interpolation_impl&amp;) = delete;
+    interpolation_impl(interpolation_impl&amp;&amp;) = delete;
+    interpolation_impl&amp; operator=(interpolation_impl&amp;&amp;) = delete;
+
+    virtual interpolation_impl* clone() const = 0;
+    // as before ...
+
+protected:
+
+    interpolation_impl(const std::vector&lt;double&gt;&amp; x,
+                       const std::vector&lt;double&gt;&amp; y);
+    interpolation_impl(const interpolation_impl&amp;);
+
+    // as before ...
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+class spline_interpolation : public interpolation_impl
+{
+public:
+
+    spline_interpolation(const std::vector&lt;double&gt;&amp; x,
+                         const std::vector&lt;double&gt;&amp; y);
+    virtual ~spline_interpolation();
+
+    spline_interpolation* clone() const override;
+
+    // as before ...
+
+protected:
+
+    spline_interpolation(const spline_interpolation&amp;);
+
+    // as before ...
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Entity semantics</h1>
+        <pre><code class="cpp">
+interpolation_impl::interpolation_impl(const interpolation_impl&amp; rhs)
+    : m_x(rhs.m_x)
+    , m_y(rhs.m_y)
+{
+}
+
+spline_interpolation::spline_interpolation(const spline_interpolation&amp; rhs)
+    : interpolation_imp(rhs)
+    , m_y2(rhs.m_y2)
+{
+}
+
+spline_interpolation* spline_interpolation::clone() const
+{
+    return new spline_interpolation(*this);
+}
+        </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>Design principles</h1>
+        <ul>
+          <li>B should inherit from A if B is a kind of A</li>
+          <li>B should inherit from A if there exists an "is-a" relation between A and B</li>
+        </ul>
+        <p class="fragment">That's <b>WRONG</b></p>
+        <div class="fragment">
+          <ul>
+            <li>B should inherit from A if B behaves like A in the context of your program</li>
+            <li>B should inherit from A if you want A to be <b>substitutable</b></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h1>Design principles</h1>
+        <p>Liskov Substitution Principle (LSP)</p>
+        <p>If S is a subtype of T, then objects of type T in a program may be replaced with objects of type S without altering any of the desirable property of the propgram</p>
+      </section>
+
+      <section>
+        <h1>Design principles</h1>
+        <pre><code class="cpp">
+class rectangle : public drawable
+{
+public:
+
+    virtual ~rectangle();
+    virtual vod draw(canvas&amp;) const;
+    virtual void resize(size_t length, size_t width);
+};
+        </code></pre>
+        <p>Should square inherit from rectangle?</p>
+      </section>
+
+      <section>
+        <h1>Design principles</h1>
+        <pre><code class="cpp">
+class square: public rectangle
+{
+public:
+
+    virtual ~square();
+    virtual vod draw(canvas&amp;) const;
+    virtual void resize(size_t length, size_t width); // ??
+};
+        </code></pre>
+        <p class="fragment">square should NOT inherit from rectangle</p>
+      </section>
+
+      <section>
+        <h1>Design principles</h1>
+        <p>Non virtual interface</p>
+        <pre><code class="cpp">
+class interpolation
+{
+public:
+
+    double interplate(double x) const;
+
+private:
+
+    virtual double interpolate_impl(double x) const = 0;
+};
+        </code></pre>
+        <pre><code class="cpp">
+double interpolation::interpolate(double x) const
+{
+    // add code that should be executed before any call to
+    // interpolate_impl, whatever the inheriting class is.
+    double res = interpolate_impl(x);
+    // add code that should be executed after any call to
+    // interpolate_impl, whatever the inheriting class is.
+    return res;
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Design principles</h1>
+        <p>Template method (pattern)</p>
+        <pre><code class="cpp">
+class algo
+{
+public:
+
+    void run();
+
+private:
+
+    virtual void first_step();
+    virtual void second_step();
+    virtual void third_step();
+};
+        </code></pre>
+        <pre><code class="cpp">
+void algo::run()
+{
+    first_step();
+    second_step();
+    third_step();
+}
+        </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>non virtual interface</h1>
+        <p>Implement a find_upper_bound method in interpolation_impl that:</p>
+        <ul>
+          <li>returns the index of the abscissa greater than or equal to its argument</li>
+          <li>throws an exception if the argument if out of the abscissa bounds</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>non virtual interface</h1>
+        <pre><code class="cpp">
+class interpolation_impl
+{
+protected:
+
+    size_t find_upper_bound(double x) const;
+
+    // as before ...
+};
+        </code></pre>
+        <pre><code class="cpp">
+size_t interpolation_impl::find_upper_bound(double x) const
+{
+    if (x &lt; m_x.front() || x &gt; m_x.back())
+    {
+            throw std::runtime_error("x out of bounds");
+    }
+    auto iter = std::upper_bound(m_x.cbegin(), m_x.cend(), x);
+    size_t index = static_cast&lt;size_t&gt;( iter - m_x.cbegin());
+    return index;
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>non virtual interface</h1>
+        <p>Implement the interpolate method of spline_interpolation:</p>
+        <ul>
+          <li>use the find_upper_bound method previously defined</li>
+          <li>use the spline_interpolate function provided in interpolation_impl.hpp</li>
+        </ul>
+        <pre class="fragment"><code class="cpp">
+double spline_interpolation::interpolate(double x) const
+{
+    size_t upper_bound = find_upper_bound(x);
+    return spline_interpolate(get_x()[upper_bound-1], get_x()[upper_bound],
+                              get_y()[upper_bound-1], get_y()[upper_bound],
+                              m_y2[upper_bound-1], m_y2[upper_boud],
+                              x);
+}
+        </code></pre>
+        <p class="fragment">What is the issue with this implementation?</p>
+      </section>
+
+      <section>
+        <h1>non virtual interface</h1>
+        <p>Refactor the implementation to avoid code duplication when adding other interpolation methods:</p>
+        <ul>
+          <li>Rename the current interpolate method into interpolate_impl</li>
+          <li>interpolate_impl should be private and take the result of find_upper_bound as a additional parameter</li>
+          <li>Add an interpolate method that acts as a NVI / template method</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>non virtual interface</h1>
+        <pre><code class="cpp">
+class interpolation_impl
+{
+public:
+
+    // Not virtual anymore
+    double interpolate(double x) const; 
+
+private:
+
+    size_t find_upper_bound(double x) const;
+    virtual double interpolate_impl(double x, size_t upper_bound) const  = 0;
+
+    // as before ...
+};
+        </code></pre>
+        <pre><code class="cpp">
+class spline_interpolation : public interpolation_impl
+{
+private:
+
+    double interpolate_impl(double x, size_t upper_bound) const override;
+
+    // as before ...
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>non virtual interface</h1>
+        <pre><code class="cpp">
+double interpolation_impl::interpolate(double x) const
+{
+    size_t upper_bound = find_upper_bound(x);
+    return interpolate_impl(x, upper_bound);
+}
+
+double spline_interpolation::interpolate_impl(double x, size_t upper_bound) const
+{
+    return spline_interpolate(get_x()[upper_bound-1], get_x()[upper_bound],
+                              get_y()[upper_bound-1], get_y()[upper_bound],
+                              m_y2[upper_bound-1], m_y2[upper_boud],
+                              x);
+}
+        </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>Private inheritance</h1>
+        <pre><code class="cpp">
+class my_vector : public std::vector&lt;double&gt;
+{
+public:
+
+    explicit my_vector(const std::string&amp; name);
+    ~my_vector();
+
+private:
+
+    std::string m_name;
+};
+        </code></pre>
+        <p>DON'T.DO.THAT.</p>
+      </section>
+
+      <section>
+        <h1>Private inheritance</h1>
+        <pre><code class="cpp">
+class my_vector
+{
+public:
+
+    double&amp; operator[](size_t i) { return m_data[i]; }
+    const double &amp; operator[](size_t i) const { return m_data[i]; }
+    // etc ...
+
+private:
+
+    std::vector&lt;double&gt; m_data;
+    std::string m_name;
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Private inheritance</h1>
+        <pre><code class="cpp">
+class my_vector : private std::vector&lt;double&gt;
+{
+public:
+
+    using base_type = std::vector&lt;doubl&gt;
+
+    using base_type::size;
+    using base_type::empty;
+    using base_type::operator[];
+
+private:
+
+    std::vector&lt;double&gt; m_data;
+    std::string m_name;
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Private inheritance</h1>
+        <p>If B is a private base of D:</p>
+        <ul>
+          <li>All methods of B are private in D</li>
+          <li>You cannot assign a D* to a B*</li>
+          <li>Previous statements are not true for friend classes / functions</li>
+          <li>D can only access public and protected sections of B</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Multiple inheritance</h1>
+        <pre><code class="cpp">
+class implementation : public interface1, public interface2
+{
+public:
+
+    virtual ~implementation() = default;
+};
+        </code></pre>
+        <pre class="fragment"><code class="cpp">
+class root {};
+
+class interface1 : public root {};
+class interface2 : public root {};
+
+// The following is problematic
+class implementation : public interface1, publice interface2 {}
+        </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>Private implementation / enveloppe</h1>
+        <p>Add a make_interpolation free function that:</p>
+        <ul>
+          <li>takes two vectors and a anum parameter to choose the type of interpolation</li>
+          <li>returns a unique pointer holding an interpolation_impl</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Private implementation / enveloppe</h1>
+        <pre><code class="cpp">
+// interpolation_impl.hpp
+enum class interpolation_type
+{
+    linear,
+    spline
+};
+
+using interpolation_ptr = std::unique_ptr&lt;interpolation_impl&gt;
+interpolation_ptr make_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                     const std::vector&lt;double&gt;&amp; y,
+                                     interplation_type it);
+        </code></pre>
+        <pre><code class="cpp">
+// interpolation_impl.cpp
+interpolation_ptr make_interpolation(const std::vector&lt;double&gt;&amp; x,
+                                     const std::vector&lt;double&gt;&amp; y,
+                                     interplation_type it)
+{
+    switch(it)
+    {
+    case linear:
+        return std::make_unique&lt;linear_interpolation&gt;(x, y);
+    clase spline:
+        return std::make_unique&lt;spline_interpolation&gt;(x, y);
+    default:
+        return std::make_unique&lt;linear_interpolation&gt;(x, y);
+    }
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Private implementation / enveloppe</h1>
+        <p>Add an interpolation class that:</p>
+        <ul>
+          <li>Holds a pointer to interpolation_impl</li>
+          <li>Implements the value semantics</li>
+          <li>Has an interpolate method that forwards the call to interpolation_impl</li>
+          <li>Its constructor takes an enum parameter to choose the interpolation type</li>
+        </ul>
+      </section>
+      <section>
+        <h1>Private implementation / enveloppe</h1>
+        <pre><code class="cpp">
+// interpolation.hpp
+class interpolation
+{
+public:
+
+    interpolation(const std::vector&lt;double&gt;&amp; x,
+                 const std::vector&lt;double&gt;&amp; y,
+                 interpolation_type it);
+    ~inteopolation_type() = default;
+
+    interpolation(const interpolation&amp;);
+    interpolation&amp; operator=(const interpolation&amp;);
+
+    interpolation(interpolation&amp;&amp;) = default;
+    interpolation&amp; operator=(interpolation&amp;&amp;) = default;
+
+    double interpolate(double x) const;
+
+private:
+
+    inteprolation_ptr p_impl;
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Private implementation / enveloppe</h1>
+        <pre><code class="cpp">
+// interpolation.cpp
+interpolation::interpolation(const std::vector&lt;double&gt;&amp; x,
+                             const std::vector&lt;double&gt;&amp; y,
+                             interpolation_type it)
+    : p_impl(make_interpolation(x, y, it);
+{
+}
+interpolation::interpolation(const interpolation&amp; rhs)
+    : p_impl(rhs.p_impl-&gt;clone())
+{
+}
+
+interpolation&amp; interpolation::operator=(const interpolation&amp; rhs)
+{
+    interpolation_impl tmp = rhs.p_impl-&gt;clone();
+    std::swap(tmp, p_impl);
+    return *this;
+}
+
+double inteprolation::interpolate(double x) const
+{
+    return p_impl-&tgt;interpolate(x);
+}
+        </code></pre>
+      </section>
+    </section>
+    
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
