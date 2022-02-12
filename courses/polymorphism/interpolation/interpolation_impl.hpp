@@ -8,8 +8,6 @@ namespace hpc
     class interpolation_impl
     {
     public:
-
-        double interpolate() const;
     };
 
     /*class linear_interpolation : public interpolation
