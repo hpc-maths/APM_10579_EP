@@ -59,7 +59,7 @@ namespace hpc
         delete inter;
     }*/
 
-    void test_assign()
+    /*void test_assign()
     {
         auto curve = make_curve();
         interpolation_impl* inter = new spline_interpolation(curve.first, curve.last);
@@ -75,7 +75,15 @@ namespace hpc
 
         delete inter2;
         delete inter1;
-    }
+    }*/
+
+    /*void test_api()
+    {
+        auto curve = make_curve();
+        interpolation ip(curve.first, curve.second, interpolation_type::spline);
+        double res = ip.interpolate(0.25);
+        std::cout << res << std::endl;
+    }*/
 }
 
 int main(int argc, char* argv[])
@@ -84,5 +92,6 @@ int main(int argc, char* argv[])
     //hpc::test_polymorphism();
     //hpc::test_polymorphism1();
     //hpc::test_assign();
+    //hpc::test_api();
     return 0;
 }
