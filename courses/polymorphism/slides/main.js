@@ -14,7 +14,7 @@ const deck = new Reveal({
   plugins: [Markdown, RevealHighlight, RevealMath.KaTeX]
 })
 deck.initialize({
-  // hash: true,
+  hash: true,
   // markdown: {
   //   smartypants: true
   // }
