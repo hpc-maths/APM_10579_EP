@@ -1163,7 +1163,7 @@ double inteprolation::interpolate(double x) const
 
     <section>
       <section>
-        <h1>ODE API</h1>
+        <h1>ODE Solver</h1>
         <p>You now have a good understanding of the concepts related to polymorphism and the C++ programming technique called Pimpl.</p>
 
         <p>A colleague comes to you and says that he wants to build a user-friendly interface for his ODE solvers.</p>
@@ -1172,13 +1172,28 @@ double inteprolation::interpolate(double x) const
       </section>
 
       <section>
-        <h1>ODE API</h1>
+        <h1>ODE Solver</h1>
+        The first application he has in mind is to solve the well-known Lorenz equations given by
+        $$
+        \left\{
+        \begin{array}{l}
+        \frac{dx}{dt} = \sigma(y-x), \\\\
+        \frac{dy}{dt} = x(\rho-z)-y, \\\\
+        \frac{dz}{dt} = xy-\beta z.
+        \end{array}
+        \right.
+        $$
+
+      </section>
+
+      <section>
+        <h1>ODE API: usage example</h1>
         <pre><code class="cpp">
 double T = 50, t = 0;
 std::size_t nite = 20000;
 double dt = T/nite;
 
-lorentz lo(28, 10, 8./3);
+Lorenz lo(28, 10, 8./3);
 std::vector&lt;double&gt; x0{5, -8, 6};
 
 ODE ode(x0, lo, method::euler);
@@ -1193,13 +1208,13 @@ for(std::size_t i = 0; i &lt; nite; ++i)
       </section>
 
       <section>
-        <h1>ODE API</h1>
+        <h1>ODE API: Lorenz class</h1>
         <pre><code class="cpp">
-class lorentz
+class Lorenz
 {
 public:
 
-    lorentz(double rho, double sigma, double beta)
+    Lorenz(double rho, double sigma, double beta)
     : m_rho(rho)
     , m_sigma(sigma)
     , m_beta(beta)
@@ -1207,14 +1222,15 @@ public:
 
     std::vector&lt;double&gt; operator()(double t, const std::vector&lt;double&gt;& x) const
     {
-        assert(x.size() == 3);
         return {
             m_sigma*(x[1] - x[0]),
-            m_rho*x[0] - x[1] - x[0]*x[2],
+            x[0]*(m_rho - x[2]) - x[1],
             x[0]*x[1] - m_beta*x[2]
         };
     }
+
 private:
+
     double m_rho;
     double m_sigma;
     double m_beta;
