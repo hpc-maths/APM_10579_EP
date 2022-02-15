@@ -21,9 +21,9 @@ if(MSVC)
 endif()
 
 set(SRCS
-    inteprolation.hpp
+    interpolation.hpp
     interpolation.cpp
-    inteprlation_impl.hpp
+    interpolation_impl.hpp
     interpolation_impl.cpp
     main.cpp)
 
