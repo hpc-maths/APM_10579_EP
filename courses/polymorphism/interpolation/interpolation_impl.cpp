@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <itearator>
-#include <ostream>
+#include <iterator>
+#include <iostream>
 #include "interpolation_impl.hpp"
 
 namespace hpc
@@ -11,7 +11,7 @@ namespace hpc
 
     double linear_interpolate(double xlow, double xhigh,
                               double ylow, double yhigh,
-                              doube x)
+                              double x)
     {
         double inv_den = 1. / (xhigh - xlow);
         return (xhigh - x) * inv_den * ylow + (x - xlow) * inv_den * yhigh;
@@ -31,7 +31,7 @@ namespace hpc
             double sig = (x[i] - x[i+1]) / (x[i+1] - x[i-1]);
             double p = sig*y2[i-1] + 2.;
             y2[i] = (sig - 1.) / p;
-            u[i] = (y[i+1] - y[i])/(x[i+1] - x[i]) - (y[i] - y[i-1])/(x[i] - x[i-1]); 
+            u[i] = (y[i+1] - y[i])/(x[i+1] - x[i]) - (y[i] - y[i-1])/(x[i] - x[i-1]);
             u[i] = (6.*u[i]/x[i+1] - x[i-1]) - sig*u[i-1]/p;
         }
         u.back() = 0.;
@@ -49,7 +49,7 @@ namespace hpc
     {
         double h = xhigh - xlow;
         double a = (xhigh - x)/h;
-        double b = (x - xlow)/h; 
+        double b = (x - xlow)/h;
         double res = a*ylow + b*yhigh + ((a*a*a - a)*y2low + (b*b*b - b)*y2high)*(h*h)/6.;
         return res;
     }

@@ -8,7 +8,7 @@
 
 namespace hpc
 {
-    using curve_type = std::pair<std::vector<double>>;
+    using curve_type = std::pair<std::vector<double>, std::vector<double>>;
 
     curve_type make_curve()
     {
@@ -30,7 +30,7 @@ namespace hpc
     /*void test_accessibility1()
     {
         spline_interpolation si;
-        double v = li.interpolate(2.5);
+        double v = si.interpolate(2.5);
     }*/
 
     /*void test_polymorphism(const interpolation_impl& inter)
@@ -67,7 +67,7 @@ namespace hpc
         std::vector<double> x = { 1., 2., 3. };
         std::vector<double> y = { 2., 4., 6. };
         interpolation_impl* inter2 = new spline_interpolation(curve.first, curve.last);
-        
+
         *inter2 = *inter1;
 
         inter1->print();
