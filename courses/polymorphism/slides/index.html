@@ -134,7 +134,7 @@ spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; 
           <h1>Inheritance</h1>
           <ul>
             <li>Add a <strong>m_y2</strong> vector member to the <strong>spline_interpolation</strong> class.</li>
-            <li>Initialize it in the constructor thanks to the <strong>spline_derivative_method</strong>.</li>
+            <li>Initialize it in the constructor thanks to the <strong>spline_derivative</strong> method.</li>
             <li>Try to use the data members of the mother class as arguments of <strong>spline_derivative</strong>.</li>
             <li>What do you notice?</li>
           </ul>
@@ -177,7 +177,7 @@ spline_interpolation::spline_interpolation(const std::vector&lt;double&gt;&amp; 
             <li><strong>protected</strong>: access granted to class and inheriting classes</li>
           </ul>
           <p class="fragment text-center">Avoid putting data in the protected section, prefer methods</p>
-          <p class="fragment text-center">Fix the <strong>inteprolation_impl</strong> and <strong>spline_interpolation</strong> classes</p>
+          <p class="fragment text-center">Fix the <strong>interpolation_impl</strong> and <strong>spline_interpolation</strong> classes</p>
         </section>
 
         <section>
@@ -401,7 +401,7 @@ public:
       <section>
         <h1>Entity semantics</h1>
         <ul>
-          <li>Add <strong>destructors</strong> to interpolation_impl and splineinterpolation.</li>
+          <li>Add <strong>destructors</strong> to interpolation_impl and spline_interpolation.</li>
           <li>Add <strong>logs</strong> (i.e. std::cout) in each constructor and destructor.</li>
           <li>Uncomment the <strong>test_polymorphism1</strong> function and its call in the main function.</li>
           <li>Build and run.</li>
