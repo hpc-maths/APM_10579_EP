@@ -54,7 +54,7 @@ namespace hpc
     /*void test_polymorphism1()
     {
         auto curve = make_curve();
-        interpolation_impl* inter = new spline_interpolation(curve.first, curve.last);
+        interpolation_impl* inter = new spline_interpolation(curve.first, curve.second);
         test_polymorphism(*inter);
         delete inter;
     }*/
@@ -62,11 +62,11 @@ namespace hpc
     /*void test_assign()
     {
         auto curve = make_curve();
-        interpolation_impl* inter = new spline_interpolation(curve.first, curve.last);
+        interpolation_impl* inter = new spline_interpolation(curve.first, curve.second);
 
         std::vector<double> x = { 1., 2., 3. };
         std::vector<double> y = { 2., 4., 6. };
-        interpolation_impl* inter2 = new spline_interpolation(curve.first, curve.last);
+        interpolation_impl* inter2 = new spline_interpolation(x, y);
 
         *inter2 = *inter1;
 
