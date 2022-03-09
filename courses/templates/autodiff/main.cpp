@@ -13,6 +13,16 @@ int main(int /*argc*/, char** /*argv*/)
     ad::variable<double> vres = x + y;
     std::cout << vres.value() << std::endl;
 
-    ad::variable<double> zzz = x + 2;
+    
+    ad::variable<double> z = x + 2;
+    std::cout << z.value() << std::endl;
+
+    std::cout << "=========" << std::endl;
+    x.activate(true);
+    y.activate(true);
+    z.activate(true);
+    auto res2 = x + y * z;
+    std::cout << res2.value() << std::endl;
+    std::cout << res2.derivative() << std::endl;
     return 0;
 }

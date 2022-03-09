@@ -498,7 +498,7 @@ void my_func&lt;double, T&gt;(double, T) { ... }
 
     <section>
       <section>
-        <h1>Automatic differentiation</h1>
+        <h1>Automatic differentiation - Part 1</h1>
         <p>In autodiff.hpp, define a template class "variable" that:</p>
         <ul>
           <li>Has two members, one for the value, one for the derivative</li>
@@ -510,7 +510,7 @@ void my_func&lt;double, T&gt;(double, T) { ... }
       </section>
 
       <section>
-        <h1>Automatic differentiation</h1>
+        <h1>Automatic differentiation - Part 1</h1>
         <ul>
           <li>Implement a template binary_add class that:
             <ul>
@@ -524,7 +524,7 @@ void my_func&lt;double, T&gt;(double, T) { ... }
       </section>
 
       <section>
-        <h1>Automatic differentiation</h1>
+        <h1>Automatic differentiation - Part 1</h1>
         <p>What is the issue with the previous design?</p>
         <ul class="fragment">
           <li>Implement a variable_add functor which provides an additional derivative method</li>
@@ -536,7 +536,7 @@ void my_func&lt;double, T&gt;(double, T) { ... }
       </section>
 
       <section>
-        <h1>Automatic differentiation</h1>
+        <h1>Automatic differentiation - Part 1</h1>
         <ul>
           <li>Implement a unary_op structure, similar to binary_op</li>
           <li>Implement functors for common math functions (exp, log)</li>
@@ -544,7 +544,293 @@ void my_func&lt;double, T&gt;(double, T) { ... }
           <li>Use your classes to compute both value and derivatives of the sigmoid</li>
         </ul>
       </section>
+    </section>
 
+
+    <section>
+      <section>
+        <h1>Template template parameters</h1>
+        <pre><code class="cpp">
+template &lt;class E1, class E2&gt;
+class binary_add { // ... };
+
+template &lt;class F, class E1, class E2&gt;
+class binary_op { // ... };
+
+template &lt;class E1, class E2&gt;
+binary_op&lt;binary_add&lt;E1, E2&gt;, E1, E2&gt;
+operator+(const E1&amp; e1, const E2&amp; e2)
+{
+    return binary_op&lt;binary_add&lt;E1, E2&gt;, E1, E2&gt;(e1, e2);
+}
+        </code></pre>
+        <p>Passing E1 and E2 to binary_add is cumbersome</p>
+      </section>
+
+      <section>
+        <h1>Template template parameters</h1>
+        <pre><code class="cpp">
+template &lt;class E1, class E2&gt;
+class binary_add { // ... };
+
+template &lt;template &lt;class, class&gt; class F, class E1, class E2&gt;
+class binary_op
+{
+public:
+    using functor_type = F&lt;E1, E2&gt;
+    // ....
+};
+
+template &lt;class E1, class E2&gt;
+binary_op&lt;binary_add, E1, E2&gt;
+operator+(const E1&amp; e1, const E2&amp; e2)
+{
+    return binary_op&lt;binary_add, E1, E2&gt;(e1, e2);
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Traits</h1>
+        <p>Traits are</p>
+        <ul>
+          <li>small structures providing information about types</li>
+          <li>basics blocks of template metaprogramming</li>
+        </ul>
+        <p>the standard header type_traits defines a lot of them (see documentation on cppreference.com)</p>
+      </section>
+
+      <section>
+        <h1>Traits</h1>
+        <p>Implementation pattern:</p>
+        <pre><code class="cpp">
+template &lt;class T&gt;
+struct add_reference
+{
+    using reference = T&amp;
+};
+
+// Specialization of add_reference for reference types
+template &lt;class T&gt;
+struct add_reference&lt;T&amp;&gt;
+{
+    using reference = T&amp;
+};
+
+template &lt;class T&gt;
+using add_reference_t = typename add_reference&lt;T&gt;::type;
+        </code></pre>
+        <pre class="fragment"><code class="cpp">
+template &lt;class T&gt;
+class my_vector
+{
+    using reference = add_reference_t&lt;T&gt;;
+};
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Traits</h1>
+        <ul>
+          <li>using declarations cannot be specialized</li>
+          <li>using declarations can be used without typename</li>
+          <li>structures can be specialized</li>
+          <li>structures requires to access an inner defined type, typename is required</li>
+        </ul>
+        <p class="fragment">We combine them to get the best of two approaches</p>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>Variadic templates</h1>
+        <pre><code class="cpp">
+template &lt;class... T&gt;
+class universal_op
+{
+public:
+    using operands_types = std::tuple&lt;T...&gt;;
+};
+        </code></pre>
+        <div class="fragment">
+          <pre><code class="cpp">
+universal_op&lt;int, double, float&gt; u; // parameter pack is (int, double, float)
+universal_op&lt;int&gt; u;                // parameter pack is (int)
+universal_op&lt;&gt; u;                   // OK, parameter pack is empty
+          </code></pre>
+        </div>
+        <div class="fragment">
+          <pre><code class="cpp">
+template &lt;class... T, class E1&gt;
+class invalid {};
+          </code></pre>
+          <p>The parameter pack must be the last template parameter</p>
+        </div>
+      </section>
+
+      <section>
+        <h1>Variadic templates</h1>
+        <pre><code class="cpp">
+template &lt;class... T&gt;
+void my_func(T... args)
+{
+    call_func(args...);
+}
+
+template &lt;class... T&gt;
+void my_other_func(const T&amp;... args)
+{
+    call_other_func(args...);
+}
+        </code></pre>
+        <p class="fragment">What if I want to pass some arguments by reference and other by values?</p>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <pre><code class="cpp">
+template &lt;class T&gt;
+void my_func(T&amp;&amp; t) { ... }
+
+int x = 42;
+int&amp; rx = x;
+const int&amp; cx = x;
+
+// For the following calls, what is T? what is the type of the argument of my_func?
+my_func(x);
+my_func(rx);
+my_func(cx);
+my_func(std::move(x));
+my_func(42);
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <p>During template type deduction with universal references:</p>
+        <ul>
+          <li>arguments that are references are treated as references</li>
+          <li>T&amp; &amp;&amp; collapses to T&amp;</li>
+          <li>T&amp;&amp; &amp;&amp; collapses to T&amp;T&amp;</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <pre><code class="cpp">
+template &lt;class T&gt;
+void my_func(T&amp;&amp; t) { ... }
+
+int x = 42;
+int&amp; rx = x;
+const int&amp; cx = x;
+
+my_func(x);   // T is int&amp; - param type is int&amp;
+my_func(rx);  // T is int&amp; - param type is int&amp;
+my_func(cx);  // T is const int&amp; - param type is const int&amp;
+my_func(std::move(x)); // T is const int&amp;&amp; - param type is const int&amp;&amp;
+my_func(42);  // T is int - param type is int&amp;&amp;
+        </code></pre>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <pre><code class="cpp">
+template &lt;class T&gt;
+void my_func(T&amp;&amp; t); // universal reference
+
+tempate &lt;class T&gt;
+void my_func(std::vector&lt;T&gt;&amp;&amp; v); // rvalue reference
+        </code></pre>
+        <p class="fragment">Universal reference only for deduced types</p>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <pre><code class="cpp">
+template &lt;class T&gt;
+void my_func_impl(T&amp;&amp; t) { ... }
+
+template &lt;class T&gt;
+void my_func(T&amp;&amp; t)
+{
+    // calling my_func_impl with lvalue, wrong if t was an rvalue reference, 
+    my_func_impl(t); 
+    // calling my_func_impl with rvalue, wrong if t was an lvalue
+    my_func_impl(std::move(t));
+}
+        </code></pre>
+        <pre class="fragment"><code class="cpp">
+template &lt;class T&gt;
+void my_func(T&amp;&amp; t)
+{
+    my_func_impl(std::forward&lt;T&gt;(t));
+}
+        </code></pre>
+        <p class="fragment">std::forward allows to achieve <i>perfect forwarding</i></p>
+      </section>
+
+      <section>
+        <h1>Universal references</h1>
+        <pre><code class="cpp">
+template &lt;class... T&gt;
+void my_func(T&amp;&amp;... args)
+{
+    // Forwards each argument, i.e. keeps the
+    // lvalue-ness or rvalue-ness of each argument
+    // indepently from other arguments
+    call_func(std::forward&lt;T&gt;(args)...);
+}
+        </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h1>Curiously Recurring Template Pattern (CRTP)</h1>
+        <pre><code class="cpp">
+template &lt;class... T&gt;
+class universal_op;
+
+template &lt;class T&gt;
+class variable;
+
+template &lt;class E&gt;
+universal_op&lt;exp, E&gt; exp(const E&amp; e)
+{
+    return universal_op&lt;exp, E&gt;(e);
+}
+        </code></pre>
+        <p>exp catches any type wihle we would like to catch universal_op and variables only</p>
+      </section>
+
+      <section>
+        <h1>Curiously Recurring Template Pattern (CRTP)</h1>
+        <pre><code class="cpp">
+template &lt;class D&gt;
+class expression
+{
+public:
+    D&amp; operator()() { return *static_cast&lt;D*&gt;(this); }
+    const D&amp; operator()() const { return *static_cast&lt;const D*&gt;(this); }
+};
+
+template &lt;class T&gt;
+class variable : public expression&lt;variable&lt;T&gt;&gt;
+{ // ... };
+
+template &lt;class... T&gt;
+class universal_op : public expression&lt;universal_op&lt;T...&gt;&gt;
+{ // ... };
+
+template &lt;class E&gt;
+universal_op&lt;exp, E&gt; exp(const expression&lt;E&gt;&amp; e)
+{
+    return universal_op&lt;exp, E&gt;(e());
+}
+        </code></pre>
+        <p>CRTP implements static polymorphism</p>
+      </section>
     </section>
     
     </div>
