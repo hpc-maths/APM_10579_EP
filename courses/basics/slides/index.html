@@ -5,24 +5,23 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/theme/dark.css" id="theme">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>MAP586 - The basics</title>
+  <title>MAP579 - The basics</title>
 </head>
 
 <body>
   <div class="reveal">
     <div class="slides">
       <section>
-        <section class="title">
-          <h1>MAP 586 </h1>
-          <h2>Introduction</h2>
+        <section class="title-section">
+          <h1>Introduction</h1>
+          <h2>MAP 579 </h2>
         </section>
 
         <section class="slide">
-
           <div class="row">
             <div class="col-6">
               <figure>
@@ -36,30 +35,27 @@
                   </ul>
                   <div class="my-2">
                     <a href="mailto:loic.gouarin@polytechnique.edu" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-envelope" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                         <path
-                          d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                       </svg>
                       <em class="mx-1">loic.gouarin@polytechnique.edu</em>
                     </a>
                   </div>
                   <div class="my-2">
                     <a href="https://github.com/gouarin" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-github" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                         <path
-                          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                       </svg>
                       <em class="mx-1">gouarin</em>
                     </a>
-                  </div>
-                  <div class="my-2">
+                  <!-- </div>
+                  <div class="my-2"> -->
                     <a href="https://twitter.com/lgouarin" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-twitter" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                         <path
-                          d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                       </svg>
                       <em class="mx-1">lgouarin</em>
                     </a>
@@ -79,30 +75,27 @@
                   </ul>
                   <div class="my-2">
                     <a href="https://twitter.com/JohanMabille" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-envelope" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                         <path
-                          d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                       </svg>
                       <em class="mx-1">johan.mabille@quantstack.net</em>
                     </a>
                   </div>
                   <div class="my-2">
                     <a href="https://github.com/JohanMabille" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-github" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                         <path
-                          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                       </svg>
                       <em class="mx-1">JohanMabille</em>
                     </a>
-                  </div>
-                  <div class="my-2">
+                  <!-- </div>
+                  <div class="my-2"> -->
                     <a href="https://twitter.com/JohanMabille" target="_blank">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-twitter" viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                         <path
-                          d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                       </svg>
                       <em class="mx-1">JohanMabille</em>
                     </a>
@@ -113,544 +106,699 @@
           </div>
         </section>
 
-        <section class="slide">
-          <h1>The evolution of computing</h1>
-          <div class="justify-content-center">
-            <div class="row">
-              <div class="col-6 fragment">
-                <figure>
-                  <img width="60%" src="./figures/babbage.jpg" alt="babbage">
-                  <figcaption>
-                    <p class="m-0">Babbage (<strong>1821</strong>)</p>
-                    <p class="m-0"><strong>1/6</strong> operations per second</p>
-                    <!-- source: https://www.futura-sciences.com/tech/actualites/informatique-machine-differences-babbage-silicon-valley-15487/ -->
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-6 fragment">
-                <figure>
-                  <img width="60%" src="./figures/Wartime_picture_of_a_Bletchley_Park_Bombe.jpg" alt="bombe">
-                  <figcaption>The "bombe" (<strong>1940</strong>)</figcaption>
-                </figure>
-              </div>
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The evolution of computing</h1>
             </div>
-            <div class="row">
-              <div class="col-6 fragment">
-                <figure>
-                  <img width="60%" src="./figures/Intel_C4004.jpg" alt="intel_C4004">
-                  <figcaption>
-                    <p class="m-0">First processor (<strong>1971</strong>)</p>
-                    <p class="m-0"><strong>92 600</strong> operations per second</p>
-                    <!-- source: https://fr.wikipedia.org/wiki/Intel_4004 -->
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-6 fragment">
-                <figure>
-                  <img width="60%" src="./figures/iphone12pro.jpg" alt="iphone12">
-                  <figcaption>
-                    <p class="m-0">IPhone 12 (<strong>2020</strong>)</p>
-                    <p class="m-0"><strong>824 000 000 000</strong> operations per second</p>
-                    <!-- source: https://www.cpu-monkey.com/en/cpu-apple_a14_bionic-1693 -->
-                  </figcaption>
-                </figure>
-              </div>
+            <div class="main">
+              <figure>
+                <img id="adapt" width="100%" src="/dark/figures/timeline.png">
+              </figure>
             </div>
           </div>
         </section>
 
-        <section class="slide">
-          <h1>Heterogeneous architectures</h1>
-          <div class=" mt-5">
-            <div class="row">
-              <div class="col-8">
-                <img class="m-0" width="100%" src="./figures/swhw.webp" alt="amdhal">
-                <!-- source: https://semiengineering.com/software-defined-hardware-gains-ground-again/ -->
-              </div>
-              <div class="col-4 align-items-center" align="left">
-                <ul>
-                  <li>
-                    CPU
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The evolution of computing</h1>
+            </div>
+            <div class="main">
+              <figure>
+                <img id="adapt" width="100%" src="/dark/figures/courbes_1.png">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The evolution of computing</h1>
+            </div>
+            <div class="main">
+              <figure>
+                <img id="adapt" width="100%" src="/dark/figures/courbes_2.png">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The evolution of computing</h1>
+            </div>
+            <div class="main">
+              <figure>
+                <img id="adapt" width="100%" src="/dark/figures/courbes_3.png">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The evolution of computing</h1>
+            </div>
+            <div class="main">
+              <figure>
+                <img id="adapt" width="100%" src="/dark/figures/courbes_4.png">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">Heterogeneous architectures</h1>
+            </div>
+            <div class="main">
+              <!-- <div class=" mt-5">
+                <div class="row">
+                  <div class="col-8">
+                    <img class="m-0" width="100%" src="./figures/swhw.webp" alt="amdhal">
+                     source: https://semiengineering.com/software-defined-hardware-gains-ground-again/ -->
+                  <!-- </div>
+                  <div class="col-4 align-items-center" align="left"> -->
                     <ul>
                       <li>
-                        X86
+                        CPU
+                        <ul>
+                          <li>
+                            X86
+                          </li>
+                          <li>
+                            ARM
+                          </li>
+                        </ul>
                       </li>
-                      <li>
-                        ARM
+                      <li class="mt-4">
+                        Accelerators
+                        <ul>
+                          <li>
+                            GPU
+                          </li>
+                          <li>
+                            FPGA
+                          </li>
+                          <li>
+                            VE
+                          </li>
+                        </ul>
                       </li>
                     </ul>
-                  </li>
-                  <li class="mt-4">
-                    Accelerators
+                  <!-- </div>
+                </div>
+              </div> -->
+              <!-- <p>Top500: Fujitsu Fugaku system (ARM) 415 PFlops ($10^{15}$)</p> -->
+              <!-- source: https://www.frandroid.com/marques/fujitsu-2/725148_le-superordinateur-le-plus-puissant-415-pflops-tourne-sous-arm -->
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The complexity is everywhere</h1>
+            </div>
+            <div class="main" data-markdown>
+              <textarea data-template>
+                - The complexity of physical problems solved is increasing and requires multiple expertise.
+                - The computing architectures are Heterogeneous.
+                - A multitude of programming languages exists.
+                - A multitude of scientific libraries exists.
+                - A multitude of development tools are used (version management, continuous integration, ...).
+              </textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The scientific software today</h1>
+            </div>
+            <div class="main text-center">
+              <img width="50%" src="./figures/logiciel.png" />
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">The languages</h1>
+            </div>
+            <div class="main text-center">
+              <img width="50%" src="./figures/lang.rank.2021.png" />
+              <p>Today there are thousands of languages.</p>
+              <p>And some of them are of interest for scientific computing.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">Interpreted vs compiled</h1>
+            </div>
+            <div class="main">
+              <div class="row">
+                <div class="col">
+                  <h3><strong>Interpreted language</strong></h3>
+                  <div class="d-flex justify-content-start">
                     <ul>
-                      <li>
-                        GPU
+                      <li class="fragment" data-fragment-index="1">Source code is executed line by line by an interpreter.
                       </li>
-                      <li>
-                        FPGA
+                      <li class="fragment" data-fragment-index="2">Errors occur at runtime, unless they are syntax errors.
                       </li>
-                      <li>
-                        VE
-                      </li>
+                      <li class="fragment" data-fragment-index="3">Allow to prototype easily and quickly.</li>
+                      <li class="fragment" data-fragment-index="4">Deliver relatively slower performance.</li>
+                      <li class="fragment" data-fragment-index="5"><u>Example:</u> Python, Bash, JavaScript, Lua</li>
                     </ul>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+                <div class="col" style="border-left:2px solid gray;">
+                  <h3><strong>Compiled language</strong></h3>
+                  <div class="d-flex justify-content-start">
+                    <ul>
+                      <li class="fragment" data-fragment-index="1">Source code is converted into machine code.</li>
+                      <li class="fragment" data-fragment-index="2">The compilation process prevents several errors.</li>
+                      <li class="fragment" data-fragment-index="3">It takes time to set up and run the compilation for each
+                        change.</li>
+                        <li class="fragment" data-fragment-index="4">Deliver better performance.</li>
+                        <li class="fragment" data-fragment-index="5"><u>Example:</u> C, C++, Fortran</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <p>Top500: Fujitsu Fugaku system (ARM) 415 PFlops ($10^{15}$)</p>
-          <!-- source: https://www.frandroid.com/marques/fujitsu-2/725148_le-superordinateur-le-plus-puissant-415-pflops-tourne-sous-arm -->
-        </section>
+          </section>
 
-        <section class="slide">
-          <h1>The complexity is everywhere</h1>
-          <div class="container" data-markdown>
-            <textarea data-template>
-              - The complexity of physical problems solved is increasing and requires multiple expertise.
-              - The computing architectures are Heterogeneous.
-              - A multitude of programming languages exists.
-              - A multitude of scientific libraries exists.
-              - A multitude of development tools are used (version management, continuous integration, ...).
-          </textarea>
-          </div>
-        </section>
-
-        <section class="slide">
-          <h1>The scientific software today</h1>
-          <div class="container justify-content-center">
-            <img width="50%" src="./figures/actors.png" />
-          </div>
-        </section>
-
-        <section class="slide">
-          <h1>The languages</h1>
-          <img width="50%" src="./figures/lang.rank.2021.png" />
-          <p>Today there are thousands of languages.</p>
-          <p>And some of them are of interest for scientific computing.</p>
-        </section>
-
-        <section class="slide">
-          <h1>Interpreted vs compiled</h1>
-          <div class="row">
-            <div class="col">
-              <h3><strong>Interpreted language</strong></h3>
-              <div class="d-flex justify-content-start">
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Best way to learn a new language</h1>
+              </div>
+              <div class="main text-center">
                 <ul>
-                  <li class="fragment" data-fragment-index="1">Source code is executed line by line by an interpreter.
-                  </li>
-                  <li class="fragment" data-fragment-index="2">Errors occur at runtime, unless they are syntax errors.
-                  </li>
-                  <li class="fragment" data-fragment-index="3">Allow to prototype easily and quickly.</li>
-                  <li class="fragment" data-fragment-index="4">Deliver relatively slower performance.</li>
-                  <li class="fragment" data-fragment-index="5"><u>Example:</u> Python, Bash, JavaScript, Lua</li>
+                  <li>Practice</li>
+                  <li>Read the source code of well known Open Source software</li>
                 </ul>
               </div>
             </div>
-            <div class="col" style="border-left:2px solid gray;">
-              <h3><strong>Compiled language</strong></h3>
-              <div class="d-flex justify-content-start">
+          </section>
+
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Open Science</h1>
+              </div>
+              <div class="main text-center">
+                <img width="100%" id="adapt" src="/dark/figures/open_science.png" />
+              </div>
+            </div>
+          </section>
+
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Open source components</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start" data-markdown>
+                  <textarea data-template>
+                    - source code available
+                    - license
+                    - tests               <!-- .element: class="fragment" data-fragment-index="1" -->
+                    - documentation       <!-- .element: class="fragment" data-fragment-index="1" -->
+                    - packaging           <!-- .element: class="fragment" data-fragment-index="1" -->
+                  </textarea>
+                </div>
+                <p class="fragment text-center">Building a community around software takes time.</p>
+                <p class="fragment text-center">The implementation of these components is a guarantee of reliability and confidence.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">During this course</h1>
+              </div>
+              <div class="main">
+                <p class="d-flex justify-content-start">We will see</p>
+                <div class="d-flex justify-content-start" data-markdown>
+                  <textarea data-template>
+                    - various algorithms
+                    - C++ language in depth
+                    - code structuration
+                    - and various concepts about software engineering
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section class="title-section">
+            <h1>C++ basics</h1>
+            <h2>MAP 579 </h2>
+          </section>
+
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">C++ origins</h1>
+              </div>
+              <div class="main">
                 <ul>
-                  <li class="fragment" data-fragment-index="1">Source code is converted into machine code.</li>
-                  <li class="fragment" data-fragment-index="2">The compilation process prevents several errors.</li>
-                  <li class="fragment" data-fragment-index="3">It takes time to set up and run the compilation for each
-                    change.</li>
-                  <li class="fragment" data-fragment-index="4">Deliver better performance.</li>
-                  <li class="fragment" data-fragment-index="5"><u>Example:</u> C, C++, Fortran</li>
+                  <li><strong>1982</strong>: Bjarne Stroustrup started to develop a successor to C: the C++</li>
+                  <li><strong>1985</strong>: the first edition of <a href="https://www.wikiwand.com/en/The_C%2B%2B_Programming_Language">The C++ Programming Language</a> was published</li>
+                  <li><strong>1989</strong>: C++ 2.0 was released, followed by the second edition of The C++ Programming Language</li>
+                  <li><strong>1998</strong>: C++98 was released</li>
+                  <li><strong>2003</strong>: C++03 was released (with minor changes)</li>
+                  <li class="fragment" data-fragment-index="1"><strong>2011</strong>: C++11 was released</li>
+                  <li class="fragment" data-fragment-index="1"><strong>2014</strong>: C++14 was released</li>
+                  <li class="fragment" data-fragment-index="1"><strong>2017</strong>: C++17 was released</li>
+                  <li class="fragment" data-fragment-index="1"><strong>2020</strong>: C++20 was released</li>
+                  <li class="fragment" data-fragment-index="2"><strong>2023</strong>: C++23 will be released</li>
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="slide">
-          <h1>Open Science</h1>
-          <img width="60%" src="./figures/open_science.png" />
-        </section>
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Interesting links</h1>
+              </div>
+              <div class="main">
+                <ul>
+                  <li class="fragment mb-2"><a href="https://isocpp.github.io/CppCoreGuidelines/">C++ Core Guidelines</a>: some guidelines to write better modern C++ from C++14 and later</li>
+                  <li class="fragment mb-2"><a href="https://en.cppreference.com">cppreference</a>: very nice reference on the use of C++ in all version</li>
+                  <li class="fragment mb-2"><a href="https://cppcon.org/">cppcon</a>: annual C++ conference</li>
+                  <li class="fragment mb-2"><a href="https://cppnow.org/">C++now</a>: another annual C++ conference</li>
+                  <li class="fragment"><a href="https://isocpp.org/">isocpp</a>: website with a list of articles, event, training, ... about C++</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-        <section class="slide">
-          <h1>Open source components</h1>
-          <div class="d-flex justify-content-start" data-markdown>
-            <textarea data-template>
-            - source code available
-            - license
-            - tests               <!-- .element: class="fragment" data-fragment-index="1" -->
-            - documentation       <!-- .element: class="fragment" data-fragment-index="1" -->
-            - packaging           <!-- .element: class="fragment" data-fragment-index="1" -->
-          </textarea>
-          </div>
-          <p class="fragment">Building a community around software takes time.</p>
-          <p class="fragment">The implementation of these components is a guarantee of reliability and confidence.</p>
-        </section>
-
-        <section class="slide">
-          <h1>During this course</h1>
-          <p class="d-flex justify-content-start">We will see</p>
-          <div class="d-flex justify-content-start" data-markdown>
-            <textarea data-template>
-            - various algorithms
-            - C++ language in depth
-            - code structuration
-            - and various concepts about software engineering
-          </textarea>
-          </div>
-        </section>
-      </section>
-
-      <section>
-        <section class="title">
-          <h1>MAP 586 </h1>
-          <h2>C++ basics</h2>
-        </section>
-
-        <section class="slide">
-          <h1>C++ origins</h1>
-          <ul>
-            <li><strong>1982</strong>: Bjarne Stroustrup started to develop a successor to C: the C++</li>
-            <li><strong>1985</strong>: the first edition of <a
-                href="https://www.wikiwand.com/en/The_C%2B%2B_Programming_Language">The C++ Programming
-                Language</a> was published</li>
-            <li><strong>1989</strong>: C++ 2.0 was released, followed by the second edition of The C++ Programming
-              Language</li>
-            <li><strong>1998</strong>: C++98 was released</li>
-            <li><strong>2003</strong>: C++03 was released (with minor changes)</li>
-            <li class="fragment" data-fragment-index="1"><strong>2011</strong>: C++11 was released</li>
-            <li class="fragment" data-fragment-index="1"><strong>2014</strong>: C++14 was released</li>
-            <li class="fragment" data-fragment-index="1"><strong>2017</strong>: C++17 was released</li>
-            <li class="fragment" data-fragment-index="1"><strong>2020</strong>: C++20 was released</li>
-            <li class="fragment" data-fragment-index="2"><strong>2023</strong>: C++23 will be released</li>
-          </ul>
-        </section>
-
-        <section class="slide">
-          <h1>Interesting links</h1>
-          <ul>
-            <li class="fragment mb-2"><a href="https://isocpp.github.io/CppCoreGuidelines/">C++ Core Guidelines</a>:
-              some
-              guidelines to write
-              better modern C++ from C++14 and later</li>
-            <li class="fragment mb-2"><a href="https://en.cppreference.com">cppreference</a>: very nice reference on the
-              use of
-              C++ in all
-              version</li>
-            <li class="fragment mb-2"><a href="https://cppcon.org/">cppcon</a>: annual C++ conference</li>
-            <li class="fragment mb-2"><a href="https://cppnow.org/">C++now</a>: another annual C++ conference</li>
-            <li class="fragment"><a href="https://isocpp.org/">isocpp</a>: website with a list of articles, event,
-              training, ... about
-              C++</li>
-          </ul>
-        </section>
-
-        <section class="slide">
-          <h1>A first program</h1>
-          <pre><code class="cpp">
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">A first program</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 
 int main(int argc, char* argv[])
 {
-    double x1 = 1., y1 = 0.;
-    double x2 = 0., y2 = 1.;
+  double x1 = 1., y1 = 0.;
+  double x2 = 0., y2 = 1.;
 
-    double distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
-    return 0;
+  double distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+  std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section class="slide">
-          <h1>A first program</h1>
-          <pre><code class="cpp" data-line-numbers="2-4|5-7|8-9|11-12|13-14|16-17">
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">A first program</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp" data-line-numbers="2-4|5-7|8-9|11-12|13-14|16-17">
 #include &lt;iostream&gt;        // #include imports functions not built in the language
                            // but defined in header files
 #include &lt;cmath&gt;           // More generally, # starts a preprocessor directive
 
 int main(int argc, char* argv[]) // Each executable program must have a function called main.
-{                                // The body of a function is delimited with curly braces (scope)
-    double x0 = 1., y0 = 0.;     // Declaration and initialization of variables x0, y0, x1 and y1.
-    double x1 = 0., y1 = 1.;     // C++ is a statically typed language
+{                               // The body of a function is delimited with curly braces (scope)
+  double x0 = 1., y0 = 0.;     // Declaration and initialization of variables x0, y0, x1 and y1.
+  double x1 = 0., y1 = 1.;    // C++ is a statically typed language
 
-    // std:: is a namespace qualifier
-    double distance = std::sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
-    // Writing is done with the output operator &lt;&lt;
-    std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
+  // std:: is a namespace qualifier
+  double distance = std::sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+  // Writing is done with the output operator &lt;&lt;
+  std::cout &lt;&lt; "distance = " &lt;&lt; distance &lt;&lt; std::endl;
 
-    return 0;                    // Return value of the main function (declared to return an int)
-}                                // Closes the body (scope) of the function
-          </code></pre>
+  return 0;                    // Return value of the main function (declared to return an int)
+}                              // Closes the body (scope) of the function
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
 
-      <section>
-        <section class="slide">
-          <h1>Variables</h1>
-          <p class="d-flex justify-content-start">C++ is a statically typed language</p>
-          <div class="d-flex justify-content-start">
-            <ul>
+        <section>
+          <section class="slide">
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Variables</h1>
+              </div>
+              <div class="main">
+                <p class="d-flex justify-content-start">C++ is a statically typed language</p>
+                <div class="d-flex justify-content-start">
+                  <ul>
 
-              <li class="fragment" data-fragment-index="1">Variable must be declared with a type</li>
-              <li class="fragment" data-fragment-index="2">This type is final and cannot be changed after the
-                declaration</li>
-              <li class="fragment" data-fragment-index="3">Declaration (and initialization) of variables have the
-                following scheme:</li>
-              <pre class="fragment" data-fragment-index="3"><code class="cpp">
+                    <li class="fragment" data-fragment-index="1">Variable must be declared with a type</li>
+                    <li class="fragment" data-fragment-index="2">This type is final and cannot be changed after the declaration</li>
+                    <li class="fragment" data-fragment-index="3">Declaration (and initialization) of variables have the following scheme:</li>
+                    <pre class="fragment" data-fragment-index="3"><code class="cpp">
 type variable_name;
 type variable_name = value;
 type variable_name1 = value1, variable_name2 = value2, ...;
-              </code></pre>
-            </ul>
-          </div>
+                    </code></pre>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Built-in types</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>character types</li>
+                    <li>boolean</li>
+                    <li>integers</li>
+                    <li>floating-point types</li>
+                    <li>C-style arrays</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section>
-          <h1>Built-in types</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>character types</li>
-              <li>boolean</li>
-              <li>integers</li>
-              <li>floating-point types</li>
-              <li>C-style arrays</li>
-            </ul>
-          </div>
-        </section>
-      </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Character types</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>signed char (1 byte = 8 bits)</li>
+                    <li>unsigned char (1 byte = 8 bits)</li>
+                    <li>char (equivalent to signed or unsigned, but distinct)</li>
+                    <li>wchar_t (system dependant, generally 2 or 4 bytes)</li>
+                    <li>char16_t (2 bytes = 16 bits)</li>
+                    <li>char32_t (4 bytes = 32 bits)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
 
-      <section>
-        <section>
-          <h1>Character types</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>signed char (1 byte = 8 bits)</li>
-              <li>unsigned char (1 byte = 8 bits)</li>
-              <li>char (equivalent to signed or unsigned, but distinct)</li>
-              <li>wchar_t (system dependant, generally 2 or 4 bytes)</li>
-              <li>char16_t (2 bytes = 16 bits)</li>
-              <li>char32_t (4 bytes = 32 bits)</li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <h1>Character types</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Character types</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 const char* c = "character_string";
 char s[17] = "character_string";
-          </code></pre>
-          <p class="fragment">Prefer <strong>std::string</strong> over arrays of characters</p>
-          <pre class="fragment"><code class="cpp">
+                </code></pre>
+                <p class="fragment text-center">Prefer <strong>std::string</strong> over arrays of characters</p>
+                <pre class="fragment"><code class="cpp">
 std::string s = "character_string";
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Booleans</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>bool (1 byte = 8 bits)</li>
-              <li>2 possible values, <strong>true</strong> or <strong>false</strong></li>
-            </ul>
-          </div>
-          <pre class="fragment"><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Booleans</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>bool (1 byte = 8 bits)</li>
+                    <li>2 possible values, <strong>true</strong> or <strong>false</strong></li>
+                  </ul>
+                </div>
+                <pre class="fragment"><code class="cpp">
 bool b1 = true, b2 = false;
 std::cout &lt;&lt; std::boolalpha &lt;&lt;"b1: " &lt;&lt; b1 &lt;&lt; std::endl;
 std::cout &lt;&lt; "b2: " &lt;&lt; b2 &lt;&lt; std::endl;
-          </code></pre>
-        </section>
-      </section>
-
-      <section>
-        <section>
-          <h1>Integers</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>(unsigned) short (at least 2 bytes = 16 bits)</li>
-              <li>(unsigned) int (at least 4 bytes = 32 bits)</li>
-              <li>(unsigned) long (at least 4 bytes = 32 bits)</li>
-              <li>(unsigned) long long (at least 8 bytes = 64 bits)</li>
-              <li>std::size_t (8 bytes = 64 bits)</li>
-              <li>std::ptrdiff_t (8 bytes = 64 bits)</li>
-            </ul>
-          </div>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section>
-          <p>C++ standard also guarantees</p>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Integers</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>(unsigned) short (at least 2 bytes = 16 bits)</li>
+                    <li>(unsigned) int (at least 4 bytes = 32 bits)</li>
+                    <li>(unsigned) long (at least 4 bytes = 32 bits)</li>
+                    <li>(unsigned) long long (at least 8 bytes = 64 bits)</li>
+                    <li>std::size_t (8 bytes = 64 bits)</li>
+                    <li>std::ptrdiff_t (8 bytes = 64 bits)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <p>C++ standard also guarantees</p>
+            <pre><code class="cpp">
 1 == sizeof(char) &le; sizeof(short) &le; sizeof(int) &le; sizeof(long) &le; sizeof(long long)
-          </code></pre>
-        </section>
+            </code></pre>
+          </section>
 
-        <section>
-          <table>
-            <tr>
-              <th>types</th>
-              <th>size in bytes</th>
-              <th>lower bound</th>
-              <th>upper bound</th>
-            </tr>
-            <tr>
-              <td>short</td>
-              <td>$2$</td>
-              <td>$-2^8$</td>
-              <td>$2^8 - 1$</td>
-            </tr>
-            <tr>
-              <td>unsigned short</td>
-              <td>$2$</td>
-              <td>$0$</td>
-              <td>$2^{16}$</td>
-            </tr>
-            <tr>
-              <td>int</td>
-              <td>$4$</td>
-              <td>$-2^{16}$</td>
-              <td>$2^{16} - 1$</td>
-            </tr>
-            <tr>
-              <td>unsigned int</td>
-              <td>$4$</td>
-              <td>$0$</td>
-              <td>$2^{32}$</td>
-            </tr>
-            <tr>
-              <td>long long</td>
-              <td>$8$</td>
-              <td>$-2^{32}$</td>
-              <td>$2^{32} - 1$</td>
-            </tr>
-            <tr>
-              <td>unsigned long long</td>
-              <td>$8$</td>
-              <td>$0$</td>
-              <td>$2^{64}$</td>
-            </tr>
-          </table>
-        </section>
+          <section>
+            <table>
+              <tr>
+                <th>types</th>
+                <th>size in bytes</th>
+                <th>lower bound</th>
+                <th>upper bound</th>
+              </tr>
+              <tr>
+                <td>short</td>
+                <td>$2$</td>
+                <td>$-2^8$</td>
+                <td>$2^8 - 1$</td>
+              </tr>
+              <tr>
+                <td>unsigned short</td>
+                <td>$2$</td>
+                <td>$0$</td>
+                <td>$2^{16}$</td>
+              </tr>
+              <tr>
+                <td>int</td>
+                <td>$4$</td>
+                <td>$-2^{16}$</td>
+                <td>$2^{16} - 1$</td>
+              </tr>
+              <tr>
+                <td>unsigned int</td>
+                <td>$4$</td>
+                <td>$0$</td>
+                <td>$2^{32}$</td>
+              </tr>
+              <tr>
+                <td>long long</td>
+                <td>$8$</td>
+                <td>$-2^{32}$</td>
+                <td>$2^{32} - 1$</td>
+              </tr>
+              <tr>
+                <td>unsigned long long</td>
+                <td>$8$</td>
+                <td>$0$</td>
+                <td>$2^{64}$</td>
+              </tr>
+            </table>
+          </section>
 
-        <section>
-          <pre><code class="cpp">
+          <section>
+            <pre><code class="cpp">
 #include &lt;limits&gt;
 #include &lt;iostream&gt;
 
 int main(int argc, char* argv[])
 {
-    std::cout &lt;&lt; "short: " &lt;&lt; sizeof(short) &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;short&gt;::min() &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;short&gt;::max() &lt;&lt; std::endl;
-    std::cout &lt;&lt; "int: " &lt;&lt; sizeof(int) &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;int&gt;::min() &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;int&gt;::max() &lt;&lt; std::endl;
-    std::cout &lt;&lt; "long: " &lt;&lt; sizeof(long) &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;long&gt;::min() &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;long&gt;::max() &lt;&lt; std::endl;
-    std::cout &lt;&lt; "long long: " &lt;&lt; sizeof(long long) &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;long long&gt;::min() &lt;&lt; " "
-              &lt;&lt; std::numeric_limits&lt;long long&gt;::max() &lt;&lt; std::endl;
-}
-          </code></pre>
-        </section>
+  std::cout &lt;&lt; "short: " &lt;&lt; sizeof(short) &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;short&gt;::min() &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;short&gt;::max() &lt;&lt; std::endl;
 
-        <section>
-          <h1>Integer encoding</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>Unsigned integers: simple conversion to base 2</li>
-              <li>Signed integers: two's complement method</li>
-            </ul>
-          </div>
-          <pre><code class="fragment">
+  std::cout &lt;&lt; "int: " &lt;&lt; sizeof(int) &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;int&gt;::min() &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;int&gt;::max() &lt;&lt; std::endl;
+
+  std::cout &lt;&lt; "long: " &lt;&lt; sizeof(long) &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;long&gt;::min() &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;long&gt;::max() &lt;&lt; std::endl;
+
+  std::cout &lt;&lt; "long long: " &lt;&lt; sizeof(long long) &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;long long&gt;::min() &lt;&lt; " "
+  &lt;&lt; std::numeric_limits&lt;long long&gt;::max() &lt;&lt; std::endl;
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Integer encoding</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>Unsigned integers: simple conversion to base 2</li>
+                    <li>Signed integers: two's complement method</li>
+                  </ul>
+                </div>
+                <pre><code class="fragment">
 int a = 42, b = -42;
 std::cout &lt;&lt; std::bitset&lt;32&gt;(a) &lt;&lt; std::endl;
 std::cout &lt;&lt; std::bitset&lt;32&gt;(b) &lt;&lt; std::endl;
-              </code></pre>
-        </section>
-      </section>
-
-      <section>
-        <section>
-          <h1>Floating-point values</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>float (32 bits)</li>
-              <li>double (64 bits)</li>
-              <li>long double (platform dependent)</li>
-            </ul>
-          </div>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section>
-          <h1>IEEE 754 norm</h1>
-          <p>$r = (-1)^s \; m \; 2^{exponent - offset}$</p>
-          <ul>
-            <li>$s$: bit of sign</li>
-            <li>$m$: bits of mantissa</li>
-            <li>$exponent$: bits of exponent</li>
-          </ul>
-        </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Floating-point values</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>float (32 bits)</li>
+                    <li>double (64 bits)</li>
+                    <li>long double (platform dependent)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <table>
-            <tr>
-              <th></th>
-              <th><b>float</b></th>
-              <th><b>double</b></th>
-            </tr>
-            <tr>
-              <td>sign</td>
-              <td>$1$</td>
-              <td>$1$</td>
-            </tr>
-            <tr>
-              <td>exponent</td>
-              <td>$8$</td>
-              <td>$11$</td>
-            </tr>
-            <tr>
-              <td>mantissa</td>
-              <td>$23$</td>
-              <td>$52$</td>
-            </tr>
-            <tr>
-              <td>lowest number</td>
-              <td>$1.4 10^{-45}$</td>
-              <td>$4.9406564854124564 10^{-324}$</td>
-            </tr>
-            <tr>
-              <td>highest number</td>
-              <td>$3.40282346 10^{38}$</td>
-              <td>$1.7976931348623157 10^{308}$</td>
-            </tr>
-          </table>
-        </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">IEEE 754 norm</h1>
+              </div>
+              <div class="main">
+                <p class="text-center">$r = (-1)^s \; m \; 2^{exponent - offset}$</p>
+                <ul>
+                  <li>$s$: bit of sign</li>
+                  <li>$m$: bits of mantissa</li>
+                  <li>$exponent$: bits of exponent</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Cast</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>static_cast</li>
-              <li>reinterpret_cast</li>
-              <li>const_cast</li>
-              <li>dynamic_cast</li>
-            </ul>
-          </div>
-        </section>
+          <section>
+            <table>
+              <tr>
+                <th></th>
+                <th><b>float</b></th>
+                <th><b>double</b></th>
+              </tr>
+              <tr>
+                <td>sign</td>
+                <td>$1$</td>
+                <td>$1$</td>
+              </tr>
+              <tr>
+                <td>exponent</td>
+                <td>$8$</td>
+                <td>$11$</td>
+              </tr>
+              <tr>
+                <td>mantissa</td>
+                <td>$23$</td>
+                <td>$52$</td>
+              </tr>
+              <tr>
+                <td>lowest number</td>
+                <td>$1.4 10^{-45}$</td>
+                <td>$4.9406564854124564 10^{-324}$</td>
+              </tr>
+              <tr>
+                <td>highest number</td>
+                <td>$3.40282346 10^{38}$</td>
+                <td>$1.7976931348623157 10^{308}$</td>
+              </tr>
+            </table>
+          </section>
 
-        <section>
-          <h1>static_cast</h1>
-          <ul class="d-flex justify-content-start">
-            <li>Syntax</li>
-          </ul>
-          <pre>
-              <code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Cast</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>static_cast</li>
+                    <li>reinterpret_cast</li>
+                    <li>const_cast</li>
+                    <li>dynamic_cast</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">static_cast</h1>
+              </div>
+              <div class="main">
+                <ul class="d-flex justify-content-start">
+                  <li>Syntax</li>
+                </ul>
+                <pre>
+                  <code class="cpp">
 static_cast&lt;new_type&gt;(expression)
-              </code>
-            </pre>
-          <ul class="d-flex justify-content-start">
-            <li>Example</li>
-          </ul>
-          <pre>
-              <code class="cpp">
+                  </code>
+                </pre>
+                <ul class="d-flex justify-content-start">
+                  <li>Example</li>
+                </ul>
+                <pre>
+                  <code class="cpp">
 int a = 1, b = 2;
 
 std::cout &lt;&lt; "integer division" &lt;&lt; a/b &lt;&lt; std::endl;
@@ -658,86 +806,110 @@ std::cout &lt;&lt; "integer division" &lt;&lt; a/b &lt;&lt; std::endl;
 std::cout &lt;&lt; "float division" &lt;&lt; static_cast&lt;float&gt;(a)/b &lt;&lt; std::endl;
 
 // std::string *s = static_cast&lt;std::string*&gt;(&b); // compile error
-              </code>
-            </pre>
-          Check if the cast is possible at compile time.
-        </section>
+                  </code>
+                </pre>
+                <p class="text-center">Check if the cast is possible at compile time.</p>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>reinterpret_cast</h1>
-          <ul class="d-flex justify-content-start">
-            <li>Syntax</li>
-          </ul>
-          <pre>
-            <code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">reinterpret_cast</h1>
+              </div>
+              <div class="main">
+                <ul class="d-flex justify-content-start">
+                  <li>Syntax</li>
+                </ul>
+                <pre>
+                  <code class="cpp">
 reinterpret_cast&lt;new_type&gt;(expression)
-            </code>
-          </pre>
+                  </code>
+                </pre>
 
-          <ul class="d-flex justify-content-start">
-            <li>Example</li>
-          </ul>
+                <ul class="d-flex justify-content-start">
+                  <li>Example</li>
+                </ul>
 
-          <pre>
-            <code class="cpp">
+                <pre>
+                  <code class="cpp">
 int b = 2;
 
 std::string *s = static_cast&lt;std::string*&gt;(&b);
 
 std::cout &lt;&lt; *s &lt;&lt; std::endl; // segmentation fault
-            </code>
-          </pre>
-          Instruct the compiler to treat <strong>expression</strong> as if it had the type <strong>new_type</strong>.
-        </section>
+                  </code>
+                </pre>
+                <p class="text-center">Instruct the compiler to treat <strong>expression</strong> as if it had the type <strong>new_type</strong>.</p>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>C-style cast</h1>
-          <ul class="d-flex justify-content-start">
-            <li>Syntax</li>
-          </ul>
-          <pre>
-            <code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">C-style cast</h1>
+              </div>
+              <div class="main">
+                <ul class="d-flex justify-content-start">
+                  <li>Syntax</li>
+                </ul>
+                <pre>
+                  <code class="cpp">
 (new_type)expression
-            </code>
-          </pre>
-          <div class="d-flex justify-content-start" style="text-align: justify;">
-            The compiler attempts to interpret it as the following cast expressions, in this order:
-          </div>
-          <pre><code>const_cast&lt;new_type&gt;(expression)</code></pre>
-          <pre><code>static_cast&lt;new_type&gt;(expression)</code></pre>
-          <pre><code>reinterpret_cast&lt;new_type&gt;(expression)</code></pre>
+                  </code>
+                </pre>
+                <div class="d-flex justify-content-start" style="text-align: justify;">
+                  The compiler attempts to interpret it as the following cast expressions, in this order:
+                </div>
+                <pre><code>const_cast&lt;new_type&gt;(expression)</code></pre>
+                <pre><code>static_cast&lt;new_type&gt;(expression)</code></pre>
+                <pre><code>reinterpret_cast&lt;new_type&gt;(expression)</code></pre>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
 
-      <section>
         <section>
-          <h1>C-Style arrays</h1>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>Syntax:</li>
-            </ul>
-          </div>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">C-Style arrays</h1>
+              </div>
+              <div class="main">
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>Syntax:</li>
+                  </ul>
+                </div>
+                <pre><code class="cpp">
 double d[17];
 int i[4];
 d[0] = 1.2;
 d[4] = 2.7;
-                  </code></pre>
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>Statically allocated arrays</li>
-              <li>Cannot be resized</li>
-              <li>Have poor interfaces</li>
-            </ul>
-          </div>
-          <p class="fragment">Prefer <strong>std::array</strong> over C-style arrays</p>
+                </code></pre>
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>Statically allocated arrays</li>
+                    <li>Cannot be resized</li>
+                    <li>Have poor interfaces</li>
+                  </ul>
+                </div>
+                <p class="fragment text-center">Prefer <strong>std::array</strong> over C-style arrays</p>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
 
-      <section>
         <section>
-          <h1>Arithmetic Operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Arithmetic Operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int a = 1, b = 2;
 
 int c = -a;
@@ -748,46 +920,70 @@ int e = a - b; int ea = a; ea -= b;
 int f = a * b; int fa = a; fa *= b;
 int g = a / b; int ga = a; ga /= b;
 int h = a % b; int ha = a; ha %= b;
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Increment/decrement operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Increment/decrement operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int a = 2;
 int b = a++;
 int c = ++a;
 int d = a--;
 int e = --a;
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Increment/decrement operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Increment/decrement operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int a = 2;   // a = 2
 int b = a++; // a = 3, b = 2
 int c = ++a; // a = 4, b = 4
 int d = a--; // a = 3, d = 4
 int e = --a; // a = 2, e = 2
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Comparison operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Comparison operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 bool r1 = a == b;
 bool r2 = a != b;
 bool r3 = a &lt; b;
 bool r4 = a &le; b;
 bool r5 = a &gt; b;
 bool r6 = a &ge; b;
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Bitwise operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Bitwise operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int a = 1, b = 31;
 int c = ~a;
 int d = a &amp; b;  int da = a; da &amp;= b;
@@ -795,12 +991,18 @@ int e = a | b;  int ea = a; ea |= b;
 int f = a ^ b;  int fa = a; fa ^= b;
 int g = a &lt;&lt; 1; int ga = a; ga &lt;&lt; 1;
 int h = a &gt;&gt; 1; int ha = a; ha &gt;&gt; 1;
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Bitwise operators</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Bitwise operators</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int a = 1, b = 31;
 int c = ~a;                           // c = -2
 int d = a &amp; b;  int da = a; da &amp;= b;  // d = 1
@@ -808,268 +1010,346 @@ int e = a | b;  int ea = a; ea |= b;  // e = 31
 int f = a ^ b;  int fa = a; fa ^= b;  // f = 30
 int g = a &lt;&lt; 1; int ga = a; ga &lt;&lt; 1;  // g = 2
 int h = a &gt;&gt; 1; int ha = a; ha &gt;&gt; 1;  // h = 0
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Logical operations</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Logical operations</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 bool a = true, b = false;
 bool c = !a;
 bool d = a &amp;&amp; b;
 bool e = a || b;
-          </code></pre>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
 
-      <section>
         <section>
-          <h1>if and else</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">if and else</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 if(x &gt; 0)
 {
-    std::cout &lt;&lt; "x is positive" &lt;&lt; std::endl;
+  std::cout &lt;&lt; "x is positive" &lt;&lt; std::endl;
 }
 else if(x &lt; 0)
 {
-    std::cout &lt;&lt; "x is negative" &lt;&lt; std::endl;
+  std::cout &lt;&lt; "x is negative" &lt;&lt; std::endl;
 }
 else
 {
-    std:cout &lt;&lt; "x is 0" &lt;&lt; std::endl;
+  std:cout &lt;&lt; "x is 0" &lt;&lt; std::endl;
 }
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Ternary operator</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Ternary operator</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int c = (a > 0)? 10: -50;
-          </code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>while</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">while</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main(int argc, char* argv[])
 {
-    int n = atoi(argv[1]);
+  int n = atoi(argv[1]);
 
-    std::cout &lt;&lt; n &lt;&lt; " ";
-    while (n != 1)
+  std::cout &lt;&lt; n &lt;&lt; " ";
+  while (n != 1)
+  {
+    if (n&1)
     {
-        if (n&1)
-        {
-            n = (3*n + 1)/2;
-        }
-        else
-        {
-            n /= 2;
-        }
-        std::cout &lt;&lt; n &lt;&lt; " ";
+      n = (3*n + 1)/2;
     }
-    std::cout &lt;&lt; std::endl;
-    return 0;
+    else
+    {
+      n /= 2;
+    }
+    std::cout &lt;&lt; n &lt;&lt; " ";
+  }
+  std::cout &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
-          Outputs
-          <div class="d-flex justify-content-start">
-            <ul>
-              <li>Pour $n = 12$: $12, 6, 3, 5, 8, 4, 2, 1$</li>
-              <li>Pour $n = 19$: $19, 29, 44, 22, 11, 17, 26, 13, 20, 10, 5, 8, 4, 2, 1$</li>
-            </ul>
-          </div>
-        </section>
+                </code></pre>
+                Outputs
+                <div class="d-flex justify-content-start">
+                  <ul>
+                    <li>Pour $n = 12$: $12, 6, 3, 5, 8, 4, 2, 1$</li>
+                    <li>Pour $n = 19$: $19, 29, 44, 22, 11, 17, 26, 13, 20, 10, 5, 8, 4, 2, 1$</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>while</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">while</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main(int argc, char* argv[])
 {
-    int n = atoi(argv[1]);
+  int n = atoi(argv[1]);
 
+  std::cout &lt;&lt; n &lt;&lt; " ";
+  while (n != 1)
+  {
+    if (n&1)
+    {
+      n = (3*n + 1)/2;
+    }
+    else
+    {
+      n /= 2;
+    }
     std::cout &lt;&lt; n &lt;&lt; " ";
-    while (n != 1)
-    {
-        if (n&1)
-        {
-            n = (3*n + 1)/2;
-        }
-        else
-        {
-            n /= 2;
-        }
-        std::cout &lt;&lt; n &lt;&lt; " ";
-    }
-    std::cout &lt;&lt; std::endl;
-    return 0;
+  }
+  std::cout &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
-          <strong> Collatz conjecture</strong>
-        </section>
+                </code></pre>
+                <p class="text-center"><strong> Collatz conjecture</strong></p>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>do while</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">do while</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main()
 {
-    int counter = 5;
-    int factorial = 1;
+  int counter = 5;
+  int factorial = 1;
 
-    do
-    {
-        factorial *= counter--;
-    } while (counter &gt; 0);
+  do
+  {
+    factorial *= counter--;
+  } while (counter &gt; 0);
 
-    std::cout &lt;&lt; "factorial of 5 is " &lt;&lt; factorial &lt;&lt; std::endl;
+  std::cout &lt;&lt; "factorial of 5 is " &lt;&lt; factorial &lt;&lt; std::endl;
 }
-          </code></pre>
-        </section>
-        <section>
-          <h1>for</h1>
-          <pre><code class="cpp">
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">for</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main()
 {
-    double x[2] = {1, 3}, y[2] = {-2, .5};
-    double sum = 0;
+  double x[2] = {1, 3}, y[2] = {-2, .5};
+  double sum = 0;
 
-    for(std::size_t i = 0; i &lt; 2; ++i)
-    {
-        sum += x[i]*y[i];
-    }
+  for(std::size_t i = 0; i &lt; 2; ++i)
+  {
+    sum += x[i]*y[i];
+  }
 
-    std::cout &lt;&lt; sum &lt;&lt; std::endl;
+  std::cout &lt;&lt; sum &lt;&lt; std::endl;
 
-    return 0;
+  return 0;
 }
-          </code></pre>
-        </section>
-        <section>
-          <h1>break</h1>
-          <pre><code class="cpp">
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">break</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main()
 {
-    for(int i = 10; i&gt; 0; --i)
+  for(int i = 10; i&gt; 0; --i)
+  {
+    std::cout &lt;&lt; i &lt;&lt; std::endl;
+    if(i == 3)
     {
-        std::cout &lt;&lt; i &lt;&lt; std::endl;
-        if(i == 3)
-        {
-            std::cout &lt;&lt; "countdown aborted" &lt;&lt; std::endl;
-            break;
-        }
+      std::cout &lt;&lt; "countdown aborted" &lt;&lt; std::endl;
+      break;
     }
-    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
-    return 0;
+  }
+  std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
-        </section>
-        <section>
-          <h1>continue</h1>
-          <pre><code class="cpp">
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">continue</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main()
 {
-    for(int i = 10; i&gt; 0; --i)
+  for(int i = 10; i&gt; 0; --i)
+  {
+    if(i == 3)
     {
-        if(i == 3)
-        {
-            continue;
-        }
-        std::cout &lt;&lt; i &lt;&lt; std::endl;
+      continue;
     }
-    std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
-    return 0;
+    std::cout &lt;&lt; i &lt;&lt; std::endl;
+  }
+  std::cout &lt;&lt; "end of loop" &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
-        </section>
-        <section>
-          <h1>switch</h1>
-          <pre><code class="cpp">
+                </code></pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">switch</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 int i = std::rand() % 2;
 
 switch(i)
 {
-    case 0:
-        std::cout &lt;&lt; "i is even" &lt;&lt; std::endl;
-        break;
-    case 1:
-        std::cout &lt;&lt; "i is odd" &lt;&lt; std::endl;
-    default:
-        std::cout &lt;&lt; "default case" &lt;&lt; std::endl;
+  case 0:
+    std::cout &lt;&lt; "i is even" &lt;&lt; std::endl;
+    break;
+  case 1:
+    std::cout &lt;&lt; "i is odd" &lt;&lt; std::endl;
+  default:
+    std::cout &lt;&lt; "default case" &lt;&lt; std::endl;
 }
-          </code></pre>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
-      <section>
         <section>
-          <h1>scope</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">scope</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 
 int main()
 {
-    int a = 10;
+  int a = 10;
+  {
+    int b = 4096;
+    for(int i = 0; i &lt; a; ++i)
     {
-        int b = 4096;
-        for(int i = 0; i &lt; a; ++i)
-        {
-            b /= 2;
-            int c = b;
-            std::cout &lt;&lt; c &lt;&lt; std::endl;
-        }
-        std::cout &lt;&lt; c &lt;&lt; std::endl; // error: c is not accessible
-
-        int a = 5;
-        std::cout &lt;&lt; a &lt;&lt; std::endl;
+      b /= 2;
+      int c = b;
+      std::cout &lt;&lt; c &lt;&lt; std::endl;
     }
-    std::cout &lt;&lt; b &lt;&lt; std::endl; // error: b is not accessible
-    return 0;
+    std::cout &lt;&lt; c &lt;&lt; std::endl; // error: c is not accessible
+
+    int a = 5;
+    std::cout &lt;&lt; a &lt;&lt; std::endl;
+  }
+  std::cout &lt;&lt; b &lt;&lt; std::endl; // error: b is not accessible
+  return 0;
 }
-          </code></pre>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
 
 
-      <section>
         <section>
-          <h1>Readability</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Readability</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 
 double f(std::size_t n)
 {
-    double out = 0;
-    // start the loop
-    for (std::size_t i=0; i&lt;n; ++i)
-    {
-        out += 1./n*std::sqrt(1 - (i*1./n*i*1./n));
-    }
-    return 4*out;
+  double out = 0;
+  // start the loop
+  for (std::size_t i=0; i&lt;n; ++i)
+  {
+    out += 1./n*std::sqrt(1 - (i*1./n*i*1./n));
+  }
+  return 4*out;
 }
 
 int main(int argc, char *argv[])
 {
-    std::cout &lt;&lt; f(1000) &lt;&lt; std::endl;
-    return 0;
+  std::cout &lt;&lt; f(1000) &lt;&lt; std::endl;
+  return 0;
 }
-</code></pre>
-        </section>
+                </code></pre>
+              </div>
+            </div>
+          </section>
 
-        <section>
-          <h1>Readability</h1>
-          <pre><code class="cpp">
+          <section>
+            <div class="sl-block">
+              <div class="header">
+                <h1 class="title">Readability</h1>
+              </div>
+              <div class="main">
+                <pre><code class="cpp">
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 
@@ -1078,30 +1358,30 @@ int main(int argc, char *argv[])
 // over [0, 1]
 double compute_pi(std::size_t n)
 {
-    double quarter_pi = 0;
-    double dx = 1./n;
-    for (std::size_t i=0; i&lt;n; ++i)
-    {
-        double xi = i*dœx;
-        quarter_pi += h*std::sqrt(1 - xi*xi);
-    }
-    return 4*quarter_pi;
+  double quarter_pi = 0;
+  double dx = 1./n;
+  for (std::size_t i=0; i&lt;n; ++i)
+  {
+    double xi = i*dœx;
+    quarter_pi += h*std::sqrt(1 - xi*xi);
+  }
+  return 4*quarter_pi;
 }
 
 int main()
 {
-    std::cout &lt;&lt; compute_pi(1000) &lt;&lt; std::endl;
-    return 0;
+  std::cout &lt;&lt; compute_pi(1000) &lt;&lt; std::endl;
+  return 0;
 }
-          </code></pre>
+                </code></pre>
+              </div>
+            </div>
+          </section>
         </section>
 
-
-      </section>
-
+      </div>
     </div>
-  </div>
-  <script type="module" src="/main.js"></script>
-</body>
+    <script type="module" src="/main.js"></script>
+  </body>
 
-</html>
+  </html>
