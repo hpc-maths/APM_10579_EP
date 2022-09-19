@@ -8,6 +8,9 @@
   },
   "devDependencies": {
     "reveal.js": "^4.2.1",
-    "vite": "^2.7.2"
-  }
+    "vite": "^2.9.15"
+  },
+  "dependencies": {
+    "highlight.js": "^11.5.1",
+  "reveal.js-menu": "^2.1.0"  }
 }
