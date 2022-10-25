@@ -417,8 +417,8 @@ class test
     test(int i) : test(i, 0) {}                        // OK
     test(int i) : test(i, 0), m_d1(0.), m_d2(0.) {}    // Illegal
     test(double d1, double d2) : m_d1(d1), m_d2(d2) {}
-    test(double d) : test(d, 0.) {}                    // Illegal, only one delegating
-                                                       // constructor per class
+    test(double d) : test(d, 0.), m_i(0) {}            // Illegal, delegating constructor
+                                                       // in member initializer must be alone
 
   private:
 
