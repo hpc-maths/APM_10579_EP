@@ -48,3 +48,4 @@ package-lock.json
 *.synctex.gz
 
 .vscode
+.DS_Store

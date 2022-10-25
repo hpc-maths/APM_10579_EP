@@ -1,3 +1,3 @@
 export default {
-    base: '/MAP586/courses/oop/'
+    base: '/MAP579/courses/oop/'
 }
