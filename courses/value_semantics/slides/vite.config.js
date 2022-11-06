@@ -1,3 +1,3 @@
 export default {
-    base: '/MAP586/courses/value_semantics/'
+    base: '/MAP579/courses/value_semantics/'
 }
