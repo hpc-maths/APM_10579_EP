@@ -1,3 +1,3 @@
 export default {
-    base: '/MAP586/courses/polymorphism/'
+    base: '/MAP79/courses/polymorphism/'
 }
