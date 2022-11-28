@@ -3,7 +3,7 @@
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    ad::variable<double> x(3.);
+/*    ad::variable<double> x(3.);
     ad::variable<double> y(2.);
 
     auto res = x + y;
@@ -23,6 +23,6 @@ int main(int /*argc*/, char** /*argv*/)
     z.activate(true);
     auto res2 = x + y * z;
     std::cout << res2.value() << std::endl;
-    std::cout << res2.derivative() << std::endl;
+    std::cout << res2.derivative() << std::endl;*/
     return 0;
 }
