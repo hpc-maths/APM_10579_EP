@@ -87,6 +87,21 @@ namespace hpc
 
     class genetic_algorithm
     {
+    public:
+
+        genetic_algorithm(size_t tournament_size,
+                          double mutation_rate);
+
+        population evolve(const population& pop) const;
+
+    private:
+
+        circuit select(const population& pop, size_t tournament_size) const;
+        void mutate(circuit& c, double mutation_rate) const;
+        circuit crossover(const circuit& parent1, const circuit& parent2) const;
+
+        size_t m_tournament_size;
+        double m_mutation_rate;
     };
 }
 

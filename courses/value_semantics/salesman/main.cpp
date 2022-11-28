@@ -36,7 +36,7 @@ namespace hpc
 
     void test_genetic()
     {
-        /*size_t generation_number = 100u;
+        size_t generation_number = 100u;
         size_t tournament_size = 5;
         double mutation_rate = 0.015;
 
@@ -51,7 +51,7 @@ namespace hpc
             p = ga.evolve(p);
         }
 
-        std::cout << "Final distance: " << p.get_fittest().get_distance() << std::endl;*/
+        std::cout << "Final distance: " << p.get_fittest().get_distance() << std::endl;
     }
 }
 

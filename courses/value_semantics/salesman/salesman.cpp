@@ -139,5 +139,113 @@ const circuit& population::get_fittest() const
                              [](const circuit& lhs, const circuit& rhs) { return lhs.get_fitness() < rhs.get_fitness(); });
 }
 
+/*************
+ * ALGORITHM *
+ *************/
+
+namespace
+{
+    size_t random_int(size_t lower, size_t upper)
+    {
+        static std::random_device rd; // obtain a random number from hardware
+        static std::mt19937 gen(rd()); // seed the generator
+        std::uniform_int_distribution<size_t> distr(lower, upper); // define the range
+        return distr(gen);
+    }
+
+    double random_double(double lower, double upper)
+    {
+
+        static std::random_device rd; // obtain a random number from hardware
+        static std::mt19937 gen(rd()); // seed the generator
+        std::uniform_real_distribution<> distr(lower, upper); // define the range
+        return distr(gen);
+    }
+}
+
+genetic_algorithm::genetic_algorithm(size_t tournament_size, double mutation_rate)
+    : m_tournament_size(tournament_size)
+    , m_mutation_rate(mutation_rate)
+{
+}
+
+population genetic_algorithm::evolve(const population& pop) const
+{
+    population res(pop.size(), pop.get_circuit(0).size());
+    res.save_circuit(0, pop.get_fittest());
+
+    for (size_t i = 1; i < res.size(); ++i)
+    {
+        circuit parent1 = select(pop, m_tournament_size);
+        circuit parent2 = select(pop, m_tournament_size);
+        circuit child = crossover(parent1, parent2);
+        mutate(child, m_mutation_rate);
+        res.save_circuit(i, child);
+    }
+
+    return res;
+}
+
+circuit genetic_algorithm::select(const population& pop, size_t tournament_size) const
+{
+    population tournament(tournament_size, pop.get_circuit(0).size());
+    for (size_t i = 0; i < tournament_size; ++i)
+    {
+        size_t random_idx = random_int(0, pop.size() - 1);
+        tournament.save_circuit(i, pop.get_circuit(random_idx));
+    }
+    return tournament.get_fittest();
+}
+
+void genetic_algorithm::mutate(circuit& c, double mutation_rate) const
+{
+    for (size_t pos1 = 0; pos1 < c.size(); ++pos1)
+    {
+        double d = random_double(0., 1.);
+        if (d < mutation_rate)
+        {
+            size_t pos2 = random_int(0, c.size() - 1);
+            city c1 = c.get_city(pos1);
+            city c2 = c.get_city(pos2);
+            c.set_city(pos1, c2);
+            c.set_city(pos2, c1);
+        }
+    }
+}
+
+circuit genetic_algorithm::crossover(const circuit& parent1, const circuit& parent2) const
+{
+    circuit child(parent1.size());
+    size_t pos1 = random_int(0, child.size() - 1);
+    size_t pos2 = random_int(0, child.size() - 1);
+
+    size_t lower = std::min(pos1, pos2);
+    size_t upper = std::max(pos1, pos2);
+
+    for (size_t i = lower; i <= upper; ++i)
+    {
+        child.set_city(i, parent1.get_city(i));
+    }
+
+    size_t idx2 = 0u;
+    for (size_t i = 0u; i < child.size(); ++i)
+    {
+        if (i >= lower && i <= upper)
+        {
+            continue;
+        }
+
+        while (child.has_city(parent2.get_city(idx2)))
+        {
+            ++idx2;
+        }
+        
+        child.set_city(i, parent2.get_city(idx2));
+        ++idx2;
+    }
+
+    return child;
+}
+
 }
 
