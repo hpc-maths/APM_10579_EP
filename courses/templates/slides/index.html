@@ -781,24 +781,6 @@ void my_func&lt;double, T&gt;(double, T) { ... }
           </div>
         </section>
 
-        <section>
-          <div class="sl-block">
-            <div class="header">
-              <h1 class="title">
-                Automatic differentiation - Part 1
-              </h1>
-            </div>
-            <div class="main">
-
-              <ul>
-                <li>Implement a unary_op structure, similar to binary_op</li>
-                <li>Implement functors for common math functions (exp, log)</li>
-                <li>Implement a template sigmoid function</li>
-                <li>Use your classes to compute both value and derivatives of the sigmoid</li>
-              </ul>
-            </div>
-          </div>
-        </section>
       </section>
 
 
@@ -939,9 +921,58 @@ class my_vector
             </div>
           </div>
         </section>
+
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">
+                Automatic differentiation - Part 1
+              </h1>
+            </div>
+            <div class="main">
+
+              <p>We want to store the variables by references and the operation structure by value.</p>
+              <ul>
+                <li>Implement a structure is_variable that defines an inner type as
+                    <ul>
+                      <li>std::false_type when its template parameter is NOT a variable</li>
+                      <li>std::true_type otherwise</li>
+                    </ul>
+                <li>Implement a storage_type structure that defines an inner type as
+                    <ul>
+                      <li>its template parameter when it's not a variable</li>
+                      <li>a const reference to its template parameter when it's a variable</li>
+                    </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+
       </section>
 
       <section>
+        <section>
+          <div class="sl-block">
+            <div class="header">
+              <h1 class="title">
+                Automatic differentiation - Part 2
+              </h1>
+            </div>
+            <div class="main">
+
+              <ul>
+                <li>Implement a unary_op structure, similar to binary_op</li>
+                <li>Implement functors for common math functions (exp, log)</li>
+                <li>Implement a template sigmoid function</li>
+                <li>Use your classes to compute both value and derivatives of the sigmoid</li>
+              </ul>
+              <p class="fragment">What is the issue with this design?</p>
+            </div>
+          </div>
+        </section>
+
         <section>
           <div class="sl-block">
             <div class="header">
