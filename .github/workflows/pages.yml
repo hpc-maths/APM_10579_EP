@@ -1,8 +1,5 @@
 name: GitHub Pages Deploy
 on:
-  pull_request:
-    # Runs on pull requests to the default branch
-    branches: [main]
   push:
     # Runs on pushes targeting the default branch
     branches: [main]
