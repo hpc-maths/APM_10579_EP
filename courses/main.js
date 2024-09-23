@@ -30,7 +30,7 @@ function update_img() {
   var el = document.querySelectorAll("#adapt");
   for (var i = 0; i < el.length; i++) {
     var data = el[i].getAttribute("src").replace(theme_name[1], theme_name[0]);
-    console.log(data);
+    //console.log(data);
 
     el[i].setAttribute("src", data);
   }
@@ -39,7 +39,7 @@ function update_img() {
 var theme = document.querySelector("#theme");
 console.log(theme);
 var observer = new MutationObserver(function(mutation){
-  console.log("test");
+  //console.log("test");
 
   update_img();
 });
