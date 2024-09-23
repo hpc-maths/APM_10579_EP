@@ -62,7 +62,7 @@ deck.initialize({
       {name: 'light', theme: '/theme/light.css'}
     ],
     themesPath: '/theme',
-    path : '/reveal.js-menu'
+    path : '/APM_10579_EP/reveal.js-menu'
   },
   // markdown: {
   //   smartypants: true
