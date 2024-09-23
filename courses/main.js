@@ -58,10 +58,10 @@ deck.initialize({
   hash: true,
   menu: {
     themes: [
-      {name: 'dark', theme: '/theme/dark.css'},
-      {name: 'light', theme: '/theme/light.css'}
+      {name: 'dark', theme: '/APM_10579_EP/theme/dark.css'},
+      {name: 'light', theme: '/APM_10579_EP/theme/light.css'}
     ],
-    themesPath: '/theme',
+    themesPath: '/APM_10579_EP/theme',
     path : '/APM_10579_EP/reveal.js-menu'
   },
   // markdown: {
