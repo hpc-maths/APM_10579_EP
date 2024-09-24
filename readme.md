@@ -16,24 +16,24 @@ At the end of the course, a solid knowledge of algorithms will allow students to
 
 # Content
 
-The slides of the different sessions are available [online](https://hpc-maths.github.io/MAP579/).
+The slides of the different sessions are available [online](https://hpc-maths.github.io/APM_10579_EP/).
 
 ## Courses
 
-1. [The basics](https://hpc-maths.github.io/MAP579/courses/basics)
-2. [Functional programming](https://hpc-maths.github.io/MAP579/courses/functional_stl)
-3. [Compilation and code organization](https://hpc-maths.github.io/MAP579/courses/compilation)
-4. [Object Oriented Programming](https://hpc-maths.github.io/MAP579/courses/oop)
-5. [Value semantics](https://hpc-maths.github.io/MAP579/courses/value_semantics)
-6. [Memory and pointers](https://hpc-maths.github.io/MAP579/courses/memory)
-7. [Polymorphism](https://hpc-maths.github.io/MAP579/courses/polymorphism)
-8. [Templates](https://hpc-maths.github.io/MAP579/courses/templates)
+1. [The basics](https://hpc-maths.github.io/APM_10579_EP/courses/basics)
+2. [Functional programming](https://hpc-maths.github.io/APM_10579_EP/courses/functional_stl)
+3. [Compilation and code organization](https://hpc-maths.github.io/APM_10579_EP/courses/compilation)
+4. [Object Oriented Programming](https://hpc-maths.github.io/APM_10579_EP/courses/oop)
+5. [Value semantics](https://hpc-maths.github.io/APM_10579_EP/courses/value_semantics)
+6. [Memory and pointers](https://hpc-maths.github.io/APM_10579_EP/courses/memory)
+7. [Polymorphism](https://hpc-maths.github.io/APM_10579_EP/courses/polymorphism)
+8. [Templates](https://hpc-maths.github.io/APM_10579_EP/courses/templates)
 
 ## Practical sessions
 
-1. [The basics](https://github.com/gouarin/MAP579/tree/readme/courses/basics/notebooks)
-1. [Functional programming](https://github.com/gouarin/MAP579/tree/readme/courses/functional_stl/notebooks)
-1. [Compilation and code organization](https://github.com/gouarin/MAP579/tree/readme/courses/compilation/notebooks)
+1. [The basics](https://github.com/hpc-maths/APM_10579_EP/tree/readme/courses/basics/notebooks)
+1. [Functional programming](https://github.com/hpc-maths/APM_10579_EP/tree/readme/courses/functional_stl/notebooks)
+1. [Compilation and code organization](https://github.com/hpc-maths/APM_10579_EP/tree/readme/courses/compilation/notebooks)
 
 # Authors
 
