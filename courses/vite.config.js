@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: 'https://hpc-maths.github.io/APM_10579_EP/',
+    base: '/APM_10579_EP/',
     build: {
     rollupOptions: {
       input: {
