@@ -74,7 +74,7 @@ matrix::matrix(std::size_t nb_rows, std::size_t nb_cols)
 // File main.cpp
 int main(int argc, char* argv[])
 {
-  dauphine::matrix m(2, 4);
+  matrix m(2, 4);
   std::cout &lt;&lt; m.m_nb_rows &lt;&lt; std::endl;
   return 0;
 }
@@ -1037,11 +1037,13 @@ class socket
                   Dijkstra's algorithm
                 </h1>
               </div>
-              <div class="main">
+              <div class="main text-center">
 
-                <p>The goal of this TP is to implement a graph structure and the
-                  Dijkstra's algorithm (to find the shortest path from a node to
-                  another one)</p>
+                <p>The goal of this practical session is to create a graph
+                  structure and use the
+                  Dijkstra's algorithm, which is an algorithm to find the
+                  shortest path from one node to
+                  another.</p>
               </div>
             </div>
           </section>
@@ -1050,18 +1052,24 @@ class socket
             <div class="sl-block">
               <div class="header">
                 <h1 class="title">
-                  Graph
+                  Node class
                 </h1>
               </div>
               <div class="main">
 
-                <p>Write a node class with:</p>
+                <p>The first thing to create is the node class which allows the
+                  id of the node and its neighbors to be stored.</p>
+                <p>The node class has two attributes</p>
                 <ul>
-                  <li>an id data member (should be set upon construction)</li>
-                  <li>a list of neighboors data member (a neighboor is a pair id
-                    - distance)</li>
-                  <li>a method to add a neighboor with a weight</li>
-                  <li>a method to read the list of neighboors</li>
+                  <li>an id which can be defined as an integer and given in the
+                    constructor</li>
+                  <li>a list of neighbors defined by a pair (id - distance)</li>
+                </ul>
+                <p>The node class also has three member functions</p>
+                <ul>
+                  <li>a method which returns the id</li>
+                  <li>a method to add a neighbor with a distance</li>
+                  <li>a method to read the list of neighbors</li>
                 </ul>
               </div>
             </div>
@@ -1071,7 +1079,7 @@ class socket
             <div class="sl-block">
               <div class="header">
                 <h1 class="title">
-                  Graph
+                  Node class
                 </h1>
               </div>
               <div class="main">
@@ -1091,8 +1099,8 @@ namespace hpc
 
       explicit node(size_t id);
 
+      size_t id() const;
       void add_neighboor(size_t id, double distance);
-      void add_neighboor(const neighboor&amp; n);
 
       const neightboor_list&amp; get_neighboors() const;
 
@@ -1111,13 +1119,22 @@ namespace hpc
             <div class="sl-block">
               <div class="header">
                 <h1 class="title">
-                  Graph
+                  Graph class
                 </h1>
               </div>
               <div class="main">
 
-                <p>Write a graph class that holds a list of nodes. Provide a
-                  convenient API to add nodes and read them</p>
+                <p>We can now create the graph class, which holds a list of
+                  nodes.</p>
+                <p>This class has one attribute: a vector of nodes which is
+                  empty at the beginning. The constructor is defined by the
+                  total number of nodes and creates each of them accordingly.
+                </p>
+                <p>It also composed by two methods</p>
+                <ul>
+                  <li>a method to add an edge to the graph with a distance</li>
+                  <li>a method to read the nodes</li>
+                </ul>
               </div>
             </div>
           </section>
@@ -1126,7 +1143,7 @@ namespace hpc
             <div class="sl-block">
               <div class="header">
                 <h1 class="title">
-                  Graph
+                  Graph class
                 </h1>
               </div>
               <div class="main">
@@ -1140,12 +1157,14 @@ namespace hpc
 
       using node_list = std::vector&lt;node&gt;;
 
-      void add_node(const node&amp; n);
-      const node_list&amp; get_nodes() const;
+      graph(std::size_t size);
+      const node_list& get_nodes() const;
 
-    private:
+      void add_edge(size_t n1, size_t n2, double distance);
 
-      node_list m_node_list;
+  private:
+
+      node_list m_node_list;;
   };
 }
               </code></pre>
@@ -1162,18 +1181,26 @@ namespace hpc
               </div>
               <div class="main">
 
-                <p>The idea is to incrementally build a subgraph in which nodes
-                  are ordered by distance
-                  from the origin.</p>
+                <p>The idea is to incrementally build a subgraph in which the
+                  nodes
+                  are ordered by their distance from the origin.</p>
                 <ul>
-                  <li>Initially, all distances are set to infinite (except for
-                    the initial node), the subgraph is empty</li>
-                  <li>At each step, we choose a node out of the subgraph with
-                    the smallest distance to the origin and we add it to the
-                    subgraph</li>
-                  <li>We update the distances of the neighbors of the last added
-                    node</li>
+                  <li>Initially, all distances are set to infinite except for
+                    the initial node where the distance is set to 0.</li>
+                  <li>A list of unvisited nodes is created.</li>
+                  <li>A previous array stores for a node what is the previous
+                    node visiting it was.</li>
+                  <li>while the unvisited list is not empty</li>
+                  <ul>
+                    <li>we find the minimal distance of all the nodes in the
+                      unvisited list</li>
+                    <li>we update the distance and the previous array for all
+                      the neighbors of this node that are not in the unvisited
+                      list</li>
+                  </ul>
                 </ul>
+                <p>This algorithm can return the distances and the previous
+                  array.</p>
               </div>
             </div>
           </section>
@@ -1324,32 +1351,6 @@ namespace hpc
 
                 <pre><code class="cpp">
 Input: G = (N, E)
-  P = {}
-  d[n] = +int for n in N
-  d[ninit] = 0
-  while there is a node out of P:
-    Choose n out of P such that d[n] is the smallest distance
-    Put n in P
-    For each b neighboor of n out of P:
-      if d[b] &gt; d[n] + distance(b, n):
-        d[b] = d[n] + distance(b, n)
-        previous[b] = n
-                </code></pre>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div class="sl-block">
-              <div class="header">
-                <h1 class="title">
-                  Dijkstra's pseudocode
-                </h1>
-              </div>
-              <div class="main">
-
-                <pre><code class="cpp">
-Input: G = (N, E)
   Q = N
   d[n] = +int for n in N
   d[ninit] = 0
@@ -1369,25 +1370,79 @@ Input: G = (N, E)
             <div class="sl-block">
               <div class="header">
                 <h1 class="title">
-                  Dijkstra's algorithm
+                  Find minimum function
                 </h1>
               </div>
               <div class="main">
-
-                <p>Implement the Dijkstra'a algorithm. The function should have
-                  the following signature:</p>
+                <p>Write the function that searches for the minimum distance of
+                  the unvisited nodes.</p>
+                <p>The function should have the following signature :</p>
                 <pre><code class="cpp">
-void dijkstra(const graph&amp; g, size_t start, size_t end, std::list&lt;size_t&gt;&amp; path);
+size_t find_min(const std::vector&lt;double&gt;& distance, std::unordered_set&lt;size_t&gt;& not_visited);
                 </code></pre>
               </div>
-            </div>
+            </section>
+            <section>
+              <div class="sl-block">
+                <div class="header">
+                  <h1 class="title">
+                    Dijkstra's algorithm
+                  </h1>
+                </div>
+                <div class="main">
+
+                  <p>Implement the Dijkstra'a algorithm. The function should
+                    have
+                    the following signature:</p>
+                  <pre><code class="cpp">
+auto dijkstra(const graph&amp; g, size_t start);
+                </code></pre>
+                  <p>and returns the distances et the previous array using <code
+                      class="cpp">std::pair</code>.</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="sl-block">
+                <div class="header">
+                  <h1 class="title">
+                    Main
+                  </h1>
+                </div>
+                <div class="main">
+
+                  <p>Write a main function that creates the graph given in the
+                    previous slides and uses the
+                    Dijkstra's algorithm to find the shortest paths.</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="sl-block">
+                <div class="header">
+                  <h1 class="title">
+                    Print the path
+                  </h1>
+                </div>
+                <div class="main">
+
+                  <p>Write a function that writes the shortest path between two
+                    nodes thanks to the previous array.</p>
+                  <p>The function should have the following signature :</p>
+                  <pre><code class="cpp">
+  void print_path(const std::vector&lt;size_t&gt;& previous, size_t start, size_t end);
+                  </code></pre>
+                </div>
+              </div>
+            </section>
+
           </section>
 
-        </section>
-
+        </div>
       </div>
-    </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+      <script type="module" src="/main.js"></script>
+    </body>
 
-</html>
+  </html>

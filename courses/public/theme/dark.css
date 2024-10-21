@@ -511,17 +511,20 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .header {
-  grid-row: 1;
+  grid-row-start: 1;
+  grid-row-end: 2;
   align-self: end;
 }
 
 .main {
-  grid-row: 2;
+  grid-row-start: 2;
+  grid-row-end: 5;
   align-self: center;
   text-align: left;
 }
 .footer {
-  grid-row: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
 .reveal h1.title-talk
