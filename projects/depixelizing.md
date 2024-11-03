@@ -1,7 +1,7 @@
 ---
-title: "MAP586 project"
-subtitle: "Depixelizing pixel art"
-date: 2022-01-27
+title: "Depixelizing pixel art"
+subtitle: "APM_50179_EP project"
+date: 2024-2025
 ---
 
 In this project, we are interested in improving the quality of a pixel art image by applying spline methods. This idea was developed in the article [Depixelizing Pixel Art](https://johanneskopf.de/publications/pixelart/paper/pixel.pdf) by J. Kopf and D. Lischinski in 2011.

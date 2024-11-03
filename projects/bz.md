@@ -1,7 +1,7 @@
 ---
-title: "MAP586 project"
-subtitle: "Traveling waves and spiral waves in excitable media : Belousov-Zhabotinsky"
-date: 2022-01-27
+title: "Traveling waves and spiral waves in excitable media : Belousov-Zhabotinsky"
+subtitle: "APM_50179_EP project"
+date: 2024-2025
 ---
 
 ## The mathematical model

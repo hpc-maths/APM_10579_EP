@@ -20,3 +20,5 @@ pde1d :
 
 depixel :
 	pandoc depixelizing.md ${pandoc_engine} ${pandoc_options} -o depixelizing.pdf
+
+all : bz barnes-hut dnn interpolation pde1d depixel

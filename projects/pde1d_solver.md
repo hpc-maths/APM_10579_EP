@@ -1,8 +1,8 @@
 ---
-title: "MAP586 project"
-subtitle: "1D PDE solver"
+title: "1D PDE solver"
+subtitle: "APM_50179_EP project"
 # author: "L. Gouarin and J. Mabille"
-date: 2022-01-27
+date: 2024-2025
 ---
 
 ## Introduction

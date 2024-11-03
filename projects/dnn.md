@@ -1,8 +1,8 @@
 ---
-title: "MAP586 project"
-subtitle: "Deep Neural Network"
+title: "Deep Neural Network"
+subtitle: "APM_50179_EP project"
 # author: "L. Gouarin and J. Mabille"
-date: 2022-01-27
+date: 2024-2025
 ---
 
 You see a lot of people around you who are interested in deep neural networks and you think that it might be interesting to start thinking about creating a software that is as flexible as possible and allows novice users to test this kind of methods.

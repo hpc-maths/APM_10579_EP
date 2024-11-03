@@ -1,8 +1,8 @@
 ---
-title: "MAP586 project"
-subtitle: "Image interpolation"
+title: "Image interpolation"
+subtitle: "APM_50179_EP project"
 # author: "L. Gouarin and J. Mabille"
-date: 2022-01-27
+date: 2024-2025
 ---
 
 Image interpolation can have many utilities when you manage photos, videos, ... They occur when you want to resize an image, when you want to change the perspective or make a rotation.

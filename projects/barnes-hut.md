@@ -1,8 +1,8 @@
 ---
-title: "MAP586 project"
-subtitle: "The N-body problem"
+title: "The N-body problem"
+subtitle: "APM_50179_EP project"
 # author: "L. Gouarin and J. Mabille"
-date: 2022-01-27
+date: 2024-2025
 ---
 
 In physics, the $N$-body problem consists of the computation of all pair interactions in a system consisting of $N$ particles. The two best-known cases are gravitational interactions, e.g. between the stars in a galaxy, and electrostatic interactions between atoms represented as point charges. The interactions can be described by a potential energy or by the forces acting on each particle, i.e. the derivatives of the potential energy with respect to the positions. The latter case is practically more relevant in simulation algorithms.
