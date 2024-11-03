@@ -11,7 +11,7 @@ export default defineConfig({
         basics: resolve(__dirname, 'basics/index.html'),
         functional_stl: resolve(__dirname, 'functional_stl/index.html'),
         compilation: resolve(__dirname, 'compilation/index.html'),
-        oop: resolve(__dirname, 'compilation/index.html'),
+        oop: resolve(__dirname, 'oop/index.html'),
         value_semantics: resolve(__dirname, 'value_semantics/index.html'),
         memory: resolve(__dirname, 'memory/index.html'),
         polymorphism: resolve(__dirname, 'polymorphism/index.html'),
